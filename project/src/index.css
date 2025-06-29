@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Slab Savvy CPA Professional Brand Colors */
+:root {
+  --brand-primary-bg: #6A8491;
+  --brand-secondary-bg: #ECEFF1;
+  --brand-primary-text: #2B2B2B;
+  --brand-secondary-text: #F5F6F7;
+  --brand-accent-gold: #C69316;
+  --brand-button-hover: #42596A;
+  --brand-border: #C4C4C4;
+  --brand-success: #3FD46F;
+}
+
+/* Custom brand utilities */
+.bg-brand-primary { background-color: var(--brand-primary-bg); }
+.bg-brand-secondary { background-color: var(--brand-secondary-bg); }
+.bg-brand-accent { background-color: var(--brand-accent-gold); }
+.bg-brand-hover { background-color: var(--brand-button-hover); }
+.text-brand-primary { color: var(--brand-primary-text); }
+.text-brand-secondary { color: var(--brand-secondary-text); }
+.text-brand-accent { color: var(--brand-accent-gold); }
+.border-brand { border-color: var(--brand-border); }
+.text-brand-success { color: var(--brand-success); }
+
+/* Enhanced shadows and effects */
+.shadow-brand {
+  box-shadow: 0 4px 6px -1px rgba(106, 132, 145, 0.1), 0 2px 4px -1px rgba(106, 132, 145, 0.06);
+}
+
+.shadow-brand-lg {
+  box-shadow: 0 10px 15px -3px rgba(106, 132, 145, 0.1), 0 4px 6px -2px rgba(106, 132, 145, 0.05);
+}
+
+.shadow-brand-xl {
+  box-shadow: 0 20px 25px -5px rgba(106, 132, 145, 0.1), 0 10px 10px -5px rgba(106, 132, 145, 0.04);
+}
+
+/* Gold gradient for special elements */
+.bg-gradient-gold {
+  background: linear-gradient(135deg, #C69316 0%, #E6A91A 100%);
+}
+
+/* Professional hover effects */
+.hover-lift {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px -5px rgba(106, 132, 145, 0.15);
+}
