@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User, LogOut, Shield, ShoppingCart } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { useCart } from '../contexts/CartContext';
+import { Menu, X } from 'lucide-react';
 
 export const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logout } = useAuth();
-  const { getCartCount } = useCart();
   const location = useLocation();
 
   const navigation = [
@@ -20,7 +16,6 @@ export const Navigation: React.FC = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
-  const cartCount = getCartCount();
 
   return (
     <nav className="bg-ssc-surface sticky top-0 z-50 border-b border-ssc-border-dark">
@@ -56,71 +51,13 @@ export const Navigation: React.FC = () => {
             ))}
           </div>
 
-          {/* User Menu & Cart */}
-          <div className="hidden md:flex items-center space-x-4">
-            {/* Cart */}
-            <Link
-              to="/cart"
-              className="relative text-white/80 hover:text-ssc-gold transition-colors"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-ssc-gold text-white text-xs w-5 h-5 flex items-center justify-center font-mono font-bold">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
-
-            {user ? (
-              <div className="flex items-center space-x-4">
-                <Link
-                  to="/account"
-                  className="flex items-center space-x-2 text-white/80 hover:text-ssc-gold transition-colors text-sm"
-                >
-                  <User className="w-4 h-4" />
-                  <span>{user.name}</span>
-                </Link>
-                {user.isAdmin && (
-                  <Link
-                    to="/admin"
-                    className="flex items-center space-x-1 text-ssc-gold hover:text-ssc-gold-light transition-colors text-sm"
-                  >
-                    <Shield className="w-4 h-4" />
-                    <span>Admin</span>
-                  </Link>
-                )}
-                <button
-                  onClick={logout}
-                  className="flex items-center space-x-1 text-white/60 hover:text-red-400 transition-colors text-sm"
-                >
-                  <LogOut className="w-4 h-4" />
-                  <span>Logout</span>
-                </button>
-              </div>
-            ) : (
-              <Link
-                to="/login"
-                className="bg-ssc-gold text-white px-5 py-2 text-sm font-body font-semibold hover:bg-ssc-gold-dark transition-colors"
-              >
-                Login
-              </Link>
-            )}
+          {/* Placeholder for future login */}
+          <div className="hidden md:flex items-center">
+            {/* Login/cart will go here when auth is ready */}
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-4">
-            <Link
-              to="/cart"
-              className="relative text-white/80 hover:text-ssc-gold transition-colors"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-ssc-gold text-white text-xs w-5 h-5 flex items-center justify-center font-mono font-bold">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
-
+          <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white/80 hover:text-ssc-gold focus:outline-none"
@@ -148,48 +85,6 @@ export const Navigation: React.FC = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="border-t border-ssc-border-dark pt-2 mt-2">
-                {user ? (
-                  <div className="space-y-1">
-                    <Link
-                      to="/account"
-                      className="flex items-center space-x-2 px-3 py-2 text-white/80 hover:text-ssc-gold transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <User className="w-4 h-4" />
-                      <span>{user.name}</span>
-                    </Link>
-                    {user.isAdmin && (
-                      <Link
-                        to="/admin"
-                        className="flex items-center space-x-2 px-3 py-2 text-ssc-gold"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        <Shield className="w-4 h-4" />
-                        <span>Admin</span>
-                      </Link>
-                    )}
-                    <button
-                      onClick={() => {
-                        logout();
-                        setIsMenuOpen(false);
-                      }}
-                      className="flex items-center space-x-2 px-3 py-2 text-white/60 hover:text-red-400 transition-colors"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      <span>Logout</span>
-                    </button>
-                  </div>
-                ) : (
-                  <Link
-                    to="/login"
-                    className="block px-3 py-2 text-center bg-ssc-gold text-white font-body font-medium hover:bg-ssc-gold-dark transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Login
-                  </Link>
-                )}
-              </div>
             </div>
           </div>
         )}

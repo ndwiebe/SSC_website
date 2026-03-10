@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Star, Heart, ShoppingCart, Clock, Check, Search, Filter, Grid, List } from 'lucide-react';
+import { Star, Clock, Search, Filter, Grid, List } from 'lucide-react';
 import { useCards } from '../contexts/CardContext';
-import { useAuth } from '../contexts/AuthContext';
-import { useCart } from '../contexts/CartContext';
 import { Card } from '../contexts/CardContext';
+import { ComingSoonBadge } from './ComingSoon';
 
 interface CardGridProps {
   showFeaturedOnly?: boolean;
@@ -11,9 +10,7 @@ interface CardGridProps {
 }
 
 export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, limit }) => {
-  const { availableCards, claimCard, addToWishlist } = useCards();
-  const { user } = useAuth();
-  const { addToCart } = useCart();
+  const { availableCards } = useCards();
   const [filteredCards, setFilteredCards] = useState<Card[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('name');
@@ -62,10 +59,6 @@ export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, li
     setFilteredCards(cards);
   }, [availableCards, showFeaturedOnly, searchTerm, sortBy, filterGrade, filterPriceRange, limit]);
 
-  const handleAddToCart = (card: Card) => {
-    addToCart(card);
-  };
-
   const CardItem: React.FC<{ card: Card }> = ({ card }) => {
     const isGridView = viewMode === 'grid';
 
@@ -83,12 +76,6 @@ export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, li
             <div className="absolute top-2 left-2 bg-ssc-gold text-white px-2 py-1 text-xs font-body font-semibold">
               <Star className="w-3 h-3 inline mr-1" />
               Featured
-            </div>
-          )}
-          {card.claimedBy && (
-            <div className="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 text-xs font-body font-semibold">
-              <Clock className="w-3 h-3 inline mr-1" />
-              Reserved
             </div>
           )}
         </div>
@@ -129,32 +116,11 @@ export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, li
             )}
           </div>
 
-          <div className="mt-4 flex space-x-2">
-            {!card.claimedBy && (
-              <button
-                onClick={() => handleAddToCart(card)}
-                className="flex-1 bg-ssc-gold hover:bg-ssc-gold-dark text-white px-4 py-2 font-body font-medium transition-colors flex items-center justify-center"
-              >
-                <ShoppingCart className="w-4 h-4 mr-2" />
-                Add to Cart
-              </button>
-            )}
-
-            {user && (
-              <button
-                onClick={() => addToWishlist(card.id)}
-                className="px-3 py-2 border border-ssc-border hover:border-red-400 hover:text-red-500 transition-colors"
-              >
-                <Heart className="w-4 h-4" />
-              </button>
-            )}
-
-            {card.claimedBy && (
-              <div className="flex-1 bg-orange-50 border border-orange-200 text-orange-700 px-4 py-2 font-body font-medium text-center">
-                <Check className="w-4 h-4 inline mr-2" />
-                Reserved
-              </div>
-            )}
+          <div className="mt-4">
+            <div className="w-full bg-ssc-chrome-dark/10 border border-ssc-border text-ssc-chrome-dark px-4 py-2 font-body font-medium text-center flex items-center justify-center">
+              <Clock className="w-4 h-4 mr-2" />
+              Online Store Coming Soon
+            </div>
           </div>
         </div>
       </div>
@@ -219,25 +185,16 @@ export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, li
           <div className="mt-4 pt-4 border-t border-ssc-border grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
               <label className="block text-sm font-body font-medium text-ssc-text mb-1">Sort By</label>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="w-full px-3 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold bg-ssc-ivory text-ssc-text font-body"
-              >
+              <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="w-full px-3 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold bg-ssc-ivory text-ssc-text font-body">
                 <option value="name">Player Name</option>
                 <option value="price-low">Price (Low to High)</option>
                 <option value="price-high">Price (High to Low)</option>
                 <option value="year">Year (Newest First)</option>
               </select>
             </div>
-
             <div>
               <label className="block text-sm font-body font-medium text-ssc-text mb-1">Grade</label>
-              <select
-                value={filterGrade}
-                onChange={(e) => setFilterGrade(e.target.value)}
-                className="w-full px-3 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold bg-ssc-ivory text-ssc-text font-body"
-              >
+              <select value={filterGrade} onChange={(e) => setFilterGrade(e.target.value)} className="w-full px-3 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold bg-ssc-ivory text-ssc-text font-body">
                 <option value="all">All Grades</option>
                 <option value="PSA 10">PSA 10</option>
                 <option value="PSA 9">PSA 9</option>
@@ -245,14 +202,9 @@ export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, li
                 <option value="SGC">SGC</option>
               </select>
             </div>
-
             <div>
               <label className="block text-sm font-body font-medium text-ssc-text mb-1">Price Range</label>
-              <select
-                value={filterPriceRange}
-                onChange={(e) => setFilterPriceRange(e.target.value)}
-                className="w-full px-3 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold bg-ssc-ivory text-ssc-text font-body"
-              >
+              <select value={filterPriceRange} onChange={(e) => setFilterPriceRange(e.target.value)} className="w-full px-3 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold bg-ssc-ivory text-ssc-text font-body">
                 <option value="all">All Prices</option>
                 <option value="0-100">Under $100</option>
                 <option value="100-500">$100 - $500</option>
@@ -261,17 +213,8 @@ export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, li
                 <option value="5000">$5,000+</option>
               </select>
             </div>
-
             <div className="flex items-end">
-              <button
-                onClick={() => {
-                  setSearchTerm('');
-                  setSortBy('name');
-                  setFilterGrade('all');
-                  setFilterPriceRange('all');
-                }}
-                className="w-full px-4 py-2 bg-ssc-chrome-dark text-white font-body hover:bg-ssc-text transition-colors"
-              >
+              <button onClick={() => { setSearchTerm(''); setSortBy('name'); setFilterGrade('all'); setFilterPriceRange('all'); }} className="w-full px-4 py-2 bg-ssc-chrome-dark text-white font-body hover:bg-ssc-text transition-colors">
                 Clear Filters
               </button>
             </div>
@@ -283,11 +226,7 @@ export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, li
         Showing {filteredCards.length} of {availableCards.length} cards
       </div>
 
-      <div className={
-        viewMode === 'grid'
-          ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
-          : 'space-y-4'
-      }>
+      <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' : 'space-y-4'}>
         {filteredCards.map((card) => (
           <CardItem key={card.id} card={card} />
         ))}
@@ -295,9 +234,7 @@ export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, li
 
       {filteredCards.length === 0 && (
         <div className="text-center py-12">
-          <div className="text-ssc-chrome-dark mb-4">
-            <Search className="w-12 h-12 mx-auto" />
-          </div>
+          <Search className="w-12 h-12 text-ssc-chrome-dark mx-auto mb-4" />
           <h3 className="font-headline text-lg text-ssc-text mb-2">NO CARDS FOUND</h3>
           <p className="font-body text-ssc-text-secondary">Try adjusting your search or filters</p>
         </div>
