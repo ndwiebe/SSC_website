@@ -43,12 +43,7 @@ export const LoginPage: React.FC = () => {
   };
 
   const resetForm = () => {
-    setFormData({
-      email: '',
-      password: '',
-      name: '',
-      confirmPassword: ''
-    });
+    setFormData({ email: '', password: '', name: '', confirmPassword: '' });
     setError('');
   };
 
@@ -58,90 +53,84 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-primary-bg to-brand-button-hover flex items-center justify-center p-4">
+    <div className="min-h-screen bg-ssc-black flex items-center justify-center p-4">
       <div className="max-w-md w-full space-y-8">
         {/* Header */}
         <div className="text-center">
           <Link to="/" className="inline-flex items-center space-x-3 mb-8">
-            <img 
-              src="/ChatGPT Image Jun 28, 2025, 09_11_57 PM.png" 
-              alt="Slab Savvy CPA Logo" 
-              className="w-16 h-16 rounded-full object-cover border-2 border-brand-accent-gold shadow-md"
+            <img
+              src="/ssc-logo.png"
+              alt="Slab Savvy CPA Logo"
+              className="w-14 h-14 rounded-full object-cover border-2 border-ssc-gold shadow-gold"
             />
             <div className="text-left">
-              <span className="font-bold text-lg text-brand-secondary-text">Slab Savvy CPA</span>
-              <p className="text-xs text-brand-secondary-bg">The Hobby's Accountant</p>
+              <span className="font-headline text-lg tracking-wide text-white">SLAB SAVVY CPA</span>
+              <p className="text-xs text-ssc-chrome font-body">The Hobby's Accountant</p>
             </div>
           </Link>
-          
-          <h2 className="text-3xl font-bold text-brand-secondary-text">
-            {isLogin ? 'Welcome Back' : 'Create Account'}
+
+          <h2 className="font-headline text-3xl text-ssc-gold tracking-wide">
+            {isLogin ? 'WELCOME BACK' : 'CREATE ACCOUNT'}
           </h2>
-          <p className="mt-2 text-brand-secondary-bg">
-            {isLogin 
-              ? 'Sign in to access your cards and wishlist' 
-              : 'Join our community of collectors and traders'
+          <p className="mt-2 text-ssc-chrome font-body">
+            {isLogin
+              ? 'Sign in to access your cards and wishlist'
+              : 'Join the community'
             }
           </p>
         </div>
 
         {/* Form */}
-        <div className="bg-brand-secondary-text rounded-xl shadow-brand-lg p-8 border border-brand-border">
+        <div className="bg-ssc-white p-8 border border-ssc-border shadow-card">
           <form onSubmit={handleSubmit} className="space-y-6">
             {!isLogin && (
               <div>
-                <label className="block text-sm font-medium text-brand-primary-text mb-2">
-                  Full Name
-                </label>
+                <label className="block text-sm font-body font-medium text-ssc-text mb-2">Full Name</label>
                 <div className="relative">
-                  <User className="absolute left-3 top-3 w-5 h-5 text-brand-border" />
+                  <User className="absolute left-3 top-3 w-5 h-5 text-ssc-chrome-dark" />
                   <input
                     type="text"
                     required={!isLogin}
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    className="w-full pl-10 pr-4 py-2 border border-brand-border rounded-lg focus:ring-2 focus:ring-brand-accent-gold focus:border-transparent bg-brand-secondary-bg text-brand-primary-text"
-                    placeholder="Enter your full name"
+                    className="w-full pl-10 pr-4 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
+                    placeholder="Your name"
                   />
                 </div>
               </div>
             )}
 
             <div>
-              <label className="block text-sm font-medium text-brand-primary-text mb-2">
-                Email Address
-              </label>
+              <label className="block text-sm font-body font-medium text-ssc-text mb-2">Email</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-3 w-5 h-5 text-brand-border" />
+                <Mail className="absolute left-3 top-3 w-5 h-5 text-ssc-chrome-dark" />
                 <input
                   type="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  className="w-full pl-10 pr-4 py-2 border border-brand-border rounded-lg focus:ring-2 focus:ring-brand-accent-gold focus:border-transparent bg-brand-secondary-bg text-brand-primary-text"
-                  placeholder="Enter your email"
+                  className="w-full pl-10 pr-4 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
+                  placeholder="your@email.com"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-brand-primary-text mb-2">
-                Password
-              </label>
+              <label className="block text-sm font-body font-medium text-ssc-text mb-2">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 w-5 h-5 text-brand-border" />
+                <Lock className="absolute left-3 top-3 w-5 h-5 text-ssc-chrome-dark" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={formData.password}
                   onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                  className="w-full pl-10 pr-12 py-2 border border-brand-border rounded-lg focus:ring-2 focus:ring-brand-accent-gold focus:border-transparent bg-brand-secondary-bg text-brand-primary-text"
-                  placeholder="Enter your password"
+                  className="w-full pl-10 pr-12 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
+                  placeholder="Password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-3 text-brand-border hover:text-brand-primary-text"
+                  className="absolute right-3 top-3 text-ssc-chrome-dark hover:text-ssc-text"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -150,33 +139,31 @@ export const LoginPage: React.FC = () => {
 
             {!isLogin && (
               <div>
-                <label className="block text-sm font-medium text-brand-primary-text mb-2">
-                  Confirm Password
-                </label>
+                <label className="block text-sm font-body font-medium text-ssc-text mb-2">Confirm Password</label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 w-5 h-5 text-brand-border" />
+                  <Lock className="absolute left-3 top-3 w-5 h-5 text-ssc-chrome-dark" />
                   <input
                     type={showPassword ? 'text' : 'password'}
                     required={!isLogin}
                     value={formData.confirmPassword}
                     onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                    className="w-full pl-10 pr-4 py-2 border border-brand-border rounded-lg focus:ring-2 focus:ring-brand-accent-gold focus:border-transparent bg-brand-secondary-bg text-brand-primary-text"
-                    placeholder="Confirm your password"
+                    className="w-full pl-10 pr-4 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
+                    placeholder="Confirm password"
                   />
                 </div>
               </div>
             )}
 
             {error && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                <p className="text-sm text-red-600">{error}</p>
+              <div className="bg-red-50 border border-red-200 p-3">
+                <p className="text-sm text-red-600 font-body">{error}</p>
               </div>
             )}
 
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-brand-accent-gold hover:bg-brand-button-hover disabled:bg-brand-border text-white px-4 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center"
+              className="w-full bg-ssc-gold hover:bg-ssc-gold-dark disabled:bg-ssc-chrome-dark text-white px-4 py-3 font-body font-semibold transition-colors flex items-center justify-center"
             >
               {isLoading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -190,11 +177,11 @@ export const LoginPage: React.FC = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-brand-primary-text/70">
-              {isLogin ? "Don't have an account?" : "Already have an account?"}
+            <p className="font-body text-ssc-text-secondary">
+              {isLogin ? "Don't have an account?" : 'Already have an account?'}
               <button
                 onClick={toggleMode}
-                className="ml-1 text-brand-accent-gold hover:text-brand-button-hover font-medium"
+                className="ml-1 text-ssc-gold hover:text-ssc-gold-dark font-body font-medium"
               >
                 {isLogin ? 'Sign up' : 'Sign in'}
               </button>
@@ -202,9 +189,9 @@ export const LoginPage: React.FC = () => {
           </div>
 
           {/* Demo Credentials */}
-          <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <h4 className="font-medium text-yellow-800 mb-2">Demo Credentials</h4>
-            <div className="text-sm text-yellow-700 space-y-1">
+          <div className="mt-6 p-4 bg-ssc-gold/5 border border-ssc-gold/20">
+            <h4 className="font-body font-medium text-ssc-text mb-2">Demo Credentials</h4>
+            <div className="text-sm font-mono text-ssc-text-secondary space-y-1">
               <p><strong>Admin:</strong> admin@slabsavvy.com / password</p>
               <p><strong>User:</strong> demo@example.com / password</p>
             </div>
