@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export interface Card {
   id: string;
@@ -41,7 +41,9 @@ interface CardProviderProps {
   children: ReactNode;
 }
 
-// Mock data - replace with Google Sheets integration
+const PLACEHOLDER = '/card-placeholder.svg';
+
+// Sample catalog — replace with real data source
 const mockCards: Card[] = [
   {
     id: '1',
@@ -50,7 +52,7 @@ const mockCards: Card[] = [
     grade: 'PSA 10',
     price: 1200,
     notes: 'Gem Mint condition, perfect centering',
-    imageUrl: 'https://images.pexels.com/photos/1374064/pexels-photo-1374064.jpeg?auto=compress&cs=tinysrgb&w=400',
+    imageUrl: PLACEHOLDER,
     featured: true,
     sold: false,
     team: 'Edmonton Oilers',
@@ -63,7 +65,7 @@ const mockCards: Card[] = [
     grade: 'BGS 9.5',
     price: 800,
     notes: 'Near mint-mint condition',
-    imageUrl: 'https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=400',
+    imageUrl: PLACEHOLDER,
     featured: true,
     sold: false,
     team: 'Pittsburgh Penguins',
@@ -76,7 +78,7 @@ const mockCards: Card[] = [
     grade: 'SGC 8',
     price: 15000,
     notes: 'Iconic rookie card, excellent condition',
-    imageUrl: 'https://images.pexels.com/photos/1374064/pexels-photo-1374064.jpeg?auto=compress&cs=tinysrgb&w=400',
+    imageUrl: PLACEHOLDER,
     featured: true,
     sold: false,
     team: 'Edmonton Oilers',
@@ -89,7 +91,7 @@ const mockCards: Card[] = [
     grade: 'PSA 9',
     price: 450,
     notes: 'Mint condition',
-    imageUrl: 'https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=400',
+    imageUrl: PLACEHOLDER,
     featured: false,
     sold: false,
     team: 'Colorado Avalanche',
@@ -102,7 +104,7 @@ const mockCards: Card[] = [
     grade: 'BGS 9',
     price: 350,
     notes: 'Near mint condition',
-    imageUrl: 'https://images.pexels.com/photos/1374064/pexels-photo-1374064.jpeg?auto=compress&cs=tinysrgb&w=400',
+    imageUrl: PLACEHOLDER,
     featured: false,
     sold: false,
     team: 'Toronto Maple Leafs',
@@ -115,7 +117,7 @@ const mockCards: Card[] = [
     grade: 'PSA 8',
     price: 200,
     notes: 'Near mint condition',
-    imageUrl: 'https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=400',
+    imageUrl: PLACEHOLDER,
     featured: false,
     sold: true,
     team: 'Edmonton Oilers',
@@ -125,34 +127,32 @@ const mockCards: Card[] = [
 
 export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
   const [cards, setCards] = useState<Card[]>(mockCards);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   const featuredCards = cards.filter(card => card.featured && !card.sold);
   const availableCards = cards.filter(card => !card.sold);
 
   const claimCard = (cardId: string, userId: string) => {
-    setCards(prev => prev.map(card => 
-      card.id === cardId 
+    setCards(prev => prev.map(card =>
+      card.id === cardId
         ? { ...card, claimedBy: userId, claimedAt: new Date() }
         : card
     ));
   };
 
   const releaseCard = (cardId: string) => {
-    setCards(prev => prev.map(card => 
-      card.id === cardId 
+    setCards(prev => prev.map(card =>
+      card.id === cardId
         ? { ...card, claimedBy: undefined, claimedAt: undefined }
         : card
     ));
   };
 
   const addToWishlist = (cardId: string) => {
-    // This would integrate with user context
     console.log('Added to wishlist:', cardId);
   };
 
   const removeFromWishlist = (cardId: string) => {
-    // This would integrate with user context
     console.log('Removed from wishlist:', cardId);
   };
 

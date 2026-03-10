@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Play, Clock, User, Eye, BookOpen, Video, Download, Lock } from 'lucide-react';
+import { Play, Clock, User, Eye, BookOpen, Video } from 'lucide-react';
 import { ComingSoonBadge } from '../components/ComingSoon';
+
+const ARTICLE_PLACEHOLDER = '/card-placeholder.svg';
 
 export const ContentHubPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('articles');
@@ -14,7 +16,7 @@ export const ContentHubPage: React.FC = () => {
       publishDate: '2025-01-15',
       readTime: '8 min read',
       category: 'Grading',
-      image: 'https://images.pexels.com/photos/1374064/pexels-photo-1374064.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: ARTICLE_PLACEHOLDER
     },
     {
       id: 2,
@@ -24,7 +26,7 @@ export const ContentHubPage: React.FC = () => {
       publishDate: '2025-01-12',
       readTime: '12 min read',
       category: 'Tax & Finance',
-      image: 'https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: ARTICLE_PLACEHOLDER
     },
     {
       id: 3,
@@ -34,7 +36,7 @@ export const ContentHubPage: React.FC = () => {
       publishDate: '2025-01-10',
       readTime: '15 min read',
       category: 'Market Analysis',
-      image: 'https://images.pexels.com/photos/1374064/pexels-photo-1374064.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: ARTICLE_PLACEHOLDER
     },
     {
       id: 4,
@@ -44,7 +46,7 @@ export const ContentHubPage: React.FC = () => {
       publishDate: '2025-01-08',
       readTime: '10 min read',
       category: 'Investment',
-      image: 'https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: ARTICLE_PLACEHOLDER
     }
   ];
 
@@ -56,7 +58,7 @@ export const ContentHubPage: React.FC = () => {
       duration: '45:32',
       views: '12.5K',
       publishDate: '2025-01-14',
-      thumbnail: 'https://images.pexels.com/photos/1374064/pexels-photo-1374064.jpeg?auto=compress&cs=tinysrgb&w=400'
+      thumbnail: ARTICLE_PLACEHOLDER
     },
     {
       id: 2,
@@ -65,7 +67,7 @@ export const ContentHubPage: React.FC = () => {
       duration: '1:23:15',
       views: '3.2K',
       publishDate: '2025-01-11',
-      thumbnail: 'https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&w=400'
+      thumbnail: ARTICLE_PLACEHOLDER
     },
     {
       id: 3,
@@ -74,7 +76,7 @@ export const ContentHubPage: React.FC = () => {
       duration: '28:47',
       views: '8.7K',
       publishDate: '2025-01-09',
-      thumbnail: 'https://images.pexels.com/photos/1374064/pexels-photo-1374064.jpeg?auto=compress&cs=tinysrgb&w=400'
+      thumbnail: ARTICLE_PLACEHOLDER
     },
   ];
 
@@ -165,8 +167,8 @@ export const ContentHubPage: React.FC = () => {
             {/* Featured Article */}
             <div className="bg-ssc-white border border-ssc-border shadow-card overflow-hidden">
               <div className="md:flex">
-                <div className="md:w-1/3">
-                  <img src={articles[0].image} alt={articles[0].title} className="w-full h-48 md:h-full object-cover" />
+                <div className="md:w-1/3 bg-ssc-black">
+                  <img src={articles[0].image} alt={articles[0].title} className="w-full h-48 md:h-full object-contain p-4" />
                 </div>
                 <div className="md:w-2/3 p-8">
                   <div className="flex items-center space-x-2 mb-4">
@@ -190,8 +192,8 @@ export const ContentHubPage: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {articles.slice(1).map((article) => (
                 <div key={article.id} className="bg-ssc-white border border-ssc-border shadow-card overflow-hidden group">
-                  <div className="relative">
-                    <img src={article.image} alt={article.title} className="w-full h-48 object-cover" />
+                  <div className="relative bg-ssc-black">
+                    <img src={article.image} alt={article.title} className="w-full h-48 object-contain p-4" />
                   </div>
                   <div className="p-6">
                     <div className="flex items-center space-x-2 mb-3">
@@ -219,9 +221,9 @@ export const ContentHubPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {videos.map((video) => (
               <div key={video.id} className="bg-ssc-white border border-ssc-border shadow-card overflow-hidden group">
-                <div className="relative">
-                  <img src={video.thumbnail} alt={video.title} className="w-full h-48 object-cover" />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <div className="relative bg-ssc-black">
+                  <img src={video.thumbnail} alt={video.title} className="w-full h-48 object-contain p-4" />
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                     <div className="w-16 h-16 bg-ssc-gold/80 flex items-center justify-center">
                       <Play className="w-8 h-8 text-white ml-1" />
                     </div>
