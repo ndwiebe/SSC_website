@@ -23,7 +23,7 @@ function App() {
       <CardProvider>
         <CartProvider>
           <Router>
-            <div className="min-h-screen bg-brand-primary-bg flex flex-col">
+            <div className="min-h-screen bg-ssc-ivory flex flex-col font-body">
               <Navigation />
               <main className="flex-1">
                 <Routes>

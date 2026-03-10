@@ -2,53 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Slab Savvy CPA Professional Brand Colors */
+/* Slab Savvy CPA — Reverse Chrome Design System */
 :root {
-  --brand-primary-bg: #6A8491;
-  --brand-secondary-bg: #ECEFF1;
-  --brand-primary-text: #2B2B2B;
-  --brand-secondary-text: #F5F6F7;
-  --brand-accent-gold: #C69316;
-  --brand-button-hover: #42596A;
-  --brand-border: #C4C4C4;
-  --brand-success: #3FD46F;
+  /* Backgrounds */
+  --ssc-ivory: #F5F2ED;
+  --ssc-white: #FFFFFF;
+  --ssc-black: #0A0A0A;
+  --ssc-surface: #141417;
+
+  /* Gold (exact DMC match) */
+  --ssc-gold: #C9A227;
+  --ssc-gold-dark: #8B7318;
+  --ssc-gold-light: #E5C84C;
+
+  /* Chrome (exact DMC match) */
+  --ssc-chrome: #A8A8B3;
+  --ssc-chrome-bright: #E8E8E8;
+  --ssc-chrome-dark: #737380;
+
+  /* Text */
+  --ssc-text: #1A1A1E;
+  --ssc-text-secondary: #6B6B78;
+
+  /* Borders */
+  --ssc-border: #D4D4DB;
+  --ssc-border-dark: #2A2A35;
+
+  /* Shadow */
+  --ssc-shadow-gold: rgba(201, 162, 39, 0.15);
 }
 
-/* Custom brand utilities */
-.bg-brand-primary { background-color: var(--brand-primary-bg); }
-.bg-brand-secondary { background-color: var(--brand-secondary-bg); }
-.bg-brand-accent { background-color: var(--brand-accent-gold); }
-.bg-brand-hover { background-color: var(--brand-button-hover); }
-.text-brand-primary { color: var(--brand-primary-text); }
-.text-brand-secondary { color: var(--brand-secondary-text); }
-.text-brand-accent { color: var(--brand-accent-gold); }
-.border-brand { border-color: var(--brand-border); }
-.text-brand-success { color: var(--brand-success); }
-
-/* Enhanced shadows and effects */
-.shadow-brand {
-  box-shadow: 0 4px 6px -1px rgba(106, 132, 145, 0.1), 0 2px 4px -1px rgba(106, 132, 145, 0.06);
+/* Base styles */
+body {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background-color: var(--ssc-ivory);
+  color: var(--ssc-text);
 }
 
-.shadow-brand-lg {
-  box-shadow: 0 10px 15px -3px rgba(106, 132, 145, 0.1), 0 4px 6px -2px rgba(106, 132, 145, 0.05);
+/* Gold hover lift effect */
+.hover-lift {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
-
-.shadow-brand-xl {
-  box-shadow: 0 20px 25px -5px rgba(106, 132, 145, 0.1), 0 10px 10px -5px rgba(106, 132, 145, 0.04);
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(201, 162, 39, 0.12);
 }
 
 /* Gold gradient for special elements */
 .bg-gradient-gold {
-  background: linear-gradient(135deg, #C69316 0%, #E6A91A 100%);
+  background: linear-gradient(135deg, #C9A227 0%, #E5C84C 100%);
 }
 
-/* Professional hover effects */
-.hover-lift {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+/* Dark section utility */
+.section-dark {
+  background-color: var(--ssc-black);
+  color: #FFFFFF;
 }
 
-.hover-lift:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 20px -5px rgba(106, 132, 145, 0.15);
+/* Chrome text utility */
+.text-chrome {
+  color: var(--ssc-chrome);
 }
