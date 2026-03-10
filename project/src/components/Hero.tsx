@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCards } from '../contexts/CardContext';
-import { Card } from '../contexts/CardContext';
 
 export const Hero: React.FC = () => {
   const { featuredCards } = useCards();
@@ -17,15 +16,10 @@ export const Hero: React.FC = () => {
     }
   }, [featuredCards.length]);
 
-  const nextCard = () => {
-    setCurrentCard((prev) => (prev + 1) % featuredCards.length);
-  };
+  const nextCard = () => setCurrentCard((prev) => (prev + 1) % featuredCards.length);
+  const prevCard = () => setCurrentCard((prev) => (prev - 1 + featuredCards.length) % featuredCards.length);
 
-  const prevCard = () => {
-    setCurrentCard((prev) => (prev - 1 + featuredCards.length) % featuredCards.length);
-  };
-
-  // Empty state hero
+  // Empty state
   if (featuredCards.length === 0) {
     return (
       <div className="bg-ssc-black text-white py-20">
@@ -33,11 +27,7 @@ export const Hero: React.FC = () => {
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1 space-y-6">
               <div className="flex items-center space-x-4 mb-2">
-                <img
-                  src="/ssc-logo.png"
-                  alt="Slab Savvy CPA Logo"
-                  className="w-16 h-16 rounded-full object-cover border-2 border-ssc-gold shadow-gold"
-                />
+                <img src="/ssc-logo.png" alt="Slab Savvy CPA Logo" className="w-16 h-16 rounded-full object-cover border-2 border-ssc-gold shadow-gold" />
                 <div className="h-8 w-px bg-ssc-border-dark"></div>
                 <span className="text-ssc-chrome text-sm font-body">CPA &bull; Collector &bull; The Hobby's Accountant</span>
               </div>
@@ -48,26 +38,13 @@ export const Hero: React.FC = () => {
                 The only CPA in the hobby. Tax guidance, graded card sales, and consulting built for Canadian collectors.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <Link
-                  to="/catalog"
-                  className="bg-ssc-gold hover:bg-ssc-gold-dark text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center"
-                >
-                  Browse Cards
-                </Link>
-                <Link
-                  to="/consulting"
-                  className="border-2 border-ssc-chrome/40 hover:border-ssc-gold hover:text-ssc-gold text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center"
-                >
-                  Book a Consultation
-                </Link>
+                <Link to="/catalog" className="bg-ssc-gold hover:bg-ssc-gold-dark text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center">Browse Cards</Link>
+                <Link to="/consulting" className="border-2 border-ssc-chrome/40 hover:border-ssc-gold hover:text-ssc-gold text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center">Book a Consultation</Link>
               </div>
             </div>
             <div className="flex-1 max-w-md w-full">
-              <div className="aspect-[5/7] bg-ssc-surface border border-ssc-border-dark flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="text-6xl opacity-20 mb-4">🃏</div>
-                  <p className="text-ssc-chrome-dark font-body">Featured cards coming soon</p>
-                </div>
+              <div className="aspect-[5/7] bg-ssc-surface border border-ssc-border-dark">
+                <img src="/card-placeholder.svg" alt="Card catalog coming soon" className="w-full h-full" />
               </div>
             </div>
           </div>
@@ -77,6 +54,7 @@ export const Hero: React.FC = () => {
   }
 
   const card = featuredCards[currentCard];
+  const isPlaceholder = card.imageUrl.includes('placeholder');
 
   return (
     <div className="bg-ssc-black text-white overflow-hidden">
@@ -86,11 +64,7 @@ export const Hero: React.FC = () => {
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex items-center space-x-4 mb-2">
-                <img
-                  src="/ssc-logo.png"
-                  alt="Slab Savvy CPA Logo"
-                  className="w-16 h-16 rounded-full object-cover border-2 border-ssc-gold shadow-gold"
-                />
+                <img src="/ssc-logo.png" alt="Slab Savvy CPA Logo" className="w-16 h-16 rounded-full object-cover border-2 border-ssc-gold shadow-gold" />
                 <div className="h-8 w-px bg-ssc-border-dark"></div>
                 <span className="text-ssc-chrome text-sm font-body">CPA &bull; Collector &bull; The Hobby's Accountant</span>
               </div>
@@ -115,71 +89,53 @@ export const Hero: React.FC = () => {
                   <Shield className="w-4 h-4 text-green-400" />
                   <span className="font-body font-semibold text-white">{card.grade}</span>
                 </div>
-                <div className="font-mono text-2xl font-bold text-ssc-gold">
-                  ${card.price?.toLocaleString()}
-                </div>
+                <div className="font-mono text-2xl font-bold text-ssc-gold">${card.price?.toLocaleString()}</div>
               </div>
             </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/catalog"
-                className="bg-ssc-gold hover:bg-ssc-gold-dark text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center"
-              >
-                Browse Cards
-              </Link>
-              <Link
-                to="/consulting"
-                className="border-2 border-ssc-chrome/40 hover:border-ssc-gold hover:text-ssc-gold text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center"
-              >
-                Book a Consultation
-              </Link>
+              <Link to="/catalog" className="bg-ssc-gold hover:bg-ssc-gold-dark text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center">Browse Cards</Link>
+              <Link to="/consulting" className="border-2 border-ssc-chrome/40 hover:border-ssc-gold hover:text-ssc-gold text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center">Book a Consultation</Link>
             </div>
           </div>
 
-          {/* Right Content - Card Carousel */}
+          {/* Right Content - Card Display */}
           <div className="relative">
             <div className="relative aspect-[5/7] max-w-md mx-auto bg-ssc-surface border border-ssc-border-dark shadow-gold-lg overflow-hidden">
               <img
                 src={card.imageUrl}
                 alt={card.playerName}
-                className="w-full h-full object-cover"
+                className={`w-full h-full ${isPlaceholder ? 'object-contain' : 'object-cover'}`}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <div className="bg-ssc-black/60 backdrop-blur-sm p-3">
-                  <div className="text-sm font-body font-medium">{card.playerName}</div>
-                  <div className="text-xs text-ssc-chrome">{card.grade}</div>
-                </div>
-              </div>
+              {!isPlaceholder && (
+                <>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <div className="bg-ssc-black/60 backdrop-blur-sm p-3">
+                      <div className="text-sm font-body font-medium">{card.playerName}</div>
+                      <div className="text-xs text-ssc-chrome">{card.grade}</div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Carousel Controls */}
             {featuredCards.length > 1 && (
               <>
-                <button
-                  onClick={prevCard}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-ssc-black/60 hover:bg-ssc-gold text-white p-2 transition-colors"
-                >
+                <button onClick={prevCard} className="absolute left-2 top-1/2 -translate-y-1/2 bg-ssc-black/60 hover:bg-ssc-gold text-white p-2 transition-colors">
                   <ChevronLeft className="w-5 h-5" />
                 </button>
-                <button
-                  onClick={nextCard}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-ssc-black/60 hover:bg-ssc-gold text-white p-2 transition-colors"
-                >
+                <button onClick={nextCard} className="absolute right-2 top-1/2 -translate-y-1/2 bg-ssc-black/60 hover:bg-ssc-gold text-white p-2 transition-colors">
                   <ChevronRight className="w-5 h-5" />
                 </button>
-
-                {/* Dots */}
                 <div className="flex justify-center space-x-2 mt-6">
                   {featuredCards.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentCard(index)}
-                      className={`w-2 h-2 transition-colors ${
-                        index === currentCard ? 'bg-ssc-gold' : 'bg-ssc-chrome-dark'
-                      }`}
+                      className={`w-2 h-2 transition-colors ${index === currentCard ? 'bg-ssc-gold' : 'bg-ssc-chrome-dark'}`}
                     />
                   ))}
                 </div>
