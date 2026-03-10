@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Star, Shield, TrendingUp } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCards } from '../contexts/CardContext';
 import { Card } from '../contexts/CardContext';
@@ -25,28 +25,52 @@ export const Hero: React.FC = () => {
     setCurrentCard((prev) => (prev - 1 + featuredCards.length) % featuredCards.length);
   };
 
+  // Empty state hero
   if (featuredCards.length === 0) {
     return (
-      <div className="bg-gradient-to-br from-brand-primary-bg via-brand-button-hover to-brand-primary-text text-brand-secondary-text py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <img 
-              src="/ChatGPT Image Jun 28, 2025, 09_11_57 PM.png" 
-              alt="Slab Savvy CPA Logo" 
-              className="w-24 h-24 rounded-full object-cover mr-6 shadow-brand-lg border-4 border-brand-accent-gold/20"
-            />
-            <div className="text-left">
-              <h1 className="text-5xl md:text-6xl font-bold text-brand-accent-gold">
-                Slab Savvy CPA
+      <div className="bg-ssc-black text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="flex-1 space-y-6">
+              <div className="flex items-center space-x-4 mb-2">
+                <img
+                  src="/ssc-logo.png"
+                  alt="Slab Savvy CPA Logo"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-ssc-gold shadow-gold"
+                />
+                <div className="h-8 w-px bg-ssc-border-dark"></div>
+                <span className="text-ssc-chrome text-sm font-body">CPA &bull; Collector &bull; The Hobby's Accountant</span>
+              </div>
+              <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl tracking-wide text-ssc-gold leading-none">
+                YOUR CARDS.<br />YOUR TAXES.<br />HANDLED.
               </h1>
-              <p className="text-xl md:text-2xl text-brand-secondary-bg">
-                The Hobby's Accountant
+              <p className="text-lg md:text-xl text-ssc-chrome font-body max-w-lg">
+                The only CPA in the hobby. Tax guidance, graded card sales, and consulting built for Canadian collectors.
               </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <Link
+                  to="/catalog"
+                  className="bg-ssc-gold hover:bg-ssc-gold-dark text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center"
+                >
+                  Browse Cards
+                </Link>
+                <Link
+                  to="/consulting"
+                  className="border-2 border-ssc-chrome/40 hover:border-ssc-gold hover:text-ssc-gold text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center"
+                >
+                  Book a Consultation
+                </Link>
+              </div>
+            </div>
+            <div className="flex-1 max-w-md w-full">
+              <div className="aspect-[5/7] bg-ssc-surface border border-ssc-border-dark flex items-center justify-center">
+                <div className="text-center p-8">
+                  <div className="text-6xl opacity-20 mb-4">🃏</div>
+                  <p className="text-ssc-chrome-dark font-body">Featured cards coming soon</p>
+                </div>
+              </div>
             </div>
           </div>
-          <p className="text-xl md:text-2xl mb-8 text-brand-secondary-bg">
-            Where premium sports cards meet professional financial expertise
-          </p>
         </div>
       </div>
     );
@@ -55,46 +79,43 @@ export const Hero: React.FC = () => {
   const card = featuredCards[currentCard];
 
   return (
-    <div className="bg-gradient-to-br from-brand-primary-bg via-brand-button-hover to-brand-primary-text text-brand-secondary-text overflow-hidden">
+    <div className="bg-ssc-black text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <div className="flex items-center mb-6">
-                <img 
-                  src="/ChatGPT Image Jun 28, 2025, 09_11_57 PM.png" 
-                  alt="Slab Savvy CPA Logo" 
-                  className="w-24 h-24 rounded-full object-cover mr-6 shadow-brand-lg border-4 border-brand-accent-gold/20"
+              <div className="flex items-center space-x-4 mb-2">
+                <img
+                  src="/ssc-logo.png"
+                  alt="Slab Savvy CPA Logo"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-ssc-gold shadow-gold"
                 />
-                <div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-brand-accent-gold">
-                    Slab Savvy CPA
-                  </h1>
-                  <p className="text-xl md:text-2xl text-brand-secondary-bg">
-                    The Hobby's Accountant
-                  </p>
-                </div>
+                <div className="h-8 w-px bg-ssc-border-dark"></div>
+                <span className="text-ssc-chrome text-sm font-body">CPA &bull; Collector &bull; The Hobby's Accountant</span>
               </div>
-              <p className="text-xl md:text-2xl text-brand-secondary-bg leading-relaxed">
-                Where premium sports cards meet professional financial expertise
+              <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl tracking-wide text-ssc-gold leading-none">
+                YOUR CARDS.<br />YOUR TAXES.<br />HANDLED.
+              </h1>
+              <p className="text-lg md:text-xl text-ssc-chrome font-body max-w-lg">
+                The only CPA in the hobby. Tax guidance, graded card sales, and consulting built for Canadian collectors.
               </p>
             </div>
 
             {/* Featured Card Info */}
-            <div className="bg-brand-secondary-text/10 backdrop-blur-sm rounded-lg p-6 space-y-4 border border-brand-border/30">
-              <div className="flex items-center space-x-2 text-brand-secondary-bg mb-2">
-                <Star className="w-5 h-5 text-brand-accent-gold" />
-                <span className="text-sm font-medium">Featured Card</span>
+            <div className="bg-ssc-surface border border-ssc-border-dark p-6 space-y-4">
+              <div className="flex items-center space-x-2 text-ssc-chrome mb-2">
+                <Star className="w-4 h-4 text-ssc-gold" />
+                <span className="text-xs font-body font-medium uppercase tracking-wider">Featured Card</span>
               </div>
-              <h3 className="text-2xl font-bold text-brand-accent-gold">{card.playerName}</h3>
-              <p className="text-brand-secondary-bg">{card.description}</p>
+              <h3 className="font-headline text-2xl text-ssc-gold tracking-wide">{card.playerName.toUpperCase()}</h3>
+              <p className="text-ssc-chrome font-body text-sm">{card.description}</p>
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <Shield className="w-5 h-5 text-brand-success" />
-                  <span className="font-semibold">{card.grade}</span>
+                  <Shield className="w-4 h-4 text-green-400" />
+                  <span className="font-body font-semibold text-white">{card.grade}</span>
                 </div>
-                <div className="text-2xl font-bold text-brand-accent-gold">
+                <div className="font-mono text-2xl font-bold text-ssc-gold">
                   ${card.price?.toLocaleString()}
                 </div>
               </div>
@@ -104,49 +125,32 @@ export const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/catalog"
-                className="bg-brand-accent-gold hover:bg-brand-button-hover text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"
+                className="bg-ssc-gold hover:bg-ssc-gold-dark text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center"
               >
-                <TrendingUp className="w-5 h-5 mr-2" />
-                Explore Cards
+                Browse Cards
               </Link>
               <Link
                 to="/consulting"
-                className="bg-transparent border-2 border-brand-secondary-text hover:bg-brand-secondary-text hover:text-brand-primary-text px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"
+                className="border-2 border-ssc-chrome/40 hover:border-ssc-gold hover:text-ssc-gold text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center"
               >
-                Get Consulting Help
+                Book a Consultation
               </Link>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-8">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-brand-accent-gold">500+</div>
-                <div className="text-sm text-brand-secondary-bg">Cards Traded</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-brand-accent-gold">50+</div>
-                <div className="text-sm text-brand-secondary-bg">Happy Clients</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-brand-accent-gold">5★</div>
-                <div className="text-sm text-brand-secondary-bg">Rating</div>
-              </div>
             </div>
           </div>
 
           {/* Right Content - Card Carousel */}
           <div className="relative">
-            <div className="relative aspect-[3/4] max-w-md mx-auto bg-gradient-to-br from-brand-secondary-bg to-brand-border rounded-2xl shadow-brand-xl overflow-hidden">
+            <div className="relative aspect-[5/7] max-w-md mx-auto bg-ssc-surface border border-ssc-border-dark shadow-gold-lg overflow-hidden">
               <img
                 src={card.imageUrl}
                 alt={card.playerName}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white">
-                <div className="bg-black/30 backdrop-blur-sm rounded-lg p-3">
-                  <div className="text-sm font-medium">{card.playerName}</div>
-                  <div className="text-xs text-gray-300">{card.grade}</div>
+                <div className="bg-ssc-black/60 backdrop-blur-sm p-3">
+                  <div className="text-sm font-body font-medium">{card.playerName}</div>
+                  <div className="text-xs text-ssc-chrome">{card.grade}</div>
                 </div>
               </div>
             </div>
@@ -156,13 +160,13 @@ export const Hero: React.FC = () => {
               <>
                 <button
                   onClick={prevCard}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 backdrop-blur-sm text-white p-2 rounded-full transition-colors"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-ssc-black/60 hover:bg-ssc-gold text-white p-2 transition-colors"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={nextCard}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 backdrop-blur-sm text-white p-2 rounded-full transition-colors"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-ssc-black/60 hover:bg-ssc-gold text-white p-2 transition-colors"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
@@ -173,8 +177,8 @@ export const Hero: React.FC = () => {
                     <button
                       key={index}
                       onClick={() => setCurrentCard(index)}
-                      className={`w-2 h-2 rounded-full transition-colors ${
-                        index === currentCard ? 'bg-brand-accent-gold' : 'bg-brand-secondary-text/50'
+                      className={`w-2 h-2 transition-colors ${
+                        index === currentCard ? 'bg-ssc-gold' : 'bg-ssc-chrome-dark'
                       }`}
                     />
                   ))}
