@@ -2,39 +2,46 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FileSpreadsheet, Lock, CheckCircle, ArrowRight, BookOpen, Clock, Download, Table2, Calculator, BarChart3 } from 'lucide-react';
 
-const VALID_CODE = 'PLAYBOOK2025';
-
 export const SpreadsheetPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [sheetUrl, setSheetUrl] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsSubmitting(true);
 
-    // Simulate a brief delay
-    await new Promise(resolve => setTimeout(resolve, 800));
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/validate-spreadsheet-code`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+            'apikey': import.meta.env.VITE_SUPABASE_ANON_KEY,
+          },
+          body: JSON.stringify({ email, code }),
+        }
+      );
 
-    if (code.trim().toUpperCase() !== VALID_CODE) {
-      setError('Invalid code. The access code is included with your Tax Playbook purchase.');
+      const data = await res.json();
+
+      if (data.success) {
+        setSheetUrl(data.sheet_url);
+        setIsUnlocked(true);
+      } else {
+        setError(data.error || 'Invalid code.');
+      }
+    } catch {
+      setError('Something went wrong. Please try again.');
+    } finally {
       setIsSubmitting(false);
-      return;
     }
-
-    if (!email.includes('@')) {
-      setError('Please enter a valid email address.');
-      setIsSubmitting(false);
-      return;
-    }
-
-    // TODO: Store email to mailing list (Resend, ConvertKit, etc.)
-    console.log('Spreadsheet access granted:', { email, code });
-    setIsUnlocked(true);
-    setIsSubmitting(false);
   };
 
   // Unlocked state — show the spreadsheet link
@@ -65,12 +72,10 @@ export const SpreadsheetPage: React.FC = () => {
               grading submissions, fees, GST/HST tracking, and year-end summaries.
             </p>
             <a
-              href="#"
+              href={sheetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-ssc-gold hover:bg-ssc-gold-dark text-white px-8 py-3 font-body font-semibold transition-colors inline-flex items-center justify-center"
-              onClick={(e) => {
-                e.preventDefault();
-                alert('Google Sheet URL will be connected here. Nathan needs to add the share link.');
-              }}
             >
               <Download className="w-5 h-5 mr-2" />
               Open Google Sheet (Make a Copy)
