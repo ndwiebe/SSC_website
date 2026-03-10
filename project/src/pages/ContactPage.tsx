@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MessageCircle, MapPin, Clock, Send, Instagram, Youtube } from 'lucide-react';
+import { Mail, Phone, MessageCircle, MapPin, Clock, Send, Instagram, Youtube, Facebook } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,81 +14,48 @@ export const ContactPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    alert('Thank you for your message! We\'ll get back to you within 24 hours.');
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-      inquiryType: 'general'
-    });
+    alert('Thanks for reaching out. I will get back to you within 24 hours.');
+    setFormData({ name: '', email: '', subject: '', message: '', inquiryType: 'general' });
     setIsSubmitting(false);
   };
 
   const contactMethods = [
     {
       icon: Mail,
-      title: 'Email Us',
-      description: 'Get a response within 24 hours',
-      value: 'hello@slabsavvy.com',
-      action: 'mailto:hello@slabsavvy.com'
+      title: 'Email',
+      description: 'Response within 24 hours',
+      value: 'hello@slabsavvycpa.com',
+      action: 'mailto:hello@slabsavvycpa.com'
     },
     {
       icon: Phone,
-      title: 'Call Us',
-      description: 'Monday to Friday, 9 AM to 6 PM EST',
-      value: '+1 (555) 123-4567',
-      action: 'tel:+15551234567'
+      title: 'Phone',
+      description: 'Monday to Friday, 9 AM to 5 PM MST',
+      value: 'Schedule a Call',
+      action: '#'
     },
     {
-      icon: MessageCircle,
-      title: 'Live Chat',
-      description: 'Chat with us on WhatsApp',
-      value: 'WhatsApp',
+      icon: Facebook,
+      title: 'Facebook DM',
+      description: 'Find me in the collector groups',
+      value: 'Slab Savvy CPA',
       action: '#'
     }
   ];
 
-  const socialLinks = [
-    {
-      icon: Instagram,
-      name: 'Instagram',
-      handle: '@slabsavvycpa',
-      url: '#',
-      color: 'text-pink-600'
-    },
-    {
-      icon: Youtube,
-      name: 'YouTube',
-      handle: 'Slab Savvy CPA',
-      url: '#',
-      color: 'text-red-600'
-    },
-    {
-      icon: MessageCircle,
-      name: 'Discord',
-      handle: 'Join our server',
-      url: '#',
-      color: 'text-indigo-600'
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-brand-primary-bg">
+    <div className="min-h-screen bg-ssc-ivory">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-brand-primary-text via-brand-button-hover to-brand-primary-bg text-brand-secondary-text">
+      <div className="bg-ssc-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-brand-accent-gold">
-              Get in Touch
+            <h1 className="font-headline text-4xl md:text-5xl text-ssc-gold tracking-wide mb-6">
+              GET IN TOUCH
             </h1>
-            <p className="text-xl text-brand-secondary-bg max-w-3xl mx-auto">
-              Have questions about our cards or need professional accounting services? 
-              We're here to help you succeed in both your hobby and business.
+            <p className="font-body text-xl text-ssc-chrome max-w-3xl mx-auto">
+              Got a question about your card taxes? Need help with your books? Or just want to talk about
+              a card you pulled? I'm around.
             </p>
           </div>
         </div>
@@ -103,14 +70,14 @@ export const ContactPage: React.FC = () => {
               <a
                 key={index}
                 href={method.action}
-                className="bg-brand-secondary-text rounded-xl shadow-brand-lg p-8 text-center hover:shadow-brand-xl transition-shadow group border border-brand-border hover-lift"
+                className="bg-ssc-white border border-ssc-border p-8 text-center hover:shadow-card-hover hover:border-ssc-gold transition-all group hover-lift"
               >
-                <div className="w-16 h-16 bg-brand-secondary-bg rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-accent-gold/10 transition-colors">
-                  <Icon className="w-8 h-8 text-brand-accent-gold" />
+                <div className="w-14 h-14 bg-ssc-gold/10 border border-ssc-gold/20 flex items-center justify-center mx-auto mb-6">
+                  <Icon className="w-7 h-7 text-ssc-gold" />
                 </div>
-                <h3 className="text-xl font-bold text-brand-primary-text mb-2">{method.title}</h3>
-                <p className="text-brand-primary-text/70 mb-4">{method.description}</p>
-                <div className="text-brand-accent-gold font-semibold">{method.value}</div>
+                <h3 className="font-headline text-xl text-ssc-text tracking-wide mb-2">{method.title.toUpperCase()}</h3>
+                <p className="font-body text-ssc-text-secondary mb-4">{method.description}</p>
+                <div className="font-body font-semibold text-ssc-gold">{method.value}</div>
               </a>
             );
           })}
@@ -118,91 +85,79 @@ export const ContactPage: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-brand-secondary-text rounded-xl shadow-brand-lg p-8 border border-brand-border">
-            <h2 className="text-2xl font-bold text-brand-primary-text mb-6">Send us a Message</h2>
-            
+          <div className="bg-ssc-white border border-ssc-border p-8">
+            <h2 className="font-headline text-2xl text-ssc-text tracking-wide mb-6">SEND A MESSAGE</h2>
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-brand-primary-text mb-2">
-                    Name *
-                  </label>
+                  <label className="block text-sm font-body font-medium text-ssc-text mb-2">Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    className="w-full px-4 py-2 border border-brand-border rounded-lg focus:ring-2 focus:ring-brand-accent-gold focus:border-transparent bg-brand-secondary-bg text-brand-primary-text"
-                    placeholder="Your full name"
+                    className="w-full px-4 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
+                    placeholder="Your name"
                   />
                 </div>
-                
                 <div>
-                  <label className="block text-sm font-medium text-brand-primary-text mb-2">
-                    Email *
-                  </label>
+                  <label className="block text-sm font-body font-medium text-ssc-text mb-2">Email *</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                    className="w-full px-4 py-2 border border-brand-border rounded-lg focus:ring-2 focus:ring-brand-accent-gold focus:border-transparent bg-brand-secondary-bg text-brand-primary-text"
+                    className="w-full px-4 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
                     placeholder="your@email.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-brand-primary-text mb-2">
-                  Inquiry Type
-                </label>
+                <label className="block text-sm font-body font-medium text-ssc-text mb-2">What's this about?</label>
                 <select
                   value={formData.inquiryType}
                   onChange={(e) => setFormData(prev => ({ ...prev, inquiryType: e.target.value }))}
-                  className="w-full px-4 py-2 border border-brand-border rounded-lg focus:ring-2 focus:ring-brand-accent-gold focus:border-transparent bg-brand-secondary-bg text-brand-primary-text"
+                  className="w-full px-4 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
                 >
                   <option value="general">General Question</option>
                   <option value="cards">Cards & Trading</option>
-                  <option value="consulting">Consulting Services</option>
                   <option value="tax">Tax Preparation</option>
-                  <option value="business">Business Consulting</option>
-                  <option value="ai">AI Automation</option>
-                  <option value="partnership">Partnership Opportunity</option>
+                  <option value="consulting">Business Consulting</option>
+                  <option value="playbook">Tax Playbook</option>
+                  <option value="partnership">Partnership</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-brand-primary-text mb-2">
-                  Subject *
-                </label>
+                <label className="block text-sm font-body font-medium text-ssc-text mb-2">Subject *</label>
                 <input
                   type="text"
                   required
                   value={formData.subject}
                   onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
-                  className="w-full px-4 py-2 border border-brand-border rounded-lg focus:ring-2 focus:ring-brand-accent-gold focus:border-transparent bg-brand-secondary-bg text-brand-primary-text"
-                  placeholder="Brief subject line"
+                  className="w-full px-4 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
+                  placeholder="Brief subject"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-brand-primary-text mb-2">
-                  Message *
-                </label>
+                <label className="block text-sm font-body font-medium text-ssc-text mb-2">Message *</label>
                 <textarea
                   required
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                  className="w-full px-4 py-2 border border-brand-border rounded-lg focus:ring-2 focus:ring-brand-accent-gold focus:border-transparent bg-brand-secondary-bg text-brand-primary-text"
-                  placeholder="Tell us how we can help you..."
+                  className="w-full px-4 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
+                  placeholder="What can I help with?"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-brand-accent-gold hover:bg-brand-button-hover disabled:bg-brand-border text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center"
+                className="w-full bg-ssc-gold hover:bg-ssc-gold-dark disabled:bg-ssc-chrome-dark text-white px-6 py-3 font-body font-semibold transition-colors flex items-center justify-center"
               >
                 {isSubmitting ? (
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -216,128 +171,117 @@ export const ContactPage: React.FC = () => {
             </form>
           </div>
 
-          {/* Contact Info & Social */}
+          {/* Info sidebar */}
           <div className="space-y-8">
-            {/* Business Hours */}
-            <div className="bg-brand-secondary-text rounded-xl shadow-brand-lg p-8 border border-brand-border">
-              <h3 className="text-xl font-bold text-brand-primary-text mb-6">Business Hours</h3>
+            <div className="bg-ssc-white border border-ssc-border p-8">
+              <h3 className="font-headline text-xl text-ssc-text tracking-wide mb-6">HOURS</h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
-                  <Clock className="w-5 h-5 text-brand-accent-gold flex-shrink-0" />
+                  <Clock className="w-5 h-5 text-ssc-gold flex-shrink-0" />
                   <div>
-                    <div className="font-medium text-brand-primary-text">Monday - Friday</div>
-                    <div className="text-brand-primary-text/70">9:00 AM - 6:00 PM EST</div>
+                    <div className="font-body font-medium text-ssc-text">Monday - Friday</div>
+                    <div className="font-body text-ssc-text-secondary">9:00 AM - 5:00 PM MST</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <Clock className="w-5 h-5 text-brand-accent-gold flex-shrink-0" />
+                  <Clock className="w-5 h-5 text-ssc-gold flex-shrink-0" />
                   <div>
-                    <div className="font-medium text-brand-primary-text">Saturday</div>
-                    <div className="text-brand-primary-text/70">10:00 AM - 4:00 PM EST</div>
+                    <div className="font-body font-medium text-ssc-text">Saturday</div>
+                    <div className="font-body text-ssc-text-secondary">By appointment</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <Clock className="w-5 h-5 text-brand-border flex-shrink-0" />
+                  <Clock className="w-5 h-5 text-ssc-chrome-dark flex-shrink-0" />
                   <div>
-                    <div className="font-medium text-brand-primary-text">Sunday</div>
-                    <div className="text-brand-primary-text/70">Closed</div>
+                    <div className="font-body font-medium text-ssc-text">Sunday</div>
+                    <div className="font-body text-ssc-text-secondary">Closed</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Location */}
-            <div className="bg-brand-secondary-text rounded-xl shadow-brand-lg p-8 border border-brand-border">
-              <h3 className="text-xl font-bold text-brand-primary-text mb-6">Office Location</h3>
+            <div className="bg-ssc-white border border-ssc-border p-8">
+              <h3 className="font-headline text-xl text-ssc-text tracking-wide mb-6">LOCATION</h3>
               <div className="flex items-start space-x-4">
-                <MapPin className="w-5 h-5 text-brand-accent-gold flex-shrink-0 mt-1" />
+                <MapPin className="w-5 h-5 text-ssc-gold flex-shrink-0 mt-1" />
                 <div>
-                  <div className="font-medium text-brand-primary-text">Virtual Office</div>
-                  <div className="text-brand-primary-text/70">
-                    Serving clients across Canada<br />
-                    Remote consultations available
+                  <div className="font-body font-medium text-ssc-text">Sherwood Park, Alberta</div>
+                  <div className="font-body text-ssc-text-secondary">
+                    Serving clients across Canada. All consultations available remotely.
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Social Media */}
-            <div className="bg-brand-secondary-text rounded-xl shadow-brand-lg p-8 border border-brand-border">
-              <h3 className="text-xl font-bold text-brand-primary-text mb-6">Follow Us</h3>
+            <div className="bg-ssc-white border border-ssc-border p-8">
+              <h3 className="font-headline text-xl text-ssc-text tracking-wide mb-6">FIND ME</h3>
               <div className="space-y-4">
-                {socialLinks.map((social, index) => {
-                  const Icon = social.icon;
-                  return (
-                    <a
-                      key={index}
-                      href={social.url}
-                      className="flex items-center space-x-4 p-3 rounded-lg hover:bg-brand-secondary-bg transition-colors group"
-                    >
-                      <Icon className={`w-6 h-6 ${social.color} group-hover:scale-110 transition-transform`} />
-                      <div>
-                        <div className="font-medium text-brand-primary-text">{social.name}</div>
-                        <div className="text-brand-primary-text/70 text-sm">{social.handle}</div>
-                      </div>
-                    </a>
-                  );
-                })}
+                <a href="#" className="flex items-center space-x-4 p-3 border border-ssc-border hover:border-ssc-gold transition-colors">
+                  <Facebook className="w-5 h-5 text-ssc-gold" />
+                  <div>
+                    <div className="font-body font-medium text-ssc-text">Facebook Groups</div>
+                    <div className="font-body text-sm text-ssc-text-secondary">Slab Savvy CPA in 15+ collector groups</div>
+                  </div>
+                </a>
+                <a href="#" className="flex items-center space-x-4 p-3 border border-ssc-border hover:border-ssc-gold transition-colors">
+                  <Instagram className="w-5 h-5 text-ssc-gold" />
+                  <div>
+                    <div className="font-body font-medium text-ssc-text">Instagram</div>
+                    <div className="font-body text-sm text-ssc-text-secondary">@slabsavvycpa</div>
+                  </div>
+                </a>
+                <a href="#" className="flex items-center space-x-4 p-3 border border-ssc-border hover:border-ssc-gold transition-colors">
+                  <Youtube className="w-5 h-5 text-ssc-gold" />
+                  <div>
+                    <div className="font-body font-medium text-ssc-text">YouTube</div>
+                    <div className="font-body text-sm text-ssc-text-secondary">Slab Savvy CPA</div>
+                  </div>
+                </a>
               </div>
-            </div>
-
-            {/* Quick Response */}
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-8 border border-green-200">
-              <h3 className="text-xl font-bold text-brand-success mb-4">Quick Response Guarantee</h3>
-              <p className="text-green-800">
-                We typically respond to all inquiries within 2-4 hours during business hours, 
-                and within 24 hours on weekends. For urgent matters, please call directly.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-brand-secondary-text">
+      <section className="bg-ssc-white border-t border-ssc-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-brand-accent-gold mb-4">
-              Frequently Asked Questions
+            <h2 className="font-headline text-3xl text-ssc-gold tracking-wide mb-4">
+              COMMON QUESTIONS
             </h2>
-            <p className="text-lg text-brand-primary-text/70">
-              Quick answers to common questions about our services
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                question: "How do I purchase a card?",
-                answer: "Create an account, browse our catalog, and click 'Buy Now' or 'Claim' on any available card. We'll guide you through the secure checkout process."
+                question: 'How do I buy a card from you?',
+                answer: 'Browse the catalog, add to cart, and check out. Every card is graded and ships insured.'
               },
               {
-                question: "Are all cards authenticated?",
-                answer: "Yes, every card in our catalog has been professionally authenticated and graded by reputable services like PSA, BGS, or SGC."
+                question: 'Are all cards authenticated?',
+                answer: 'Yes. Every card is professionally graded by PSA, BGS, or SGC before I list it.'
               },
               {
-                question: "What consulting services do you offer?",
-                answer: "We provide tax preparation, business consulting, and AI automation services. Each service is tailored to your specific needs and goals."
+                question: 'Do you handle card business taxes?',
+                answer: 'That is literally my specialty. CPA who collects cards. I get the hobby and the tax code.'
               },
               {
-                question: "How quickly do you respond to inquiries?",
-                answer: "We typically respond within 2-4 hours during business hours and within 24 hours on weekends. Urgent matters receive priority response."
+                question: 'How fast do you respond?',
+                answer: 'Usually within a few hours during business hours. 24 hours max on weekends.'
               },
               {
-                question: "Do you offer payment plans?",
-                answer: "For high-value cards, we may offer payment plans on a case-by-case basis. Contact us to discuss your specific situation."
+                question: 'Do you accept trades?',
+                answer: 'Sometimes. Send me what you have through the Sell/Trade page and we can figure it out.'
               },
               {
-                question: "Can I trade cards instead of buying?",
-                answer: "Absolutely! We accept trades for cards of equal or greater value. Submit an offer through our contact form with details about your cards."
+                question: 'What is the Tax Playbook?',
+                answer: 'A $29 digital guide covering everything Canadian collectors need to know about taxes on card sales. Written by me.'
               }
             ].map((faq, index) => (
-              <div key={index} className="bg-brand-secondary-bg rounded-lg p-6 border border-brand-border">
-                <h3 className="font-bold text-brand-primary-text mb-3">{faq.question}</h3>
-                <p className="text-brand-primary-text/70">{faq.answer}</p>
+              <div key={index} className="bg-ssc-ivory border border-ssc-border p-6">
+                <h3 className="font-body font-bold text-ssc-text mb-3">{faq.question}</h3>
+                <p className="font-body text-ssc-text-secondary">{faq.answer}</p>
               </div>
             ))}
           </div>
