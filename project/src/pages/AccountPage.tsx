@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Heart, Clock, Package, Settings, Edit, Save, X } from 'lucide-react';
+import { User, Heart, Clock, Package, Edit, Save, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useCards } from '../contexts/CardContext';
 
@@ -15,10 +15,10 @@ export const AccountPage: React.FC = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-ssc-ivory flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Please Log In</h2>
-          <p className="text-gray-600">You need to be logged in to view this page.</p>
+          <h2 className="font-headline text-2xl text-ssc-text tracking-wide mb-4">PLEASE LOG IN</h2>
+          <p className="font-body text-ssc-text-secondary">You need to be logged in to view this page.</p>
         </div>
       </div>
     );
@@ -28,16 +28,12 @@ export const AccountPage: React.FC = () => {
   const wishlistCards = cards.filter(card => user.wishlist?.includes(card.id));
 
   const handleSave = () => {
-    // Update user data
     console.log('Updating user data:', editData);
     setIsEditing(false);
   };
 
   const handleCancel = () => {
-    setEditData({
-      name: user?.name || '',
-      email: user?.email || ''
-    });
+    setEditData({ name: user?.name || '', email: user?.email || '' });
     setIsEditing(false);
   };
 
@@ -49,38 +45,38 @@ export const AccountPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-ssc-ivory">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="bg-ssc-white border border-ssc-border shadow-card overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-6">
+          <div className="bg-ssc-black px-8 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-                  <User className="w-8 h-8 text-white" />
+                <div className="w-14 h-14 bg-ssc-surface border border-ssc-border-dark flex items-center justify-center">
+                  <User className="w-7 h-7 text-ssc-gold" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold text-white">{user.name}</h1>
-                  <p className="text-blue-100">{user.email}</p>
+                  <h1 className="font-headline text-2xl text-ssc-gold tracking-wide">{user.name.toUpperCase()}</h1>
+                  <p className="font-body text-ssc-chrome text-sm">{user.email}</p>
                   {user.isAdmin && (
-                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 mt-1">
-                      Administrator
+                    <span className="inline-flex items-center px-2 py-1 text-xs font-mono bg-ssc-gold/10 border border-ssc-gold/30 text-ssc-gold mt-1">
+                      Admin
                     </span>
                   )}
                 </div>
               </div>
               <button
                 onClick={() => setIsEditing(!isEditing)}
-                className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center"
+                className="bg-ssc-surface border border-ssc-border-dark hover:border-ssc-gold text-white px-4 py-2 font-body font-medium transition-colors flex items-center"
               >
                 {isEditing ? <X className="w-4 h-4 mr-2" /> : <Edit className="w-4 h-4 mr-2" />}
-                {isEditing ? 'Cancel' : 'Edit Profile'}
+                {isEditing ? 'Cancel' : 'Edit'}
               </button>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="border-b border-gray-200">
+          <div className="border-b border-ssc-border">
             <nav className="flex space-x-8 px-8">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
@@ -88,10 +84,10 @@ export const AccountPage: React.FC = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center space-x-2 transition-colors ${
+                    className={`py-4 px-1 border-b-2 font-body font-medium text-sm flex items-center space-x-2 transition-colors ${
                       activeTab === tab.id
-                        ? 'border-blue-500 text-blue-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        ? 'border-ssc-gold text-ssc-gold'
+                        : 'border-transparent text-ssc-text-secondary hover:text-ssc-text hover:border-ssc-border'
                     }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -106,72 +102,32 @@ export const AccountPage: React.FC = () => {
           <div className="p-8">
             {activeTab === 'profile' && (
               <div className="max-w-2xl">
-                <h2 className="text-xl font-bold text-gray-900 mb-6">Profile Information</h2>
-                
+                <h2 className="font-headline text-xl text-ssc-text tracking-wide mb-6">PROFILE</h2>
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Full Name
-                    </label>
+                    <label className="block text-sm font-body font-medium text-ssc-text mb-2">Full Name</label>
                     {isEditing ? (
-                      <input
-                        type="text"
-                        value={editData.name}
-                        onChange={(e) => setEditData(prev => ({ ...prev, name: e.target.value }))}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      />
+                      <input type="text" value={editData.name} onChange={(e) => setEditData(prev => ({ ...prev, name: e.target.value }))} className="w-full px-3 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold bg-ssc-ivory text-ssc-text font-body" />
                     ) : (
-                      <p className="text-gray-900">{user.name}</p>
+                      <p className="font-body text-ssc-text">{user.name}</p>
                     )}
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address
-                    </label>
+                    <label className="block text-sm font-body font-medium text-ssc-text mb-2">Email</label>
                     {isEditing ? (
-                      <input
-                        type="email"
-                        value={editData.email}
-                        onChange={(e) => setEditData(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      />
+                      <input type="email" value={editData.email} onChange={(e) => setEditData(prev => ({ ...prev, email: e.target.value }))} className="w-full px-3 py-2 border border-ssc-border focus:ring-2 focus:ring-ssc-gold bg-ssc-ivory text-ssc-text font-body" />
                     ) : (
-                      <p className="text-gray-900">{user.email}</p>
+                      <p className="font-body text-ssc-text">{user.email}</p>
                     )}
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Account Type
-                    </label>
-                    <p className="text-gray-900">
-                      {user.isAdmin ? 'Administrator' : 'Standard User'}
-                    </p>
+                    <label className="block text-sm font-body font-medium text-ssc-text mb-2">Account Type</label>
+                    <p className="font-body text-ssc-text">{user.isAdmin ? 'Administrator' : 'Standard User'}</p>
                   </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Member Since
-                    </label>
-                    <p className="text-gray-900">January 2025</p>
-                  </div>
-
                   {isEditing && (
                     <div className="flex space-x-4">
-                      <button
-                        onClick={handleSave}
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center"
-                      >
-                        <Save className="w-4 h-4 mr-2" />
-                        Save Changes
-                      </button>
-                      <button
-                        onClick={handleCancel}
-                        className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                      >
-                        Cancel
-                      </button>
+                      <button onClick={handleSave} className="bg-ssc-gold hover:bg-ssc-gold-dark text-white px-4 py-2 font-body font-medium transition-colors flex items-center"><Save className="w-4 h-4 mr-2" />Save</button>
+                      <button onClick={handleCancel} className="bg-ssc-chrome-dark hover:bg-ssc-text text-white px-4 py-2 font-body font-medium transition-colors">Cancel</button>
                     </div>
                   )}
                 </div>
@@ -180,33 +136,23 @@ export const AccountPage: React.FC = () => {
 
             {activeTab === 'claimed' && (
               <div>
-                <h2 className="text-xl font-bold text-gray-900 mb-6">Claimed Cards</h2>
-                
+                <h2 className="font-headline text-xl text-ssc-text tracking-wide mb-6">CLAIMED CARDS</h2>
                 {claimedCards.length === 0 ? (
                   <div className="text-center py-12">
-                    <Package className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No Claimed Cards</h3>
-                    <p className="text-gray-600">You haven't claimed any cards yet.</p>
+                    <Package className="w-12 h-12 text-ssc-chrome-dark mx-auto mb-4" />
+                    <h3 className="font-body font-semibold text-ssc-text mb-2">No Claimed Cards</h3>
+                    <p className="font-body text-ssc-text-secondary">You haven't claimed any cards yet.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {claimedCards.map((card) => (
-                      <div key={card.id} className="bg-gray-50 rounded-lg p-4">
-                        <img
-                          src={card.imageUrl}
-                          alt={card.playerName}
-                          className="w-full aspect-[3/4] object-cover rounded-lg mb-4"
-                        />
-                        <h3 className="font-bold text-gray-900">{card.playerName}</h3>
-                        <p className="text-sm text-gray-600 mb-2">{card.description}</p>
+                      <div key={card.id} className="bg-ssc-ivory border border-ssc-border p-4">
+                        <img src={card.imageUrl} alt={card.playerName} className="w-full aspect-[5/7] object-cover mb-4" />
+                        <h3 className="font-body font-bold text-ssc-text">{card.playerName}</h3>
+                        <p className="font-body text-sm text-ssc-text-secondary mb-2">{card.description}</p>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-blue-600">{card.grade}</span>
-                          {card.price && (
-                            <span className="font-bold text-green-600">${card.price.toLocaleString()}</span>
-                          )}
-                        </div>
-                        <div className="mt-2 text-xs text-gray-500">
-                          Claimed: {card.claimedAt?.toLocaleDateString()}
+                          <span className="font-mono text-sm text-ssc-text">{card.grade}</span>
+                          {card.price && <span className="font-mono font-bold text-ssc-gold">${card.price.toLocaleString()}</span>}
                         </div>
                       </div>
                     ))}
@@ -217,30 +163,23 @@ export const AccountPage: React.FC = () => {
 
             {activeTab === 'wishlist' && (
               <div>
-                <h2 className="text-xl font-bold text-gray-900 mb-6">Wishlist</h2>
-                
+                <h2 className="font-headline text-xl text-ssc-text tracking-wide mb-6">WISHLIST</h2>
                 {wishlistCards.length === 0 ? (
                   <div className="text-center py-12">
-                    <Heart className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No Wishlist Items</h3>
-                    <p className="text-gray-600">Add cards to your wishlist to see them here.</p>
+                    <Heart className="w-12 h-12 text-ssc-chrome-dark mx-auto mb-4" />
+                    <h3 className="font-body font-semibold text-ssc-text mb-2">No Wishlist Items</h3>
+                    <p className="font-body text-ssc-text-secondary">Add cards to your wishlist from the catalog.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {wishlistCards.map((card) => (
-                      <div key={card.id} className="bg-gray-50 rounded-lg p-4">
-                        <img
-                          src={card.imageUrl}
-                          alt={card.playerName}
-                          className="w-full aspect-[3/4] object-cover rounded-lg mb-4"
-                        />
-                        <h3 className="font-bold text-gray-900">{card.playerName}</h3>
-                        <p className="text-sm text-gray-600 mb-2">{card.description}</p>
+                      <div key={card.id} className="bg-ssc-ivory border border-ssc-border p-4">
+                        <img src={card.imageUrl} alt={card.playerName} className="w-full aspect-[5/7] object-cover mb-4" />
+                        <h3 className="font-body font-bold text-ssc-text">{card.playerName}</h3>
+                        <p className="font-body text-sm text-ssc-text-secondary mb-2">{card.description}</p>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-blue-600">{card.grade}</span>
-                          {card.price && (
-                            <span className="font-bold text-green-600">${card.price.toLocaleString()}</span>
-                          )}
+                          <span className="font-mono text-sm text-ssc-text">{card.grade}</span>
+                          {card.price && <span className="font-mono font-bold text-ssc-gold">${card.price.toLocaleString()}</span>}
                         </div>
                       </div>
                     ))}
@@ -251,29 +190,25 @@ export const AccountPage: React.FC = () => {
 
             {activeTab === 'history' && (
               <div>
-                <h2 className="text-xl font-bold text-gray-900 mb-6">Activity History</h2>
-                
+                <h2 className="font-headline text-xl text-ssc-text tracking-wide mb-6">ACTIVITY</h2>
                 <div className="space-y-4">
-                  <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="bg-ssc-ivory border border-ssc-border p-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h3 className="font-medium text-gray-900">Account Created</h3>
-                        <p className="text-sm text-gray-600">Welcome to Slab Savvy CPA!</p>
+                        <h3 className="font-body font-medium text-ssc-text">Account Created</h3>
+                        <p className="font-body text-sm text-ssc-text-secondary">Welcome to Slab Savvy CPA</p>
                       </div>
-                      <span className="text-sm text-gray-500">Jan 15, 2025</span>
+                      <span className="font-mono text-sm text-ssc-chrome-dark">Jan 15, 2025</span>
                     </div>
                   </div>
-                  
                   {claimedCards.map((card) => (
-                    <div key={card.id} className="bg-gray-50 rounded-lg p-4">
+                    <div key={card.id} className="bg-ssc-ivory border border-ssc-border p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <h3 className="font-medium text-gray-900">Card Claimed</h3>
-                          <p className="text-sm text-gray-600">{card.playerName} - {card.description}</p>
+                          <h3 className="font-body font-medium text-ssc-text">Card Claimed</h3>
+                          <p className="font-body text-sm text-ssc-text-secondary">{card.playerName} - {card.description}</p>
                         </div>
-                        <span className="text-sm text-gray-500">
-                          {card.claimedAt?.toLocaleDateString()}
-                        </span>
+                        <span className="font-mono text-sm text-ssc-chrome-dark">{card.claimedAt?.toLocaleDateString()}</span>
                       </div>
                     </div>
                   ))}
