@@ -13,6 +13,7 @@ import { CartPage } from './pages/CartPage';
 import { PaymentPage } from './pages/PaymentPage';
 import { ContentHubPage } from './pages/ContentHubPage';
 import { SellTradePage } from './pages/SellTradePage';
+import { SpreadsheetPage } from './pages/SpreadsheetPage';
 import { CardProvider } from './contexts/CardContext';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
               <Route path="/payment" element={<PaymentPage />} />
               <Route path="/content" element={<ContentHubPage />} />
               <Route path="/sell-trade" element={<SellTradePage />} />
+              <Route path="/spreadsheet" element={<SpreadsheetPage />} />
             </Routes>
           </main>
           <Footer />
