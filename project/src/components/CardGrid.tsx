@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Star, Clock, Search, Filter, Grid, List } from 'lucide-react';
 import { useCards } from '../contexts/CardContext';
 import { Card } from '../contexts/CardContext';
-import { ComingSoonBadge } from './ComingSoon';
 
 interface CardGridProps {
   showFeaturedOnly?: boolean;
@@ -61,16 +60,17 @@ export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, li
 
   const CardItem: React.FC<{ card: Card }> = ({ card }) => {
     const isGridView = viewMode === 'grid';
+    const isPlaceholder = card.imageUrl.includes('placeholder');
 
     return (
       <div className={`bg-ssc-white border border-ssc-border shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden group hover-lift ${
         isGridView ? '' : 'flex gap-4'
       }`}>
-        <div className={`relative ${isGridView ? 'aspect-[5/7]' : 'w-32 h-40 flex-shrink-0'}`}>
+        <div className={`relative ${isPlaceholder ? 'bg-ssc-black' : ''} ${isGridView ? 'aspect-[5/7]' : 'w-32 h-40 flex-shrink-0'}`}>
           <img
             src={card.imageUrl}
             alt={card.playerName}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className={`w-full h-full ${isPlaceholder ? 'object-contain p-2' : 'object-cover group-hover:scale-105'} transition-transform duration-300`}
           />
           {card.featured && (
             <div className="absolute top-2 left-2 bg-ssc-gold text-white px-2 py-1 text-xs font-body font-semibold">
@@ -139,7 +139,6 @@ export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, li
 
   return (
     <div className="space-y-6">
-      {/* Search and Filters */}
       <div className="bg-ssc-white border border-ssc-border shadow-card p-6">
         <div className="flex flex-col lg:flex-row gap-4 items-center">
           <div className="flex-1 relative">
@@ -154,28 +153,15 @@ export const CardGrid: React.FC<CardGridProps> = ({ showFeaturedOnly = false, li
           </div>
 
           <div className="flex bg-ssc-ivory border border-ssc-border p-1">
-            <button
-              onClick={() => setViewMode('grid')}
-              className={`p-2 transition-colors ${
-                viewMode === 'grid' ? 'bg-ssc-white shadow-sm text-ssc-gold' : 'text-ssc-chrome-dark hover:text-ssc-text'
-              }`}
-            >
+            <button onClick={() => setViewMode('grid')} className={`p-2 transition-colors ${viewMode === 'grid' ? 'bg-ssc-white shadow-sm text-ssc-gold' : 'text-ssc-chrome-dark hover:text-ssc-text'}`}>
               <Grid className="w-4 h-4" />
             </button>
-            <button
-              onClick={() => setViewMode('list')}
-              className={`p-2 transition-colors ${
-                viewMode === 'list' ? 'bg-ssc-white shadow-sm text-ssc-gold' : 'text-ssc-chrome-dark hover:text-ssc-text'
-              }`}
-            >
+            <button onClick={() => setViewMode('list')} className={`p-2 transition-colors ${viewMode === 'list' ? 'bg-ssc-white shadow-sm text-ssc-gold' : 'text-ssc-chrome-dark hover:text-ssc-text'}`}>
               <List className="w-4 h-4" />
             </button>
           </div>
 
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center space-x-2 px-4 py-2 bg-ssc-gold text-white font-body font-medium hover:bg-ssc-gold-dark transition-colors"
-          >
+          <button onClick={() => setShowFilters(!showFilters)} className="flex items-center space-x-2 px-4 py-2 bg-ssc-gold text-white font-body font-medium hover:bg-ssc-gold-dark transition-colors">
             <Filter className="w-4 h-4" />
             <span>Filters</span>
           </button>
