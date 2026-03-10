@@ -13,39 +13,33 @@ import { CartPage } from './pages/CartPage';
 import { PaymentPage } from './pages/PaymentPage';
 import { ContentHubPage } from './pages/ContentHubPage';
 import { SellTradePage } from './pages/SellTradePage';
-import { AuthProvider } from './contexts/AuthContext';
 import { CardProvider } from './contexts/CardContext';
-import { CartProvider } from './contexts/CartContext';
 
 function App() {
   return (
-    <AuthProvider>
-      <CardProvider>
-        <CartProvider>
-          <Router>
-            <div className="min-h-screen bg-ssc-ivory flex flex-col font-body">
-              <Navigation />
-              <main className="flex-1">
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/catalog" element={<CatalogPage />} />
-                  <Route path="/consulting" element={<ConsultingPage />} />
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/account" element={<AccountPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/admin" element={<AdminPage />} />
-                  <Route path="/cart" element={<CartPage />} />
-                  <Route path="/payment" element={<PaymentPage />} />
-                  <Route path="/content" element={<ContentHubPage />} />
-                  <Route path="/sell-trade" element={<SellTradePage />} />
-                </Routes>
-              </main>
-              <Footer />
-            </div>
-          </Router>
-        </CartProvider>
-      </CardProvider>
-    </AuthProvider>
+    <CardProvider>
+      <Router>
+        <div className="min-h-screen bg-ssc-ivory flex flex-col font-body">
+          <Navigation />
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/catalog" element={<CatalogPage />} />
+              <Route path="/consulting" element={<ConsultingPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/account" element={<AccountPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/admin" element={<AdminPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/payment" element={<PaymentPage />} />
+              <Route path="/content" element={<ContentHubPage />} />
+              <Route path="/sell-trade" element={<SellTradePage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </CardProvider>
   );
 }
 
