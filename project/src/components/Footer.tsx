@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Youtube, Facebook } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -12,64 +11,108 @@ export const Footer: React.FC = () => {
             <div className="flex items-center space-x-3">
               <img
                 src="/ssc-logo.png"
-                alt="Slab Savvy CPA Logo"
-                className="w-11 h-11 rounded-full object-cover border-2 border-ssc-gold shadow-gold"
+                alt="Slab Savvy Logo"
+                className="w-10 h-10 object-cover"
               />
-              <div>
-                <span className="font-headline text-lg tracking-wide text-ssc-gold">SLAB SAVVY CPA</span>
-                <p className="text-xs text-ssc-chrome">The Hobby's Accountant</p>
-              </div>
+              <span className="font-headline text-lg tracking-wide text-ssc-gold">
+                SLAB SAVVY
+              </span>
             </div>
             <p className="text-ssc-chrome-dark text-sm font-body">
-              CPA and collector. Tax guidance, graded card sales, and consulting built for the hobby.
+              AI-powered tools for sports card collectors. Track inventory, stay tax-ready, and make smarter decisions.
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Products */}
           <div>
-            <h3 className="font-headline text-sm tracking-widest text-ssc-gold mb-4">QUICK LINKS</h3>
+            <h3 className="font-headline text-sm tracking-widest text-ssc-gold mb-4">
+              PRODUCTS
+            </h3>
             <ul className="space-y-2 font-body text-sm">
-              <li><Link to="/" className="text-ssc-chrome hover:text-white transition-colors">Home</Link></li>
-              <li><Link to="/catalog" className="text-ssc-chrome hover:text-white transition-colors">Card Catalog</Link></li>
-              <li><Link to="/consulting" className="text-ssc-chrome hover:text-white transition-colors">Consulting</Link></li>
-              <li><Link to="/contact" className="text-ssc-chrome hover:text-white transition-colors">Contact</Link></li>
+              <li>
+                <Link
+                  to="/waitlist"
+                  className="text-ssc-chrome hover:text-white transition-colors"
+                >
+                  Slab Savvy Tracker
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://displaymycard.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ssc-chrome hover:text-ssc-gold transition-colors"
+                >
+                  DisplayMyCard
+                </a>
+              </li>
+              <li>
+                <Link
+                  to="/spreadsheet"
+                  className="text-ssc-chrome hover:text-white transition-colors"
+                >
+                  Tax Playbook
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="font-headline text-sm tracking-widest text-ssc-gold mb-4">SERVICES</h3>
+            <h3 className="font-headline text-sm tracking-widest text-ssc-gold mb-4">
+              SERVICES
+            </h3>
             <ul className="space-y-2 font-body text-sm">
-              <li><Link to="/catalog" className="text-ssc-chrome hover:text-white transition-colors">Graded Card Sales</Link></li>
-              <li><Link to="/consulting" className="text-ssc-chrome hover:text-white transition-colors">Tax Preparation</Link></li>
-              <li><Link to="/consulting" className="text-ssc-chrome hover:text-white transition-colors">Business Consulting</Link></li>
-              <li><Link to="/content" className="text-ssc-chrome hover:text-white transition-colors">Tax Playbook</Link></li>
+              <li>
+                <Link
+                  to="/taxready"
+                  className="text-ssc-chrome hover:text-white transition-colors"
+                >
+                  Tax Ready
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/consulting"
+                  className="text-ssc-chrome hover:text-white transition-colors"
+                >
+                  AI Consulting
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Ecosystem & Social */}
+          {/* Connect */}
           <div>
-            <h3 className="font-headline text-sm tracking-widest text-ssc-gold mb-4">ECOSYSTEM</h3>
-            <ul className="space-y-2 font-body text-sm mb-6">
-              <li><a href="https://displaymycard.com" target="_blank" rel="noopener noreferrer" className="text-ssc-chrome hover:text-ssc-gold transition-colors">DisplayMyCard</a></li>
-              <li><Link to="/content" className="text-ssc-chrome hover:text-ssc-gold transition-colors">Tax Playbook</Link></li>
+            <h3 className="font-headline text-sm tracking-widest text-ssc-gold mb-4">
+              CONNECT
+            </h3>
+            <ul className="space-y-2 font-body text-sm">
+              <li>
+                <a
+                  href="mailto:hello@displaymycard.com"
+                  className="text-ssc-chrome hover:text-white transition-colors"
+                >
+                  hello@displaymycard.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://facebook.com/slabsavvy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ssc-chrome hover:text-white transition-colors"
+                >
+                  Facebook
+                </a>
+              </li>
             </ul>
-            <div className="flex space-x-4">
-              <a href="#" className="text-ssc-chrome-dark hover:text-ssc-gold transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-ssc-chrome-dark hover:text-ssc-gold transition-colors">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-ssc-chrome-dark hover:text-ssc-gold transition-colors">
-                <Youtube className="w-5 h-5" />
-              </a>
-            </div>
           </div>
         </div>
 
         <div className="border-t border-ssc-border-dark mt-8 pt-8 text-center text-ssc-chrome-dark text-sm font-body">
-          <p>&copy; 2025 Slab Savvy CPA. All rights reserved.</p>
+          <p>&copy; 2025 Slab Savvy. All rights reserved.</p>
         </div>
       </div>
     </footer>
