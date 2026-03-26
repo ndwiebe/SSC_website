@@ -144,9 +144,9 @@ export const HomePage: React.FC = () => {
             <ul className="space-y-6">
               {[
                 { label: 'CPA', detail: 'Chartered Professional Accountant' },
-                { label: '15+ years', detail: 'collecting sports cards' },
-                { label: '15+ groups', detail: 'active in Facebook collector communities' },
-                { label: '100% AI', detail: 'every tool built with artificial intelligence' },
+                { label: 'Active Collector', detail: 'hockey cards, mostly' },
+                { label: '15+ Groups', detail: 'active in Facebook collector communities' },
+                { label: 'AI-Enhanced', detail: 'every tool built to multiply output, not replace it' },
               ].map((item) => (
                 <li key={item.label} className="flex items-start gap-4">
                   <div className="w-2 h-2 bg-ssc-gold mt-2 flex-shrink-0" />

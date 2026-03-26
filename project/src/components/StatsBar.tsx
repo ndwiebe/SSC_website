@@ -1,10 +1,10 @@
 import React from 'react';
 
 const stats = [
-  { value: '$4.99', label: 'DMC Pro / month' },
+  { value: '15+', label: 'Facebook groups' },
   { value: '30s', label: 'to log a card' },
   { value: '124', label: 'team backgrounds' },
-  { value: '100%', label: 'built with AI' },
+  { value: '10x', label: 'faster with AI' },
 ];
 
 export const StatsBar: React.FC = () => {
