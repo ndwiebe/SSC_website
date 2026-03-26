@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { HeroStatic } from '../components/HeroStatic';
 import { ProductCard } from '../components/ProductCard';
-import { StatsBar } from '../components/StatsBar';
 import { SectionHeading } from '../components/SectionHeading';
 import { MobileStickyCTA } from '../components/MobileStickyCTA';
 import { fadeInUp, staggerFadeInUp } from '../lib/animations';
@@ -107,10 +106,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. Stats Bar */}
-      <StatsBar />
-
-      {/* 4. Trust Section */}
+      {/* 3. Trust Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div ref={trustRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start" style={{ opacity: 0 }}>
           {/* Left: Copy */}
