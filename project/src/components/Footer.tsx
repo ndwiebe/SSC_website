@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
                 SLAB SAVVY
               </span>
             </div>
-            <p className="text-ssc-chrome-dark text-sm font-body">
+            <p className="text-ssc-text-muted text-sm font-body">
               AI-powered tools for sports card collectors. Track inventory, stay tax-ready, and make smarter decisions.
             </p>
           </div>
@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/waitlist"
-                  className="text-ssc-chrome hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
                   Slab Savvy Tracker
                 </Link>
@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
                   href="https://displaymycard.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-ssc-chrome hover:text-ssc-gold transition-colors"
+                  className="text-gray-400 hover:text-ssc-gold transition-colors"
                 >
                   DisplayMyCard
                 </a>
@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/spreadsheet"
-                  className="text-ssc-chrome hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
                   Tax Playbook
                 </Link>
@@ -67,7 +67,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/taxready"
-                  className="text-ssc-chrome hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
                   Tax Ready
                 </Link>
@@ -75,7 +75,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/consulting"
-                  className="text-ssc-chrome hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
                   AI Consulting
                 </Link>
@@ -92,7 +92,7 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href="mailto:hello@displaymycard.com"
-                  className="text-ssc-chrome hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
                   hello@displaymycard.com
                 </a>
@@ -102,7 +102,7 @@ export const Footer: React.FC = () => {
                   href="https://facebook.com/slabsavvy"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-ssc-chrome hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
                   Facebook
                 </a>
@@ -111,7 +111,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-ssc-border-dark mt-8 pt-8 text-center text-ssc-chrome-dark text-sm font-body">
+        <div className="border-t border-ssc-border-dark mt-8 pt-8 text-center text-ssc-text-muted text-sm font-body">
           <p>&copy; 2025 Slab Savvy. All rights reserved.</p>
         </div>
       </div>

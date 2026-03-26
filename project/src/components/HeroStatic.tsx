@@ -38,7 +38,7 @@ export const HeroStatic: React.FC = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-ssc-ivory to-ssc-border/30">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-ssc-bg to-ssc-border/30">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1
           ref={headlineRef}
@@ -52,7 +52,7 @@ export const HeroStatic: React.FC = () => {
 
         <p
           ref={subtitleRef}
-          className="font-body text-lg md:text-xl text-ssc-text-secondary max-w-2xl mx-auto mb-10"
+          className="font-body text-lg md:text-xl text-ssc-text-muted max-w-2xl mx-auto mb-10"
           style={{ opacity: 0 }}
         >
           Inventory tracking. AI photo enhancement. Tax guides. Comps.

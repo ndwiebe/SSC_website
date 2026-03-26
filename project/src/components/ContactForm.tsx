@@ -26,18 +26,18 @@ export const ContactForm: React.FC = () => {
 
   if (isSubmitted) {
     return (
-      <div className="bg-ssc-white border border-ssc-border shadow-card p-8 text-center">
+      <div className="bg-ssc-surface border border-ssc-border shadow-card p-8 text-center">
         <div className="w-16 h-16 bg-green-500/10 border border-green-500/30 flex items-center justify-center mx-auto mb-6">
           <CheckCircle className="w-8 h-8 text-green-400" />
         </div>
         <h3 className="font-headline text-2xl text-ssc-text tracking-wide mb-3">
           GOT IT
         </h3>
-        <p className="font-body text-ssc-text-secondary mb-4">
+        <p className="font-body text-ssc-text-muted mb-4">
           Your email app should have opened with the details pre-filled.
           Hit send and I will get back to you within 24 hours.
         </p>
-        <p className="font-body text-sm text-ssc-chrome-dark">
+        <p className="font-body text-sm text-ssc-text-muted">
           If your email app did not open, send your details directly to{' '}
           <a
             href="mailto:hello@slabsavvycpa.com"
@@ -60,7 +60,7 @@ export const ContactForm: React.FC = () => {
   }
 
   return (
-    <div className="bg-ssc-white border border-ssc-border shadow-card p-8">
+    <div className="bg-ssc-surface border border-ssc-border shadow-card p-8">
       <h3 className="font-headline text-2xl text-ssc-text tracking-wide mb-6">
         GET A QUOTE
       </h3>
@@ -77,7 +77,7 @@ export const ContactForm: React.FC = () => {
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, name: e.target.value }))
             }
-            className="w-full px-4 py-3 min-h-[44px] border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
+            className="w-full px-4 py-3 min-h-[44px] border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-bg text-ssc-text font-body"
             placeholder="Your name"
           />
         </div>
@@ -93,7 +93,7 @@ export const ContactForm: React.FC = () => {
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, email: e.target.value }))
             }
-            className="w-full px-4 py-3 min-h-[44px] border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
+            className="w-full px-4 py-3 min-h-[44px] border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-bg text-ssc-text font-body"
             placeholder="your@email.com"
           />
         </div>
@@ -108,7 +108,7 @@ export const ContactForm: React.FC = () => {
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, volume: e.target.value }))
             }
-            className="w-full px-4 py-3 min-h-[44px] border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
+            className="w-full px-4 py-3 min-h-[44px] border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-bg text-ssc-text font-body"
           >
             <option value="">Select your volume</option>
             <option value="Under 100">Under 100 transactions</option>
@@ -129,7 +129,7 @@ export const ContactForm: React.FC = () => {
               setFormData((prev) => ({ ...prev, message: e.target.value }))
             }
             placeholder="Tell me about your collection, platforms you sell on, and what you need organized."
-            className="w-full px-4 py-3 border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-ivory text-ssc-text font-body"
+            className="w-full px-4 py-3 border border-ssc-border focus:ring-2 focus:ring-ssc-gold focus:border-transparent bg-ssc-bg text-ssc-text font-body"
           />
         </div>
 

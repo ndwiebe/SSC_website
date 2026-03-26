@@ -21,7 +21,7 @@ export const ProcessSteps: React.FC<ProcessStepsProps> = ({ steps }) => {
           <h3 className="font-headline text-lg text-ssc-text tracking-wide mb-2">
             {step.title}
           </h3>
-          <p className="font-body text-ssc-text-secondary">
+          <p className="font-body text-ssc-text-muted">
             {step.description}
           </p>
         </div>

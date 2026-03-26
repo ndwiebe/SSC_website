@@ -23,7 +23,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   external = false,
   span = 'normal',
 }) => {
-  const wrapperClass = `relative border border-ssc-border bg-ssc-white p-8 hover-lift flex flex-col ${
+  const wrapperClass = `relative border border-ssc-border bg-ssc-surface p-8 hover-lift flex flex-col ${
     span === 'wide' ? 'md:col-span-2' : ''
   }`;
 
@@ -43,7 +43,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </h3>
 
       {/* Description */}
-      <p className="font-body text-ssc-text-secondary mb-8 flex-1">
+      <p className="font-body text-ssc-text-muted mb-8 flex-1">
         {description}
       </p>
 

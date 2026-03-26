@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { ProcessSteps } from '../components/ProcessSteps';
 import { ContactForm } from '../components/ContactForm';
 
@@ -69,7 +70,12 @@ const pricingTiers = [
 
 export const TaxReadyPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-ssc-ivory">
+    <div className="min-h-screen bg-ssc-bg">
+      <Helmet>
+        <title>Tax Ready — Slab Savvy</title>
+        <meta name="description" content="Behind on your records? I turn your digital exports into a clean, structured package your accountant can work with." />
+      </Helmet>
+
       {/* Hero */}
       <div className="bg-ssc-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -77,7 +83,7 @@ export const TaxReadyPage: React.FC = () => {
             <h1 className="font-headline text-4xl md:text-6xl text-ssc-gold tracking-wide mb-6">
               YOUR RECORDS. TAX READY.
             </h1>
-            <p className="font-body text-xl md:text-2xl text-ssc-chrome max-w-3xl mx-auto">
+            <p className="font-body text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto">
               Send me your digital exports. I turn them into an accountant-ready
               package using AI reconciliation and CPA review.
             </p>
@@ -91,7 +97,7 @@ export const TaxReadyPage: React.FC = () => {
           <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">
             HOW IT WORKS
           </h2>
-          <p className="font-body text-lg text-ssc-text-secondary max-w-2xl mx-auto">
+          <p className="font-body text-lg text-ssc-text-muted max-w-2xl mx-auto">
             Four steps from messy exports to clean records.
           </p>
         </div>
@@ -105,7 +111,7 @@ export const TaxReadyPage: React.FC = () => {
             <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">
               WHAT YOU GET
             </h2>
-            <p className="font-body text-lg text-ssc-chrome max-w-2xl mx-auto">
+            <p className="font-body text-lg text-gray-400 max-w-2xl mx-auto">
               A complete reconciliation package your accountant can use on day one.
             </p>
           </div>
@@ -115,7 +121,7 @@ export const TaxReadyPage: React.FC = () => {
               {deliverables.map((item, i) => (
                 <div key={i} className="flex items-start space-x-4 p-4 border border-ssc-border-dark">
                   <CheckIcon className="w-5 h-5 text-ssc-gold flex-shrink-0 mt-0.5" />
-                  <span className="font-body text-ssc-chrome">{item}</span>
+                  <span className="font-body text-gray-400">{item}</span>
                 </div>
               ))}
             </div>
@@ -129,7 +135,7 @@ export const TaxReadyPage: React.FC = () => {
           <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">
             PRICING
           </h2>
-          <p className="font-body text-lg text-ssc-text-secondary max-w-2xl mx-auto">
+          <p className="font-body text-lg text-ssc-text-muted max-w-2xl mx-auto">
             Based on your transaction volume. Every package includes AI reconciliation and CPA review.
           </p>
         </div>
@@ -141,7 +147,7 @@ export const TaxReadyPage: React.FC = () => {
               {pricingTiers.map((tier, i) => (
                 <div
                   key={i}
-                  className="bg-ssc-white border border-ssc-border p-6 flex items-center justify-between"
+                  className="bg-ssc-surface border border-ssc-border p-6 flex items-center justify-between"
                 >
                   <span className="font-body font-medium text-ssc-text">
                     {tier.label}
@@ -153,12 +159,12 @@ export const TaxReadyPage: React.FC = () => {
               ))}
             </div>
 
-            <div className="bg-ssc-surface border border-ssc-border-dark p-6">
-              <p className="font-body text-ssc-chrome text-sm leading-relaxed">
+            <div className="bg-ssc-surface-dark border border-ssc-border-dark p-6">
+              <p className="font-body text-gray-400 text-sm leading-relaxed">
                 Not tax prep. Not tax advice. Organized records your accountant
                 will thank you for.
               </p>
-              <p className="font-body text-ssc-chrome-dark text-xs mt-3">
+              <p className="font-body text-ssc-text-muted text-xs mt-3">
                 Final pricing depends on data quality and number of platforms.
                 You will get a firm quote before any work starts.
               </p>

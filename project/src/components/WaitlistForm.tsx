@@ -62,7 +62,7 @@ export const WaitlistForm: React.FC = () => {
         <h3 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">
           YOU'RE ON THE LIST
         </h3>
-        <p className="font-body text-ssc-text-secondary max-w-md mx-auto">
+        <p className="font-body text-ssc-text-muted max-w-md mx-auto">
           We'll reach out when beta spots open up. Keep an eye on your inbox.
         </p>
       </div>
@@ -73,14 +73,14 @@ export const WaitlistForm: React.FC = () => {
     <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
       {/* Email */}
       <div className="relative">
-        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-ssc-text-secondary" />
+        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-ssc-text-muted" />
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="your@email.com"
           required
-          className="w-full pl-11 pr-4 py-3 bg-white border border-ssc-border text-ssc-text font-body placeholder:text-ssc-text-secondary/60 focus:outline-none focus:border-ssc-gold focus:ring-1 focus:ring-ssc-gold transition-colors"
+          className="w-full pl-11 pr-4 py-3 min-h-[44px] bg-white border border-ssc-border text-ssc-text font-body placeholder:text-ssc-text-muted/60 focus:outline-none focus:border-ssc-gold focus:ring-1 focus:ring-ssc-gold transition-colors"
         />
       </div>
 
@@ -88,7 +88,7 @@ export const WaitlistForm: React.FC = () => {
       <select
         value={monthlyVolume}
         onChange={(e) => setMonthlyVolume(e.target.value)}
-        className="w-full px-4 py-3 bg-white border border-ssc-border text-ssc-text font-body focus:outline-none focus:border-ssc-gold focus:ring-1 focus:ring-ssc-gold transition-colors appearance-none cursor-pointer"
+        className="w-full px-4 py-3 min-h-[44px] bg-white border border-ssc-border text-ssc-text font-body focus:outline-none focus:border-ssc-gold focus:ring-1 focus:ring-ssc-gold transition-colors appearance-none cursor-pointer"
       >
         {VOLUME_OPTIONS.map((opt) => (
           <option key={opt.value} value={opt.value}>

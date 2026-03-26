@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { HeroStatic } from '../components/HeroStatic';
@@ -49,6 +50,11 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="pb-16 md:pb-0">
+      <Helmet>
+        <title>Slab Savvy — Run Your Card Business</title>
+        <meta name="description" content="The collector's business platform. Inventory tracking, AI photo enhancement, tax guides, and consulting — built by a CPA who collects." />
+      </Helmet>
+
       {/* 1. Hero */}
       <HeroStatic />
 
@@ -112,12 +118,12 @@ export const HomePage: React.FC = () => {
             <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-6">
               BUILT BY A COLLECTOR WHO'S ALSO A CPA
             </h2>
-            <p className="font-body text-lg text-ssc-text-secondary mb-6">
+            <p className="font-body text-lg text-ssc-text-muted mb-6">
               Most CPAs don't know what a YG is. Most card dealers don't know what an adjusted cost base is.
               I'm both. I'm active in 15+ Facebook collector groups daily, mostly hockey. You've probably
               seen me around.
             </p>
-            <p className="font-body text-lg text-ssc-text-secondary mb-8">
+            <p className="font-body text-lg text-ssc-text-muted mb-8">
               Every tool in the ecosystem exists because I needed it myself. I built them with AI,
               tested them on my own inventory, and now I'm opening the doors.
             </p>
@@ -161,7 +167,7 @@ export const HomePage: React.FC = () => {
           <h2 className="font-headline text-3xl md:text-5xl text-ssc-gold tracking-wide mb-6">
             STOP WINGING IT
           </h2>
-          <p className="font-body text-lg text-ssc-chrome max-w-2xl mx-auto mb-10">
+          <p className="font-body text-lg text-gray-400 max-w-2xl mx-auto mb-10">
             Your inventory deserves more than a Notes app. Your taxes deserve more than guesswork.
             Get on the list and be first in line when the full ecosystem drops.
           </p>
@@ -176,7 +182,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 6. Mobile Sticky CTA */}
-      <MobileStickyCTA />
+      <MobileStickyCTA text="Join the Waitlist" href="/waitlist" />
     </div>
   );
 };

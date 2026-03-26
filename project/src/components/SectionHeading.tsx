@@ -15,7 +15,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
 }) => {
   const alignClass = align === 'center' ? 'text-center' : 'text-left';
   const titleColor = dark ? 'text-ssc-gold' : 'text-ssc-text';
-  const subtitleColor = dark ? 'text-gray-400' : 'text-ssc-text-secondary';
+  const subtitleColor = dark ? 'text-gray-400' : 'text-ssc-text-muted';
 
   return (
     <div className={`${alignClass} space-y-3`}>

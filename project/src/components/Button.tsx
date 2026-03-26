@@ -16,7 +16,7 @@ interface ButtonProps {
 const variantStyles: Record<ButtonVariant, string> = {
   primary: 'bg-ssc-gold text-white hover:bg-ssc-gold-dark',
   secondary: 'border-2 border-ssc-gold text-ssc-gold hover:bg-ssc-gold hover:text-white',
-  dark: 'bg-ssc-black text-white hover:bg-ssc-surface',
+  dark: 'bg-ssc-black text-white hover:bg-ssc-surface-dark',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

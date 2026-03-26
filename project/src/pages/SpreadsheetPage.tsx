@@ -1,10 +1,16 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { FileSpreadsheet, Clock, CheckCircle } from 'lucide-react';
 import { SpreadsheetForm } from '../components/SpreadsheetForm';
 
 export const SpreadsheetPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-ssc-ivory">
+    <div className="min-h-screen bg-ssc-bg">
+      <Helmet>
+        <title>Tax Tracking Spreadsheet — Slab Savvy</title>
+        <meta name="description" content="Access your Card Collector's Tax Playbook tracking spreadsheet." />
+      </Helmet>
+
       {/* Header */}
       <div className="bg-ssc-black text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
@@ -14,7 +20,7 @@ export const SpreadsheetPage: React.FC = () => {
           <h1 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">
             TAX TRACKING SPREADSHEET
           </h1>
-          <p className="font-body text-xl text-ssc-chrome max-w-xl mx-auto">
+          <p className="font-body text-xl text-gray-400 max-w-xl mx-auto">
             The tracking spreadsheet included with The Card Collector's Tax Playbook.
             Enter your email and access code below.
           </p>
@@ -26,9 +32,9 @@ export const SpreadsheetPage: React.FC = () => {
 
       {/* Don't have the code? */}
       <div className="max-w-lg mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="bg-ssc-surface border border-ssc-border-dark p-6 text-center">
+        <div className="bg-ssc-surface-dark border border-ssc-border-dark p-6 text-center">
           <h3 className="font-headline text-lg text-ssc-gold tracking-wide mb-3">DON'T HAVE A CODE?</h3>
-          <p className="font-body text-ssc-chrome text-sm mb-4">
+          <p className="font-body text-gray-400 text-sm mb-4">
             The access code comes with The Card Collector's Tax Playbook.
             It's a $29 digital guide covering everything Canadian collectors need to know
             about taxes on card sales.
@@ -43,7 +49,7 @@ export const SpreadsheetPage: React.FC = () => {
         </div>
 
         {/* What you get */}
-        <div className="bg-ssc-white border border-ssc-border shadow-card p-6 mt-8">
+        <div className="bg-ssc-surface border border-ssc-border shadow-card p-6 mt-8">
           <h3 className="font-headline text-lg text-ssc-text tracking-wide mb-4">WHAT'S IN THE SPREADSHEET</h3>
           <div className="space-y-3">
             {[
@@ -59,7 +65,7 @@ export const SpreadsheetPage: React.FC = () => {
                 <svg className="w-4 h-4 text-ssc-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
-                <span className="font-body text-ssc-text-secondary text-sm">{item}</span>
+                <span className="font-body text-ssc-text-muted text-sm">{item}</span>
               </div>
             ))}
           </div>

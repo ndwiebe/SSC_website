@@ -1,0 +1,12 @@
+# False-start Next.js directory
+site/
+
+# Editor / AI tool caches
+.superpowers/
+
+# Design references (not needed in repo)
+design-references/
+
+# Build artifacts (covered by project/.gitignore too, but belt-and-suspenders)
+project/node_modules/
+project/dist/

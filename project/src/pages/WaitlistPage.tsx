@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Camera, BarChart3, Table2, MessageCircle, DollarSign, FileText, Star } from 'lucide-react';
 import { WaitlistForm } from '../components/WaitlistForm';
 
@@ -65,6 +66,11 @@ const PRICING_TIERS = [
 export const WaitlistPage: React.FC = () => {
   return (
     <div>
+      <Helmet>
+        <title>Slab Savvy Tracker — Join the Beta</title>
+        <meta name="description" content="AI-powered inventory tracking for sports card dealers. Send a photo, get a row in your spreadsheet with real-time comps." />
+      </Helmet>
+
       {/* Hero */}
       <section className="bg-ssc-black text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
@@ -76,7 +82,7 @@ export const WaitlistPage: React.FC = () => {
             <br />
             <span className="text-ssc-gold">KNOW YOUR NUMBERS.</span>
           </h1>
-          <p className="font-body text-ssc-chrome text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="font-body text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
             AI-powered inventory tracking for sports card dealers. Send a photo, confirm the details,
             and your spreadsheet updates itself — with real-time comp prices.
           </p>
@@ -84,13 +90,13 @@ export const WaitlistPage: React.FC = () => {
       </section>
 
       {/* Features */}
-      <section className="bg-ssc-ivory">
+      <section className="bg-ssc-bg">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide">
               HOW IT WORKS
             </h2>
-            <p className="font-body text-ssc-text-secondary mt-3 max-w-2xl mx-auto">
+            <p className="font-body text-ssc-text-muted mt-3 max-w-2xl mx-auto">
               Built for dealers who move cards, not developers who build apps.
             </p>
           </div>
@@ -107,7 +113,7 @@ export const WaitlistPage: React.FC = () => {
                 <h3 className="font-headline text-lg text-ssc-text tracking-wide mb-3">
                   {feature.title}
                 </h3>
-                <p className="font-body text-ssc-text-secondary">
+                <p className="font-body text-ssc-text-muted">
                   {feature.description}
                 </p>
               </div>
@@ -123,7 +129,7 @@ export const WaitlistPage: React.FC = () => {
             <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide">
               PRICING
             </h2>
-            <p className="font-body text-ssc-chrome mt-3 max-w-2xl mx-auto">
+            <p className="font-body text-gray-400 mt-3 max-w-2xl mx-auto">
               Simple plans. Comp search included. All prices in CAD.
             </p>
           </div>
@@ -134,8 +140,8 @@ export const WaitlistPage: React.FC = () => {
                 key={tier.name}
                 className={`relative p-6 md:p-8 ${
                   tier.popular
-                    ? 'border-2 border-ssc-gold bg-ssc-surface'
-                    : 'border border-ssc-border-dark bg-ssc-surface'
+                    ? 'border-2 border-ssc-gold bg-ssc-surface-dark'
+                    : 'border border-ssc-border-dark bg-ssc-surface-dark'
                 }`}
               >
                 {tier.popular && (
@@ -149,9 +155,9 @@ export const WaitlistPage: React.FC = () => {
                 </h3>
                 <div className="mb-4">
                   <span className="font-headline text-4xl text-ssc-gold">${tier.price}</span>
-                  <span className="font-body text-ssc-chrome text-sm">/mo</span>
+                  <span className="font-body text-gray-400 text-sm">/mo</span>
                 </div>
-                <p className="font-body text-ssc-chrome text-sm">
+                <p className="font-body text-gray-400 text-sm">
                   {tier.limit}
                 </p>
               </div>
@@ -161,12 +167,12 @@ export const WaitlistPage: React.FC = () => {
       </section>
 
       {/* Waitlist Form */}
-      <section className="bg-ssc-ivory">
+      <section className="bg-ssc-bg">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
           <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">
             GET EARLY ACCESS
           </h2>
-          <p className="font-body text-ssc-text-secondary mb-8 max-w-lg mx-auto">
+          <p className="font-body text-ssc-text-muted mb-8 max-w-lg mx-auto">
             Join the waitlist for Slab Savvy Tracker. Beta spots are limited — first in, first tracked.
           </p>
           <WaitlistForm />
