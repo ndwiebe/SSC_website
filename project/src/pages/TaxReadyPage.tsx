@@ -20,21 +20,21 @@ const CheckIcon: React.FC<{ className?: string }> = ({ className }) => (
 const processSteps = [
   {
     number: '01',
-    title: 'SEND EXPORTS',
+    title: 'SEND YOUR EXPORTS',
     description:
-      'Export your data from eBay, COMC, 130point, MySlabs, or wherever you track. CSV, PDF, screenshots — whatever you have.',
+      'Export your data from eBay, COMC, 130point, MySlabs, or wherever you sell. CSV, PDF, screenshots — whatever you have digitally.',
   },
   {
     number: '02',
-    title: 'AI RECONCILIATION',
+    title: 'I RECONCILE IT',
     description:
-      'AI matches purchases to sales, flags trades, allocates grading fees, and identifies gaps in your records.',
+      'I match purchases to sales, flag trades, allocate grading fees, and identify gaps in your records.',
   },
   {
     number: '03',
-    title: 'CPA REVIEW',
+    title: 'QUALITY CHECK',
     description:
-      'I personally review every file. AI does the heavy lifting, but a CPA signs off on the final product.',
+      'Every file gets reviewed. Cost basis, currency conversions, platform fees — all checked and verified.',
   },
   {
     number: '04',
@@ -53,20 +53,6 @@ const deliverables = [
   'Two tax-ready views: capital gains and business income',
 ];
 
-const pricingTiers = [
-  {
-    label: 'Under 100 transactions',
-    price: 'From $175',
-  },
-  {
-    label: '100 - 500 transactions',
-    price: 'From $350',
-  },
-  {
-    label: '500+ transactions',
-    price: 'From $600',
-  },
-];
 
 export const TaxReadyPage: React.FC = () => {
   return (
@@ -84,8 +70,8 @@ export const TaxReadyPage: React.FC = () => {
               YOUR RECORDS. TAX READY.
             </h1>
             <p className="font-body text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto">
-              Send me your digital exports. I turn them into an accountant-ready
-              package using AI reconciliation and CPA review.
+              Send me your digital exports. I turn them into a clean, structured
+              package your accountant can actually work with.
             </p>
           </div>
         </div>
@@ -129,49 +115,25 @@ export const TaxReadyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Pricing + Contact */}
+      {/* Contact */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-16">
-          <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">
-            PRICING
-          </h2>
-          <p className="font-body text-lg text-ssc-text-muted max-w-2xl mx-auto">
-            Based on your transaction volume. Every package includes AI reconciliation and CPA review.
-          </p>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Pricing table */}
           <div>
-            <div className="space-y-4 mb-8">
-              {pricingTiers.map((tier, i) => (
-                <div
-                  key={i}
-                  className="bg-ssc-surface border border-ssc-border p-6 flex items-center justify-between"
-                >
-                  <span className="font-body font-medium text-ssc-text">
-                    {tier.label}
-                  </span>
-                  <span className="font-mono text-lg font-bold text-ssc-gold">
-                    {tier.price}
-                  </span>
-                </div>
-              ))}
-            </div>
-
+            <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-6">
+              GET A QUOTE
+            </h2>
+            <p className="font-body text-lg text-ssc-text-muted mb-6">
+              Pricing depends on your volume and how far behind you are. Send me
+              your details and I'll give you a firm quote before any work starts.
+            </p>
             <div className="bg-ssc-surface-dark border border-ssc-border-dark p-6">
               <p className="font-body text-gray-400 text-sm leading-relaxed">
                 Not tax prep. Not tax advice. Organized records your accountant
                 will thank you for.
               </p>
-              <p className="font-body text-ssc-text-muted text-xs mt-3">
-                Final pricing depends on data quality and number of platforms.
-                You will get a firm quote before any work starts.
-              </p>
             </div>
           </div>
 
-          {/* Contact form */}
           <ContactForm />
         </div>
       </section>
