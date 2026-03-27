@@ -62,7 +62,7 @@ export const HomePage: React.FC = () => {
 
         {/* 1. Hero — full viewport, transparent so animation shows through */}
         <section className="min-h-screen flex items-center justify-center relative">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6), 0 0px 20px rgba(0,0,0,0.3)' }}>
             <p className="font-headline text-lg sm:text-xl tracking-[0.3em] text-ssc-gold mb-4">
               SLAB SAVVY
             </p>

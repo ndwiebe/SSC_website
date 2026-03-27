@@ -135,8 +135,13 @@ export const FullPageScrollBackground: React.FC = () => {
             style={{ objectFit: "contain" }}
           />
         </div>
-        {/* Lighter overlay — let more of the card show through */}
-        <div className="absolute inset-0 bg-black/30" />
+        {/* Radial overlay — darker in center for text readability, transparent at edges for card visibility */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 60% 50% at 50% 45%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 100%)',
+          }}
+        />
       </div>
 
       {/* Loading spinner */}
