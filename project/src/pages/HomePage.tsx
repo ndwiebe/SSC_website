@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { HeroScrollAnimation } from '../components/HeroScrollAnimation';
+import { FullPageScrollBackground } from '../components/FullPageScrollBackground';
 import { ProductCard } from '../components/ProductCard';
 import { SectionHeading } from '../components/SectionHeading';
 import { MobileStickyCTA } from '../components/MobileStickyCTA';
@@ -54,130 +54,188 @@ export const HomePage: React.FC = () => {
         <meta name="description" content="The collector's business platform. Inventory tracking, AI photo enhancement, tax guides, and consulting — built by a CPA who collects." />
       </Helmet>
 
-      {/* 1. Hero */}
-      <HeroScrollAnimation />
+      {/* Fixed background animation — plays through entire page scroll */}
+      <FullPageScrollBackground />
 
-      {/* 2. Ecosystem */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <SectionHeading title="THE ECOSYSTEM" subtitle="Everything you need to run your card business. Track, photograph, list, and stay tax-ready." />
-        <div ref={ecosystemRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="product-card md:col-span-2" style={{ opacity: 0 }}>
-            <ProductCard
-              title="SLAB SAVVY TRACKER"
-              description="Stop using a Notes app to track your $50K inventory. Send a photo. Confirm the details. Get a row in your spreadsheet with comps. That's it."
-              icon={ClipboardIcon}
-              href="/waitlist"
-              cta="Join the Waitlist"
-              gradient="bg-gradient-to-r from-ssc-gold to-ssc-gold-light"
-              span="wide"
-            />
-          </div>
-          <div className="product-card" style={{ opacity: 0 }}>
-            <ProductCard
-              title="DISPLAYMYCARD"
-              description="AI-powered photo enhancement that makes your cards look like they belong in a Beckett ad. Team backgrounds, auto-crop, the works."
-              icon={CameraIcon}
-              href="https://displaymycard.com"
-              cta="Try DisplayMyCard"
-              gradient="bg-gradient-to-r from-amber-500 to-amber-300"
-              external
-            />
-          </div>
-          <div className="product-card" style={{ opacity: 0 }}>
-            <ProductCard
-              title="THE TAX PLAYBOOK"
-              description="Everything Canadian collectors need to know about taxes when you sell cards. Written by a CPA who actually rips packs."
-              icon={BookIcon}
-              href="/spreadsheet"
-              cta="Get the Playbook"
-              gradient="bg-gradient-to-r from-emerald-500 to-emerald-300"
-            />
-          </div>
-          <div className="product-card" style={{ opacity: 0 }}>
-            <ProductCard
-              title="TAX READY"
-              description="A dead-simple checklist and walkthrough so you're not scrambling in April. Know what you owe before CRA comes knocking."
-              icon={CalculatorIcon}
-              href="/taxready"
-              cta="Get Tax Ready"
-              gradient="bg-gradient-to-r from-ssc-gold to-ssc-gold-light"
-            />
-          </div>
-        </div>
-      </section>
+      {/* All content scrolls OVER the animation with z-10 */}
+      <div className="relative z-10">
 
-      {/* 3. Trust Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div ref={trustRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start" style={{ opacity: 0 }}>
-          {/* Left: Copy */}
-          <div>
-            <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-6">
-              BUILT BY A COLLECTOR WHO'S ALSO A CPA
-            </h2>
-            <p className="font-body text-lg text-ssc-text-muted mb-6">
-              Most CPAs don't know what a YG is. Most card dealers don't know what an adjusted cost base is.
-              I'm both. I'm active in 15+ Facebook collector groups daily, mostly hockey. You've probably
-              seen me around.
+        {/* 1. Hero — full viewport, transparent so animation shows through */}
+        <section className="min-h-screen flex items-center justify-center relative">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="font-headline text-lg sm:text-xl tracking-[0.3em] text-ssc-gold mb-4">
+              SLAB SAVVY
             </p>
-            <p className="font-body text-lg text-ssc-text-muted mb-8">
-              Every tool in the ecosystem exists because I needed it myself. I built them with AI,
-              tested them on my own inventory, and now I'm opening the doors.
+
+            <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wide leading-none text-white mb-6">
+              RUN YOUR CARD
+              <br />
+              <span className="text-ssc-gold">BUSINESS</span>
+            </h1>
+
+            <p className="font-body text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+              Inventory tracking. AI photo enhancement. Tax guides. Comps.
+              One ecosystem, built by a collector who's also a CPA.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/waitlist"
+                className="inline-flex items-center justify-center min-h-[44px] px-8 py-3 bg-ssc-gold text-white font-body font-semibold text-lg hover:bg-ssc-gold-dark transition-colors shadow-gold"
+              >
+                Join the Waitlist
+              </Link>
+              <Link
+                to="/taxready"
+                className="inline-flex items-center justify-center min-h-[44px] px-8 py-3 border-2 border-white text-white font-body font-semibold text-lg hover:border-ssc-gold hover:text-ssc-gold transition-colors"
+              >
+                Get Tax Ready
+              </Link>
+            </div>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div className="flex flex-col items-center gap-2">
+              <span className="font-body text-xs text-gray-400 tracking-wider uppercase">Scroll</span>
+              <svg className="w-5 h-5 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="square" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. Ecosystem — glass cards over the animation */}
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="glass p-8 md:p-12 mb-8">
+              <SectionHeading title="THE ECOSYSTEM" subtitle="Everything you need to run your card business. Track, photograph, list, and stay tax-ready." />
+            </div>
+            <div ref={ecosystemRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="product-card md:col-span-2" style={{ opacity: 0 }}>
+                <ProductCard
+                  title="SLAB SAVVY TRACKER"
+                  description="Stop using a Notes app to track your $50K inventory. Send a photo. Confirm the details. Get a row in your spreadsheet with comps. That's it."
+                  icon={ClipboardIcon}
+                  href="/waitlist"
+                  cta="Join the Waitlist"
+                  gradient="bg-gradient-to-r from-ssc-gold to-ssc-gold-light"
+                  span="wide"
+                />
+              </div>
+              <div className="product-card" style={{ opacity: 0 }}>
+                <ProductCard
+                  title="DISPLAYMYCARD"
+                  description="AI-powered photo enhancement that makes your cards look like they belong in a Beckett ad. Team backgrounds, auto-crop, the works."
+                  icon={CameraIcon}
+                  href="https://displaymycard.com"
+                  cta="Try DisplayMyCard"
+                  gradient="bg-gradient-to-r from-amber-500 to-amber-300"
+                  external
+                />
+              </div>
+              <div className="product-card" style={{ opacity: 0 }}>
+                <ProductCard
+                  title="THE TAX PLAYBOOK"
+                  description="Everything Canadian collectors need to know about taxes when you sell cards. Written by a CPA who actually rips packs."
+                  icon={BookIcon}
+                  href="/spreadsheet"
+                  cta="Get the Playbook"
+                  gradient="bg-gradient-to-r from-emerald-500 to-emerald-300"
+                />
+              </div>
+              <div className="product-card" style={{ opacity: 0 }}>
+                <ProductCard
+                  title="TAX READY"
+                  description="A dead-simple checklist and walkthrough so you're not scrambling in April. Know what you owe before CRA comes knocking."
+                  icon={CalculatorIcon}
+                  href="/taxready"
+                  cta="Get Tax Ready"
+                  gradient="bg-gradient-to-r from-ssc-gold to-ssc-gold-light"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Trust Section — glass panel */}
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div ref={trustRef} className="glass p-8 md:p-12" style={{ opacity: 0 }}>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                {/* Left: Copy */}
+                <div>
+                  <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-6">
+                    BUILT BY A COLLECTOR WHO'S ALSO A CPA
+                  </h2>
+                  <p className="font-body text-lg text-ssc-text-muted mb-6">
+                    Most CPAs don't know what a YG is. Most card dealers don't know what an adjusted cost base is.
+                    I'm both. I'm active in 15+ Facebook collector groups daily, mostly hockey. You've probably
+                    seen me around.
+                  </p>
+                  <p className="font-body text-lg text-ssc-text-muted mb-8">
+                    Every tool in the ecosystem exists because I needed it myself. I built them with AI,
+                    tested them on my own inventory, and now I'm opening the doors.
+                  </p>
+                  <Link
+                    to="/waitlist"
+                    className="inline-flex items-center min-h-[44px] px-8 py-3 bg-ssc-gold text-white font-body font-semibold hover:bg-ssc-gold-dark transition-colors shadow-gold"
+                  >
+                    Join the Waitlist
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
+                </div>
+
+                {/* Right: Credential box */}
+                <div className="bg-ssc-black p-8 lg:p-10">
+                  <h3 className="font-headline text-xl text-ssc-gold tracking-wide mb-8">
+                    THE CREDENTIALS
+                  </h3>
+                  <ul className="space-y-6">
+                    {[
+                      { label: 'CPA', detail: 'Chartered Professional Accountant' },
+                      { label: 'Active Collector', detail: 'hockey cards, mostly' },
+                      { label: '15+ Groups', detail: 'active in Facebook collector communities' },
+                      { label: 'AI-Enhanced', detail: 'every tool built to multiply output, not replace it' },
+                    ].map((item) => (
+                      <li key={item.label} className="flex items-start gap-4">
+                        <div className="w-2 h-2 bg-ssc-gold mt-2 flex-shrink-0" />
+                        <div>
+                          <span className="font-mono text-lg text-ssc-gold">{item.label}</span>
+                          <p className="font-body text-sm text-gray-400 mt-1">{item.detail}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. CTA Band — semi-transparent dark */}
+        <section className="bg-ssc-black/80 backdrop-blur-md">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <h2 className="font-headline text-3xl md:text-5xl text-ssc-gold tracking-wide mb-6">
+              STOP WINGING IT
+            </h2>
+            <p className="font-body text-lg text-gray-400 max-w-2xl mx-auto mb-10">
+              Your inventory deserves more than a Notes app. Your taxes deserve more than guesswork.
+              Get on the list and be first in line when the full ecosystem drops.
             </p>
             <Link
               to="/waitlist"
-              className="inline-flex items-center min-h-[44px] px-8 py-3 bg-ssc-gold text-white font-body font-semibold hover:bg-ssc-gold-dark transition-colors shadow-gold"
+              className="inline-flex items-center min-h-[44px] px-10 py-4 bg-ssc-gold text-white font-body font-semibold text-lg hover:bg-ssc-gold-dark transition-colors shadow-gold-lg"
             >
               Join the Waitlist
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </div>
+        </section>
 
-          {/* Right: Credential box */}
-          <div className="bg-ssc-black p-8 lg:p-10">
-            <h3 className="font-headline text-xl text-ssc-gold tracking-wide mb-8">
-              THE CREDENTIALS
-            </h3>
-            <ul className="space-y-6">
-              {[
-                { label: 'CPA', detail: 'Chartered Professional Accountant' },
-                { label: 'Active Collector', detail: 'hockey cards, mostly' },
-                { label: '15+ Groups', detail: 'active in Facebook collector communities' },
-                { label: 'AI-Enhanced', detail: 'every tool built to multiply output, not replace it' },
-              ].map((item) => (
-                <li key={item.label} className="flex items-start gap-4">
-                  <div className="w-2 h-2 bg-ssc-gold mt-2 flex-shrink-0" />
-                  <div>
-                    <span className="font-mono text-lg text-ssc-gold">{item.label}</span>
-                    <p className="font-body text-sm text-gray-400 mt-1">{item.detail}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+      </div>
 
-      {/* 5. CTA Band */}
-      <section className="bg-ssc-black">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <h2 className="font-headline text-3xl md:text-5xl text-ssc-gold tracking-wide mb-6">
-            STOP WINGING IT
-          </h2>
-          <p className="font-body text-lg text-gray-400 max-w-2xl mx-auto mb-10">
-            Your inventory deserves more than a Notes app. Your taxes deserve more than guesswork.
-            Get on the list and be first in line when the full ecosystem drops.
-          </p>
-          <Link
-            to="/waitlist"
-            className="inline-flex items-center min-h-[44px] px-10 py-4 bg-ssc-gold text-white font-body font-semibold text-lg hover:bg-ssc-gold-dark transition-colors shadow-gold-lg"
-          >
-            Join the Waitlist
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Link>
-        </div>
-      </section>
-
-      {/* 6. Mobile Sticky CTA */}
+      {/* 5. Mobile Sticky CTA */}
       <MobileStickyCTA text="Join the Waitlist" href="/waitlist" />
     </div>
   );
