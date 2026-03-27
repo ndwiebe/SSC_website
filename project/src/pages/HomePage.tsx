@@ -59,7 +59,7 @@ export const HomePage: React.FC = () => {
 
       {/* 2. Ecosystem */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <SectionHeading>THE ECOSYSTEM</SectionHeading>
+        <SectionHeading title="THE ECOSYSTEM" subtitle="Everything you need to run your card business. Track, photograph, list, and stay tax-ready." />
         <div ref={ecosystemRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="product-card md:col-span-2" style={{ opacity: 0 }}>
             <ProductCard

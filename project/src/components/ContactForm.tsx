@@ -20,15 +20,15 @@ export const ContactForm: React.FC = () => {
       `Name: ${formData.name}\nEmail: ${formData.email}\nVolume: ${formData.volume}\n\n${formData.message}`
     );
 
-    window.location.href = `mailto:hello@slabsavvycpa.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:slabsavvycpa@gmail.com?subject=${subject}&body=${body}`;
     setIsSubmitted(true);
   };
 
   if (isSubmitted) {
     return (
       <div className="bg-ssc-surface border border-ssc-border shadow-card p-8 text-center">
-        <div className="w-16 h-16 bg-green-500/10 border border-green-500/30 flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="w-8 h-8 text-green-400" />
+        <div className="w-16 h-16 bg-ssc-gold/10 border border-ssc-gold/20 flex items-center justify-center mx-auto mb-6">
+          <CheckCircle className="w-8 h-8 text-ssc-gold" />
         </div>
         <h3 className="font-headline text-2xl text-ssc-text tracking-wide mb-3">
           GOT IT

@@ -61,8 +61,8 @@ export const SpreadsheetForm: React.FC = () => {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           {/* Success header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-green-500/10 border border-green-500/30 flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-8 h-8 text-green-400" />
+            <div className="w-16 h-16 bg-ssc-gold/10 border border-ssc-gold/20 flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="w-8 h-8 text-ssc-gold" />
             </div>
             <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">
               YOU'RE IN

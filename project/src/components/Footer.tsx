@@ -73,12 +73,12 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/consulting"
+                <a
+                  href="mailto:slabsavvycpa@gmail.com?subject=AI%20Consulting%20Inquiry"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   AI Consulting
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -91,10 +91,10 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 font-body text-sm">
               <li>
                 <a
-                  href="mailto:hello@displaymycard.com"
+                  href="mailto:slabsavvycpa@gmail.com"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  hello@displaymycard.com
+                  slabsavvycpa@gmail.com
                 </a>
               </li>
               <li>
@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-ssc-border-dark mt-8 pt-8 text-center text-ssc-text-muted text-sm font-body">
-          <p>&copy; 2025 Slab Savvy. All rights reserved.</p>
+          <p>&copy; 2026 Slab Savvy. All rights reserved.</p>
         </div>
       </div>
     </footer>
