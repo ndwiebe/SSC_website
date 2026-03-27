@@ -5,6 +5,9 @@ interface UseScrollFramesOptions {
   framePath: string;
   frameExtension: string;
   scrollHeight: number;
+  mobileScrollHeight?: number;
+  mobileBreakpoint?: number;
+  skipFramesOnMobile?: boolean;
 }
 
 interface UseScrollFramesReturn {
@@ -13,38 +16,48 @@ interface UseScrollFramesReturn {
   isLoaded: boolean;
 }
 
+function isMobile(breakpoint: number): boolean {
+  return typeof window !== "undefined" && window.innerWidth < breakpoint;
+}
+
 export function useScrollFrames({
   frameCount,
   framePath,
   frameExtension,
   scrollHeight,
+  mobileScrollHeight = 800,
+  mobileBreakpoint = 768,
+  skipFramesOnMobile = true,
 }: UseScrollFramesOptions): UseScrollFramesReturn {
   const containerRef = useRef<HTMLDivElement>(null!);
   const canvasRef = useRef<HTMLCanvasElement>(null!);
   const framesRef = useRef<HTMLImageElement[]>([]);
+  const frameMapRef = useRef<number[]>([]);
   const currentFrameRef = useRef<number>(-1);
   const rafRef = useRef<number>(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Pad frame number to 4 digits: 1 -> "0001"
+  const mobile = isMobile(mobileBreakpoint);
+  const effectiveScrollHeight = mobile ? mobileScrollHeight : scrollHeight;
+  const frameStep = mobile && skipFramesOnMobile ? 2 : 1;
+  const effectiveFrameCount = Math.ceil(frameCount / frameStep);
+
   const getFrameSrc = useCallback(
-    (index: number) => {
-      const padded = String(index + 1).padStart(4, "0");
+    (originalIndex: number) => {
+      const padded = String(originalIndex + 1).padStart(4, "0");
       return `${framePath}${padded}.${frameExtension}`;
     },
     [framePath, frameExtension]
   );
 
-  // Draw a specific frame onto the canvas
   const drawFrame = useCallback(
-    (frameIndex: number) => {
+    (loadedIndex: number) => {
       const canvas = canvasRef.current;
       const ctx = canvas?.getContext("2d");
-      const img = framesRef.current[frameIndex];
+      const img = framesRef.current[loadedIndex];
       if (!canvas || !ctx || !img || !img.complete || img.naturalWidth === 0)
         return;
 
-      // Set canvas internal resolution to match frame
       if (canvas.width !== img.naturalWidth || canvas.height !== img.naturalHeight) {
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
@@ -56,42 +69,48 @@ export function useScrollFrames({
     []
   );
 
-  // Preload frames in batches
+  // Preload frames (skipping every other on mobile)
   useEffect(() => {
-    const frames: HTMLImageElement[] = new Array(frameCount);
+    const frames: HTMLImageElement[] = [];
+    const frameMap: number[] = [];
     framesRef.current = frames;
+    frameMapRef.current = frameMap;
     let loadedCount = 0;
     let cancelled = false;
 
-    const BATCH_SIZE = 10;
+    // Build the list of original frame indices to load
+    for (let i = 0; i < frameCount; i += frameStep) {
+      frameMap.push(i);
+    }
 
-    const loadBatch = (startIndex: number) => {
+    const totalToLoad = frameMap.length;
+    const BATCH_SIZE = mobile ? 5 : 10;
+
+    const loadBatch = (batchStart: number) => {
       if (cancelled) return;
-      const end = Math.min(startIndex + BATCH_SIZE, frameCount);
+      const end = Math.min(batchStart + BATCH_SIZE, totalToLoad);
 
-      for (let i = startIndex; i < end; i++) {
+      for (let loadIdx = batchStart; loadIdx < end; loadIdx++) {
+        const originalIdx = frameMap[loadIdx];
         const img = new Image();
-        img.src = getFrameSrc(i);
+        img.src = getFrameSrc(originalIdx);
         img.onload = () => {
           if (cancelled) return;
           loadedCount++;
 
-          // Draw first frame as soon as it loads
-          if (i === 0 && canvasRef.current) {
+          if (loadIdx === 0 && canvasRef.current) {
             drawFrame(0);
             currentFrameRef.current = 0;
           }
 
-          // All frames loaded
-          if (loadedCount === frameCount) {
+          if (loadedCount === totalToLoad) {
             setIsLoaded(true);
           }
         };
-        frames[i] = img;
+        frames[loadIdx] = img;
       }
 
-      // Schedule next batch
-      if (end < frameCount) {
+      if (end < totalToLoad) {
         requestAnimationFrame(() => loadBatch(end));
       }
     };
@@ -101,10 +120,12 @@ export function useScrollFrames({
     return () => {
       cancelled = true;
     };
-  }, [frameCount, getFrameSrc, drawFrame]);
+  }, [frameCount, frameStep, mobile, getFrameSrc, drawFrame]);
 
-  // Scroll handler with rAF
+  // Scroll handler
   useEffect(() => {
+    const totalFrames = frameMapRef.current.length || effectiveFrameCount;
+
     const onScroll = () => {
       if (rafRef.current) return;
       rafRef.current = requestAnimationFrame(() => {
@@ -117,8 +138,8 @@ export function useScrollFrames({
         const maxScroll = container.scrollHeight - window.innerHeight;
         const progress = Math.min(Math.max(containerTop / maxScroll, 0), 1);
         const frameIndex = Math.min(
-          Math.floor(progress * (frameCount - 1)),
-          frameCount - 1
+          Math.floor(progress * (totalFrames - 1)),
+          totalFrames - 1
         );
 
         if (frameIndex !== currentFrameRef.current && framesRef.current[frameIndex]?.complete) {
@@ -135,24 +156,22 @@ export function useScrollFrames({
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [frameCount, drawFrame]);
+  }, [effectiveFrameCount, drawFrame]);
 
-  // Set container height for scroll room
+  // Container height — shorter on mobile so users reach content faster
   useEffect(() => {
     const container = containerRef.current;
-    if (container) {
-      container.style.height = `${scrollHeight + window.innerHeight}px`;
-    }
-
-    const handleResize = () => {
+    const setHeight = () => {
       if (container) {
-        container.style.height = `${scrollHeight + window.innerHeight}px`;
+        const h = isMobile(mobileBreakpoint) ? mobileScrollHeight : scrollHeight;
+        container.style.height = `${h + window.innerHeight}px`;
       }
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [scrollHeight]);
+    setHeight();
+    window.addEventListener("resize", setHeight);
+    return () => window.removeEventListener("resize", setHeight);
+  }, [scrollHeight, mobileScrollHeight, mobileBreakpoint]);
 
   return { containerRef, canvasRef, isLoaded };
 }
