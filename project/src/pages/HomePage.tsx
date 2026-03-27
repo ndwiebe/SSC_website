@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { HeroStatic } from '../components/HeroStatic';
+import { HeroScrollAnimation } from '../components/HeroScrollAnimation';
 import { ProductCard } from '../components/ProductCard';
 import { SectionHeading } from '../components/SectionHeading';
 import { MobileStickyCTA } from '../components/MobileStickyCTA';
@@ -55,7 +55,7 @@ export const HomePage: React.FC = () => {
       </Helmet>
 
       {/* 1. Hero */}
-      <HeroStatic />
+      <HeroScrollAnimation />
 
       {/* 2. Ecosystem */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
