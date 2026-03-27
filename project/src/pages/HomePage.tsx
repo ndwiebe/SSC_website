@@ -105,13 +105,13 @@ export const HomePage: React.FC = () => {
           </div>
         </section>
 
-        {/* 2. Ecosystem — glass cards over the animation */}
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="glass p-8 md:p-12 mb-8">
-              <SectionHeading title="THE ECOSYSTEM" subtitle="Everything you need to run your card business. Track, photograph, list, and stay tax-ready." />
+        {/* 2. Ecosystem — compact glass cards */}
+        <section className="py-10">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="glass p-4 md:p-6 mb-4 text-center">
+              <h2 className="font-headline text-2xl md:text-3xl tracking-wide text-ssc-text">THE ECOSYSTEM</h2>
             </div>
-            <div ref={ecosystemRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div ref={ecosystemRef} className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="product-card md:col-span-2" style={{ opacity: 0 }}>
                 <ProductCard
                   title="SLAB SAVVY TRACKER"
@@ -158,24 +158,22 @@ export const HomePage: React.FC = () => {
           </div>
         </section>
 
-        {/* 3. Trust Section — glass panel */}
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div ref={trustRef} className="glass p-8 md:p-12" style={{ opacity: 0 }}>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        {/* 3. Trust Section — compact glass panel */}
+        <section className="py-10">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div ref={trustRef} className="glass p-6 md:p-8" style={{ opacity: 0 }}>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                 {/* Left: Copy */}
                 <div>
-                  <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-6">
+                  <h2 className="font-headline text-2xl md:text-3xl text-ssc-gold tracking-wide mb-4">
                     BUILT BY A COLLECTOR WHO'S ALSO A CPA
                   </h2>
-                  <p className="font-body text-lg text-ssc-text-muted mb-6">
+                  <p className="font-body text-sm text-ssc-text-muted mb-3">
                     Most CPAs don't know what a YG is. Most card dealers don't know what an adjusted cost base is.
-                    I'm both. I'm active in 15+ Facebook collector groups daily, mostly hockey. You've probably
-                    seen me around.
+                    I'm both. Active in 15+ Facebook collector groups daily.
                   </p>
-                  <p className="font-body text-lg text-ssc-text-muted mb-8">
-                    Every tool in the ecosystem exists because I needed it myself. I built them with AI,
-                    tested them on my own inventory, and now I'm opening the doors.
+                  <p className="font-body text-sm text-ssc-text-muted mb-4">
+                    Every tool in the ecosystem exists because I needed it myself.
                   </p>
                   <Link
                     to="/waitlist"
@@ -187,11 +185,11 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Right: Credential box */}
-                <div className="bg-ssc-black p-8 lg:p-10">
-                  <h3 className="font-headline text-xl text-ssc-gold tracking-wide mb-8">
+                <div className="bg-ssc-black/90 p-6">
+                  <h3 className="font-headline text-lg text-ssc-gold tracking-wide mb-4">
                     THE CREDENTIALS
                   </h3>
-                  <ul className="space-y-6">
+                  <ul className="space-y-3">
                     {[
                       { label: 'CPA', detail: 'Chartered Professional Accountant' },
                       { label: 'Active Collector', detail: 'hockey cards, mostly' },

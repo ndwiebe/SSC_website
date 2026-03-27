@@ -135,8 +135,8 @@ export const FullPageScrollBackground: React.FC = () => {
             style={{ objectFit: "contain" }}
           />
         </div>
-        {/* Overlay to ensure content readability */}
-        <div className="absolute inset-0 bg-black/50" />
+        {/* Lighter overlay — let more of the card show through */}
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
       {/* Loading spinner */}

@@ -23,7 +23,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   external = false,
   span = 'normal',
 }) => {
-  const wrapperClass = `relative border border-ssc-border bg-ssc-surface p-8 hover-lift flex flex-col ${
+  const wrapperClass = `relative border border-ssc-border/80 bg-white/90 backdrop-blur-sm p-5 hover-lift flex flex-col ${
     span === 'wide' ? 'md:col-span-2' : ''
   }`;
 
@@ -32,18 +32,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Gradient accent bar */}
       <div className={`absolute top-0 left-0 right-0 h-1 ${gradient}`} />
 
-      {/* Icon */}
-      <div className="w-12 h-12 bg-ssc-gold/10 border border-ssc-gold/20 flex items-center justify-center mb-6">
-        {icon}
+      {/* Icon + Title inline */}
+      <div className="flex items-center gap-3 mb-3">
+        <div className="w-10 h-10 bg-ssc-gold/10 border border-ssc-gold/20 flex items-center justify-center flex-shrink-0">
+          {icon}
+        </div>
+        <h3 className="font-headline text-lg tracking-wide text-ssc-text">
+          {title}
+        </h3>
       </div>
 
-      {/* Title */}
-      <h3 className="font-headline text-xl tracking-wide text-ssc-text mb-3">
-        {title}
-      </h3>
-
       {/* Description */}
-      <p className="font-body text-ssc-text-muted mb-8 flex-1">
+      <p className="font-body text-sm text-ssc-text-muted mb-4 flex-1">
         {description}
       </p>
 
