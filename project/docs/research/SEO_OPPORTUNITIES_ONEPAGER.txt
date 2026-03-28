@@ -1,0 +1,298 @@
+================================================================================
+                    SLAB SAVVY CPA — SEO KEYWORD OPPORTUNITIES
+                              One-Page Reference
+================================================================================
+
+EXECUTIVE SUMMARY:
+Canadian sports card dealers are searching for tax, business, and operational
+guidance. No single authority dominates. Free organic traffic available for
+first-mover advantage. Estimated 4,300-7,400 monthly searches across 5 categories.
+
+================================================================================
+                          TOP 10 QUICK-WIN KEYWORDS
+                    (Low Competition, High Intent, Immediate Traction)
+================================================================================
+
+RANK  KEYWORD                                    MONTHLY SEARCHES  PRODUCT TIE-IN
+────  ──────────────────────────────────────────  ────────────────  ──────────────
+ 1    "do I need to charge GST sports cards"     320-450           Tax Playbook
+ 2    "hobby vs business CRA sports cards"       210-360           Tax Playbook
+ 3    "spreadsheet to track sports cards"        180-280           SST
+ 4    "how to price sports cards eBay"           180-320           SST/Blog
+ 5    "sports card photography tips"             210-380           DMC
+ 6    "adjusted cost base sports cards Canada"   140-220           Tax Playbook
+ 7    "how to find card comps without paying"    85-180            SST
+ 8    "eBay sports card fees Canada"             130-220           Blog/Education
+ 9    "Canadian card dealer business setup"      90-180            Tax Playbook
+ 10   "sports card market trends 2025"           140-280           Blog/Thought Leadership
+
+================================================================================
+                            CONTENT CALENDAR (5-Month Plan)
+================================================================================
+
+MONTH 1 (4 posts — Tax Foundation)
+────────────────────────────────────
+Week 1:  GST on Sports Card Sales in Canada (2,500 words)
+Week 2:  Hobby vs Business: CRA Classification (2,000 words)
+Week 3:  Sports Card Inventory Tracking Spreadsheet (2,200 words)
+Week 4:  How to Price Sports Cards for eBay (2,100 words)
+Expected traffic by month 3: 200-300 sessions/month
+
+MONTH 2 (4 posts — Operations & Marketplace)
+────────────────────────────────────────────
+Week 5:  Photography Tips: Better eBay Card Photos (2,400 words)
+Week 6:  Canadian Card Dealer Business Setup (2,500 words)
+Week 7:  Adjusted Cost Base & Capital Gains (2,000 words)
+Week 8:  5 Ways to Find Card Comps Online (1,800 words)
+Expected traffic by month 3: 500-800 sessions/month cumulative
+
+MONTH 3 (4 posts — Market Trends & Niches)
+───────────────────────────────────────────
+Week 9:  eBay Sports Card Fees Breakdown (1,600 words)
+Week 10: Sports Card Market Trends 2025 (2,200 words)
+Week 11: Selling Inherited Card Collections (1,800 words)
+Week 12: Card Authentication vs Grading (1,900 words)
+Expected traffic by month 4: 1,000-1,500 sessions/month cumulative
+
+MONTHS 4-5 (8+ additional posts)
+────────────────────────────────
+Continue with medium-priority keywords. Target:
+• "Do I need a business license to sell cards?"
+• "Business insurance for card dealers"
+• "Hockey cards worth money investment"
+• "Provincial sales tax specifics (Ontario, BC, Alberta)"
+
+TOTAL EFFORT: 12-16 hours/month × 5 months = 60-80 hours
+TIME PER POST: 4-5 hours (research, write, optimize, publish)
+
+================================================================================
+                            KEYWORD CATEGORIES BREAKDOWN
+================================================================================
+
+Category              Monthly Vol   Posts Needed   Traffic Potential
+────────────────────  ────────────  ─────────────  ──────────────────
+Tax & CRA             1,400-2,200   8-10           200-350 sessions/mo
+Inventory/Operations  900-1,600     6-8            150-250 sessions/mo
+eBay & Marketplace    850-1,500     6-8            120-200 sessions/mo
+Market Trends         900-1,600     6-8            120-200 sessions/mo
+Compliance/Risk       250-500       3-4            40-80 sessions/mo
+────────────────────  ────────────  ─────────────  ──────────────────
+TOTAL                 ~4,300-7,400  20-25          630-1,080 sessions/mo
+
+================================================================================
+                             INTERNAL LINKING PATTERN
+================================================================================
+
+Blog Post A (Tax)              Blog Post B (Operations)        Blog Post C (Marketplace)
+───────────────────────────    ───────────────────────────    ───────────────────────
+GST Guide                      Inventory Spreadsheet          Photography Tips
+↓ links to ↓                   ↓ links to ↓                   ↓ links to ↓
+• Hobby vs Business (Blog)     • Tax posts (Blog)             • Price Posts (Blog)
+• Complete Tax Checklist       • SST waitlist                 • DMC (external)
+• Tax Playbook (/spreadsheet)  • Price Guide blog post        • Market trend posts
+
+RESULT: Topic clusters build "topical authority" → Higher rankings across category
+
+================================================================================
+                             ESTIMATED REVENUE IMPACT
+================================================================================
+
+MONTH 3:   300-500 organic sessions/month
+           → 15% click Tax Playbook (~45 clicks)
+           → 10% convert = 4-5 sales @ $29 = $120/mo
+
+MONTH 6:   1,000 organic sessions/month
+           → 15% click to products (~150 clicks)
+           → Tax Playbook: 10 sales @ $29 = $290/mo
+           → SST: 7 conversions @ $50/mo avg = $350/mo
+           Total: ~$640/mo
+
+MONTH 12:  2,000-3,000 organic sessions/month
+           → Same conversion rates scaled
+           → Total: $800-1,500/mo from blog alone
+
+================================================================================
+                        COMPETITIVE ADVANTAGE (WHY THIS WORKS)
+================================================================================
+
+✓ You're the only CPA who actively collects (15+ Facebook groups daily)
+✓ Canadian focus = moat (US content can't answer GST questions)
+✓ Products ready to sell (Tax Playbook, SST, DMC)
+✓ No competitor dominates yet (first-mover: 6-12 months free traffic)
+✓ Your audience trusts accountants (higher LTV than average reader)
+
+================================================================================
+                              IMMEDIATE ACTIONS (THIS WEEK)
+================================================================================
+
+MUST DO:
+☐ Set up Google Search Console for slabsavvycpa.com
+☐ Create /blog directory in project structure
+☐ Write outline for "GST on Sports Card Sales" post
+☐ Gather 3-5 images for first post
+
+WEEK 2:
+☐ Publish first blog post ("GST on Sports Card Sales")
+☐ Verify indexing in Google Search Console
+☐ Create blog index page (/blog)
+☐ Start outline for post #2 ("Hobby vs Business")
+
+ONGOING (Months 2-5):
+☐ Publish 1 post per week (4-5 hours per post)
+☐ Monitor Google Search Console for impressions/clicks
+☐ Track GA4 for blog traffic + product page CTR
+☐ Monthly: Analyze performance, optimize underperformers
+
+================================================================================
+                          SUCCESS METRICS BY MILESTONE
+================================================================================
+
+END OF MONTH 3:
+☐ 12 blog posts published & indexed
+☐ 300-500 monthly organic sessions
+☐ Top 10 ranking: "GST sports cards Canada"
+☐ 10-15% click-through to product pages
+☐ Average time on page: > 2 min
+☐ Bounce rate: < 60%
+
+END OF MONTH 6:
+☐ 20+ posts published
+☐ 800-1,200 monthly organic sessions
+☐ Top 5 ranking: 3-5 primary keywords
+☐ 15-20% click-through to products
+☐ $300-500/mo attributed revenue
+
+END OF MONTH 12:
+☐ 30+ posts published
+☐ 2,000-3,000 monthly organic sessions
+☐ Established authority (Google suggests your site for related searches)
+☐ $800-1,500/mo attributed revenue from blog
+☐ Inbound links from card communities, podcasts, newsletters
+
+================================================================================
+                         TECHNICAL SETUP CHECKLIST
+================================================================================
+
+MUST-HAVES (Before publishing):
+☐ Blog URL structure: /blog/[slug]
+☐ XML sitemap includes blog URLs
+☐ robots.txt allows /blog crawling
+☐ Google Search Console verified
+☐ GA4 event tracking: blog_view + product_click
+☐ JSON-LD Article schema template created
+
+SHOULD-HAVES (Improves performance):
+☐ Table of contents auto-generation
+☐ Reading time estimates
+☐ Image optimization (lazy load, responsive)
+☐ Related posts sidebar
+☐ 404 monitoring
+
+NICE-TO-HAVES (Not critical):
+☐ Hotjar scroll tracking
+☐ Email signup overlay
+☐ Social share buttons
+
+================================================================================
+                           PUBLISHING WORKFLOW (per post)
+================================================================================
+
+MONDAY: Plan
+  → Select keyword + outline (30 min)
+
+TUESDAY-WEDNESDAY: Write
+  → First draft (90 min)
+  → Add images (30 min)
+  → Insert internal links (30 min)
+
+THURSDAY: Optimize
+  → Spell check + grammar
+  → Optimize title/meta description
+  → Add schema markup
+  → Test all links
+
+FRIDAY: Publish & Promote
+  → Push to /blog
+  → Update sitemap
+  → Submit to Google Search Console
+  → Share on social
+  → Monitor engagement
+
+TOTAL: 5 hours per post
+
+================================================================================
+                              TOOLS NEEDED (FREE-TIER)
+================================================================================
+
+Research:
+  • Google Search Console (free)
+  • Ahrefs Free Tier (free)
+  • CanIRank (free Canadian tool)
+  • CRA.gc.ca (official source)
+
+Writing:
+  • Google Docs (free)
+  • Grammarly Free (free)
+  • Hemingway Editor (free)
+
+Analytics:
+  • Google Analytics 4 (free)
+  • Supabase (already using)
+
+Images:
+  • Unsplash / Pexels (free stock photos)
+  • Screenshot tool (built-in)
+
+TOTAL COST: ~$180/year (Grammarly Pro) — everything else is free
+
+================================================================================
+                           NEXT DECISION POINT
+================================================================================
+
+Confirm with Nathan:
+  1. Do you want to pursue this 5-month blog strategy?
+  2. Will you write posts yourself or hire a contractor?
+  3. Publishing frequency: 1/week, 2/week, or flexible?
+  4. Any topics to prioritize or deprioritize?
+
+Once confirmed:
+  → I can set up blog technical infrastructure
+  → Write first 2-3 posts as templates
+  → Create detailed editorial calendar
+  → Set up analytics tracking
+
+================================================================================
+                        FULL DOCUMENTATION LOCATION
+================================================================================
+
+Four documents in /SSC_website/project/:
+
+1. SEO_KEYWORD_GAP_ANALYSIS.md (35 pages)
+   ├─ Complete keyword research (100+ keywords analyzed)
+   ├─ Competitive gap analysis
+   ├─ Content scoring matrix
+   ├─ SEO infrastructure checklist
+
+2. BLOG_IMPLEMENTATION_GUIDE.md (40 pages)
+   ├─ Astro technical setup & structure
+   ├─ Post frontmatter schema (Zod)
+   ├─ Example blog post (full template)
+   ├─ Publishing workflow + batch strategy
+
+3. KEYWORD_REFERENCE_QUICK.md (25 pages)
+   ├─ Quick keyword lists by category
+   ├─ Anchor + variant keywords
+   ├─ Tools for keyword verification
+   ├─ Content angle templates
+
+4. SEO_RESEARCH_SUMMARY.md (This document + executive summary)
+   ├─ Opportunity overview
+   ├─ Revenue projections
+   ├─ Risk mitigation
+   ├─ Next steps checklist
+
+================================================================================
+Report prepared by: Claude Code (SEO Analysis Agent)
+Date: 2026-03-27
+Status: Ready for Nathan's review and approval
+================================================================================
