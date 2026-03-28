@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle, Loader2, Mail } from 'lucide-react';
+import { captureEvent } from '../lib/posthog';
 
 const VOLUME_OPTIONS = [
   { value: '', label: 'How many cards do you move per month?' },
@@ -45,6 +46,9 @@ export const WaitlistForm: React.FC = () => {
         return;
       }
 
+      captureEvent('waitlist_signup', {
+        monthly_volume: monthlyVolume || 'not_specified',
+      });
       setIsSuccess(true);
     } catch (_err) {
       setError('Network error. Please check your connection and try again.');

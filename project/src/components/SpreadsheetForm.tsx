@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Lock, CheckCircle, Download, FileSpreadsheet, Table2, BarChart3, Calculator, BookOpen, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { captureEvent } from '../lib/posthog';
 
 export const SpreadsheetForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -47,6 +48,7 @@ export const SpreadsheetForm: React.FC = () => {
       }
 
       setSheetUrl(data.sheetUrl || data.sheet_url || '');
+      captureEvent('spreadsheet_unlock');
       setIsUnlocked(true);
     } catch {
       setError('Something went wrong. Please try again.');

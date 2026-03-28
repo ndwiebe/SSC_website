@@ -6,6 +6,7 @@ import { HomePage } from './pages/HomePage';
 import { SpreadsheetPage } from './pages/SpreadsheetPage';
 import { TaxReadyPage } from './pages/TaxReadyPage';
 import { WaitlistPage } from './pages/WaitlistPage';
+import { usePageviewTracking } from './hooks/usePageviewTracking';
 
 const NotFound: React.FC = () => (
   <div className="min-h-[60vh] flex items-center justify-center">
@@ -19,22 +20,30 @@ const NotFound: React.FC = () => (
   </div>
 );
 
+const AppRoutes: React.FC = () => {
+  usePageviewTracking();
+
+  return (
+    <div className="min-h-screen bg-ssc-bg flex flex-col font-body overflow-x-hidden">
+      <Navigation />
+      <main className="flex-1">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/spreadsheet" element={<SpreadsheetPage />} />
+          <Route path="/taxready" element={<TaxReadyPage />} />
+          <Route path="/waitlist" element={<WaitlistPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-ssc-bg flex flex-col font-body overflow-x-hidden">
-        <Navigation />
-        <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/spreadsheet" element={<SpreadsheetPage />} />
-            <Route path="/taxready" element={<TaxReadyPage />} />
-            <Route path="/waitlist" element={<WaitlistPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <AppRoutes />
     </Router>
   );
 }

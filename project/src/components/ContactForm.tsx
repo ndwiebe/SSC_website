@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
+import { captureEvent } from '../lib/posthog';
 
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,9 @@ export const ContactForm: React.FC = () => {
       `Name: ${formData.name}\nEmail: ${formData.email}\nVolume: ${formData.volume}\n\n${formData.message}`
     );
 
+    captureEvent('contact_form_submit', {
+      volume: formData.volume || 'not_specified',
+    });
     window.location.href = `mailto:slabsavvycpa@gmail.com?subject=${subject}&body=${body}`;
     setIsSubmitted(true);
   };
