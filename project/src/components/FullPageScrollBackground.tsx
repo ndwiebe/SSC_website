@@ -41,23 +41,42 @@ export const FullPageScrollBackground: React.FC = () => {
     ctx.drawImage(img, 0, 0);
   }, []);
 
-  // Preload frames — ref guard (StrictMode) + cancelled flag (unmount safety)
+  // Preload frames — load frame 1 eagerly, defer rest until after paint
   useEffect(() => {
     if (prefersReducedMotion) return;
     if (loadingStartedRef.current) return;
     loadingStartedRef.current = true;
 
     let cancelled = false;
-    const frames: HTMLImageElement[] = [];
     const frameMap: number[] = [];
-    let loadedCount = 0;
 
     for (let i = 0; i < FRAME_COUNT; i += frameStep) {
       frameMap.push(i);
     }
 
     const totalToLoad = frameMap.length;
-    const BATCH_SIZE = isMobile ? 5 : 10;
+    const frames: HTMLImageElement[] = new Array(totalToLoad);
+    let loadedCount = 0;
+
+    const onFrameLoad = (loadIdx: number) => {
+      if (cancelled) return;
+      loadedCount++;
+      if (loadIdx === 0) {
+        drawFrame(0);
+        currentFrameRef.current = 0;
+      }
+      if (loadedCount === totalToLoad) setIsLoaded(true);
+    };
+
+    // Step 1: Load first frame immediately for fast hero render
+    const firstImg = new Image();
+    firstImg.src = getFrameSrc(frameMap[0]);
+    firstImg.onload = () => onFrameLoad(0);
+    frames[0] = firstImg;
+
+    // Step 2: Defer remaining frames until after page paint
+    const BATCH_SIZE = isMobile ? 5 : 8;
+    const BATCH_DELAY = 50; // ms between batches — avoids saturating connections
 
     const loadBatch = (batchStart: number) => {
       if (cancelled) return;
@@ -67,25 +86,23 @@ export const FullPageScrollBackground: React.FC = () => {
         const originalIdx = frameMap[loadIdx];
         const img = new Image();
         img.src = getFrameSrc(originalIdx);
-        img.onload = () => {
-          if (cancelled) return;
-          loadedCount++;
-          if (loadIdx === 0) {
-            drawFrame(0);
-            currentFrameRef.current = 0;
-          }
-          if (loadedCount === totalToLoad) setIsLoaded(true);
-        };
+        img.onload = () => onFrameLoad(loadIdx);
         frames[loadIdx] = img;
       }
 
       if (end < totalToLoad) {
-        requestAnimationFrame(() => loadBatch(end));
+        setTimeout(() => loadBatch(end), BATCH_DELAY);
       }
     };
 
     framesRef.current = frames;
-    loadBatch(0);
+
+    // Wait for initial paint before loading remaining frames
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        if (!cancelled) loadBatch(1);
+      }, 100);
+    });
 
     return () => { cancelled = true; };
   }, [prefersReducedMotion, frameStep, isMobile, getFrameSrc, drawFrame]);
