@@ -64,6 +64,16 @@ export const HomePage: React.FC = () => {
         <title>Slab Savvy — Run Your Card Business</title>
         <meta name="description" content="The collector's business platform. Inventory tracking, AI photo enhancement, tax guides, and consulting — built by a CPA who collects." />
         <link rel="canonical" href="https://slabsavvycpa.com/" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Slab Savvy",
+          "url": "https://slabsavvycpa.com",
+          "logo": "https://slabsavvycpa.com/ssc-logo.png",
+          "description": "AI-powered tools for sports card collectors. Inventory tracking, tax guides, photo enhancement, and consulting.",
+          "email": "slabsavvycpa@gmail.com",
+          "sameAs": ["https://facebook.com/slabsavvy"]
+        })}</script>
       </Helmet>
 
       {/* Fixed background animation — plays through entire page scroll */}

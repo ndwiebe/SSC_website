@@ -62,6 +62,20 @@ export const WaitlistPage: React.FC = () => {
         <title>Slab Savvy Tracker — Join the Beta</title>
         <meta name="description" content="AI-powered inventory tracking for sports card dealers. Send a photo, get a row in your spreadsheet with real-time comps." />
         <link rel="canonical" href="https://slabsavvycpa.com/waitlist" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Slab Savvy Tracker",
+          "description": "AI-powered inventory tracking for sports card dealers. Send a photo, confirm the details, and your spreadsheet updates itself with real-time comp prices.",
+          "url": "https://slabsavvycpa.com/waitlist",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/PreOrder",
+            "priceCurrency": "CAD"
+          }
+        })}</script>
       </Helmet>
 
       {/* Hero */}
