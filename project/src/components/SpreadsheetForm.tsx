@@ -73,7 +73,7 @@ export const SpreadsheetForm: React.FC = () => {
           </div>
 
           {/* Main CTA */}
-          <div className="bg-ssc-surface border border-ssc-border shadow-card p-8 text-center mb-8">
+          <div className="bg-ssc-surface border border-ssc-border shadow-card p-4 sm:p-6 md:p-8 text-center mb-8">
             <FileSpreadsheet className="w-12 h-12 text-ssc-gold mx-auto mb-4" />
             <h3 className="font-headline text-2xl text-ssc-text tracking-wide mb-3">CARD COLLECTOR'S TAX TRACKER</h3>
             <p className="font-body text-ssc-text-muted mb-6">
@@ -101,7 +101,7 @@ export const SpreadsheetForm: React.FC = () => {
           </div>
 
           {/* What's Inside */}
-          <div className="bg-ssc-surface border border-ssc-border shadow-card p-8 mb-8">
+          <div className="bg-ssc-surface border border-ssc-border shadow-card p-4 sm:p-6 md:p-8 mb-8">
             <h3 className="font-headline text-xl text-ssc-text tracking-wide mb-6">WHAT'S IN THE SPREADSHEET</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[
@@ -140,12 +140,12 @@ export const SpreadsheetForm: React.FC = () => {
               >
                 Back to Home
               </Link>
-              <Link
-                to="/contact"
+              <a
+                href="mailto:slabsavvycpa@gmail.com?subject=Spreadsheet%20Help"
                 className="font-body text-ssc-gold hover:text-ssc-gold-dark font-medium transition-colors"
               >
                 Need Help? Contact Me
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@ export const SpreadsheetForm: React.FC = () => {
   return (
     <div className="max-w-lg mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Access Form */}
-      <div className="bg-ssc-surface border border-ssc-border shadow-card p-8">
+      <div className="bg-ssc-surface border border-ssc-border shadow-card p-4 sm:p-6 md:p-8">
         <div className="flex items-center space-x-3 mb-6">
           <Lock className="w-5 h-5 text-ssc-gold" />
           <h2 className="font-headline text-xl text-ssc-text tracking-wide">ENTER YOUR ACCESS CODE</h2>

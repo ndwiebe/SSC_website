@@ -85,17 +85,22 @@ export const WaitlistForm: React.FC = () => {
       </div>
 
       {/* Monthly Volume */}
-      <select
-        value={monthlyVolume}
-        onChange={(e) => setMonthlyVolume(e.target.value)}
-        className="w-full px-4 py-3 min-h-[44px] bg-white border border-ssc-border text-ssc-text font-body focus:outline-none focus:border-ssc-gold focus:ring-1 focus:ring-ssc-gold transition-colors appearance-none cursor-pointer"
-      >
-        {VOLUME_OPTIONS.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
+      <div className="relative">
+        <select
+          value={monthlyVolume}
+          onChange={(e) => setMonthlyVolume(e.target.value)}
+          className="w-full px-4 pr-10 py-3 min-h-[44px] bg-white border border-ssc-border text-ssc-text font-body focus:outline-none focus:border-ssc-gold focus:ring-1 focus:ring-ssc-gold transition-colors appearance-none cursor-pointer"
+        >
+          {VOLUME_OPTIONS.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+        <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ssc-text-muted pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="square" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
 
       {/* Error */}
       {error && (
@@ -106,7 +111,7 @@ export const WaitlistForm: React.FC = () => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-3 bg-ssc-gold text-white font-body font-semibold hover:bg-ssc-gold-dark transition-colors shadow-gold disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center min-h-[44px]"
+        className="w-full py-3 btn-shine bg-ssc-gold text-white font-body font-semibold hover:bg-ssc-gold-dark disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center min-h-[44px]"
       >
         {isSubmitting ? (
           <Loader2 className="w-5 h-5 animate-spin" />

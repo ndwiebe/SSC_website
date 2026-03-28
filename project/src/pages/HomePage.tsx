@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { gsap } from 'gsap';
 import { FullPageScrollBackground } from '../components/FullPageScrollBackground';
 import { ProductCard } from '../components/ProductCard';
-import { SectionHeading } from '../components/SectionHeading';
 import { MobileStickyCTA } from '../components/MobileStickyCTA';
-import { fadeInUp, staggerFadeInUp } from '../lib/animations';
+import { staggerScaleIn, blurFadeIn, slideInLeft, slideInRight } from '../lib/animations';
 
 /* ── Inline SVG icons ── */
 const ClipboardIcon = (
@@ -36,15 +36,26 @@ const CalculatorIcon = (
 
 export const HomePage: React.FC = () => {
   const ecosystemRef = useRef<HTMLDivElement>(null);
-  const trustRef = useRef<HTMLDivElement>(null);
+  const trustLeftRef = useRef<HTMLDivElement>(null);
+  const trustRightRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (ecosystemRef.current) {
-      staggerFadeInUp(ecosystemRef.current, '.product-card', 0.15);
-    }
-    if (trustRef.current) {
-      fadeInUp(trustRef.current);
-    }
+    const ctx = gsap.context(() => {
+      if (ecosystemRef.current) {
+        staggerScaleIn(ecosystemRef.current, '.product-card', 0.15);
+      }
+      if (trustLeftRef.current) {
+        slideInLeft(trustLeftRef.current);
+      }
+      if (trustRightRef.current) {
+        slideInRight(trustRightRef.current);
+      }
+      if (ctaRef.current) {
+        blurFadeIn(ctaRef.current);
+      }
+    });
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -52,6 +63,7 @@ export const HomePage: React.FC = () => {
       <Helmet>
         <title>Slab Savvy — Run Your Card Business</title>
         <meta name="description" content="The collector's business platform. Inventory tracking, AI photo enhancement, tax guides, and consulting — built by a CPA who collects." />
+        <link rel="canonical" href="https://slabsavvycpa.com/" />
       </Helmet>
 
       {/* Fixed background animation — plays through entire page scroll */}
@@ -70,7 +82,7 @@ export const HomePage: React.FC = () => {
             <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wide leading-none text-white mb-6">
               RUN YOUR CARD
               <br />
-              <span className="text-ssc-gold">BUSINESS</span>
+              <span className="text-shimmer" style={{ textShadow: 'none' }}>BUSINESS</span>
             </h1>
 
             <p className="font-body text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
@@ -81,13 +93,13 @@ export const HomePage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/waitlist"
-                className="inline-flex items-center justify-center min-h-[44px] px-8 py-3 bg-ssc-gold text-white font-body font-semibold text-lg hover:bg-ssc-gold-dark transition-colors shadow-gold"
+                className="btn-shine inline-flex items-center justify-center min-h-[44px] px-8 py-3 bg-ssc-gold text-white font-body font-semibold text-lg hover:bg-ssc-gold-dark"
               >
                 Join the Waitlist
               </Link>
               <Link
                 to="/taxready"
-                className="inline-flex items-center justify-center min-h-[44px] px-8 py-3 border-2 border-white text-white font-body font-semibold text-lg hover:border-ssc-gold hover:text-ssc-gold transition-colors"
+                className="btn-ghost-glow inline-flex items-center justify-center min-h-[44px] px-8 py-3 border-2 border-white/80 text-white font-body font-semibold text-lg transition-all duration-300"
               >
                 Get Tax Ready
               </Link>
@@ -112,15 +124,14 @@ export const HomePage: React.FC = () => {
               <h2 className="font-headline text-2xl md:text-3xl tracking-wide text-ssc-text">THE ECOSYSTEM</h2>
             </div>
             <div ref={ecosystemRef} className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="product-card md:col-span-2" style={{ opacity: 0 }}>
+              <div className="product-card" style={{ opacity: 0 }}>
                 <ProductCard
                   title="SLAB SAVVY TRACKER"
-                  description="Stop using a Notes app to track your $50K inventory. Send a photo. Confirm the details. Get a row in your spreadsheet with comps. That's it."
+                  description="Stop using a Notes app to track your $50K inventory. Send a photo. Confirm the details. Get a row in your spreadsheet with comps."
                   icon={ClipboardIcon}
                   href="/waitlist"
                   cta="Join the Waitlist"
                   gradient="bg-gradient-to-r from-ssc-gold to-ssc-gold-light"
-                  span="wide"
                 />
               </div>
               <div className="product-card" style={{ opacity: 0 }}>
@@ -141,7 +152,7 @@ export const HomePage: React.FC = () => {
                   icon={BookIcon}
                   href="/spreadsheet"
                   cta="Get the Playbook"
-                  gradient="bg-gradient-to-r from-emerald-500 to-emerald-300"
+                  gradient="bg-gradient-to-r from-ssc-gold-dark to-ssc-gold"
                 />
               </div>
               <div className="product-card" style={{ opacity: 0 }}>
@@ -158,13 +169,13 @@ export const HomePage: React.FC = () => {
           </div>
         </section>
 
-        {/* 3. Trust Section — compact glass panel */}
+        {/* 3. Trust Section — glass panel with slide-in halves */}
         <section className="py-10">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div ref={trustRef} className="glass p-6 md:p-8" style={{ opacity: 0 }}>
+            <div className="glass p-6 md:p-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                 {/* Left: Copy */}
-                <div>
+                <div ref={trustLeftRef} style={{ opacity: 0 }}>
                   <h2 className="font-headline text-2xl md:text-3xl text-ssc-gold tracking-wide mb-4">
                     BUILT BY A COLLECTOR WHO'S ALSO A CPA
                   </h2>
@@ -176,16 +187,16 @@ export const HomePage: React.FC = () => {
                     Every tool in the ecosystem exists because I needed it myself.
                   </p>
                   <Link
-                    to="/waitlist"
-                    className="inline-flex items-center min-h-[44px] px-8 py-3 bg-ssc-gold text-white font-body font-semibold hover:bg-ssc-gold-dark transition-colors shadow-gold"
+                    to="/taxready"
+                    className="btn-shine inline-flex items-center min-h-[44px] px-8 py-3 bg-ssc-gold text-white font-body font-semibold hover:bg-ssc-gold-dark"
                   >
-                    Join the Waitlist
+                    Get Tax Ready
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Link>
                 </div>
 
                 {/* Right: Credential box */}
-                <div className="bg-ssc-black/90 p-6">
+                <div ref={trustRightRef} className="bg-ssc-black/90 p-6" style={{ opacity: 0 }}>
                   <h3 className="font-headline text-lg text-ssc-gold tracking-wide mb-4">
                     THE CREDENTIALS
                   </h3>
@@ -196,8 +207,8 @@ export const HomePage: React.FC = () => {
                       { label: '15+ Groups', detail: 'active in Facebook collector communities' },
                       { label: 'AI-Enhanced', detail: 'every tool built to multiply output, not replace it' },
                     ].map((item) => (
-                      <li key={item.label} className="flex items-start gap-4">
-                        <div className="w-2 h-2 bg-ssc-gold mt-2 flex-shrink-0" />
+                      <li key={item.label} className="flex items-start gap-4 group/cred">
+                        <div className="w-2 h-2 bg-ssc-gold mt-2 flex-shrink-0 transition-shadow duration-300 group-hover/cred:shadow-[0_0_8px_rgba(201,162,39,0.5)]" />
                         <div>
                           <span className="font-mono text-lg text-ssc-gold">{item.label}</span>
                           <p className="font-body text-sm text-gray-400 mt-1">{item.detail}</p>
@@ -213,7 +224,7 @@ export const HomePage: React.FC = () => {
 
         {/* 4. CTA Band — semi-transparent dark */}
         <section className="bg-ssc-black/80 backdrop-blur-md">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <div ref={ctaRef} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center" style={{ opacity: 0 }}>
             <h2 className="font-headline text-3xl md:text-5xl text-ssc-gold tracking-wide mb-6">
               STOP WINGING IT
             </h2>
@@ -221,13 +232,21 @@ export const HomePage: React.FC = () => {
               Your inventory deserves more than a Notes app. Your taxes deserve more than guesswork.
               Get on the list and be first in line when the full ecosystem drops.
             </p>
-            <Link
-              to="/waitlist"
-              className="inline-flex items-center min-h-[44px] px-10 py-4 bg-ssc-gold text-white font-body font-semibold text-lg hover:bg-ssc-gold-dark transition-colors shadow-gold-lg"
-            >
-              Join the Waitlist
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/waitlist"
+                className="btn-shine inline-flex items-center justify-center min-h-[44px] px-10 py-4 bg-ssc-gold text-white font-body font-semibold text-lg hover:bg-ssc-gold-dark"
+              >
+                Join the Waitlist
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+              <Link
+                to="/taxready"
+                className="btn-ghost-glow inline-flex items-center justify-center min-h-[44px] px-10 py-4 border-2 border-white/80 text-white font-body font-semibold text-lg transition-all duration-300"
+              >
+                Get Tax Ready
+              </Link>
+            </div>
           </div>
         </section>
 

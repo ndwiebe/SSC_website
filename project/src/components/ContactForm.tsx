@@ -40,10 +40,10 @@ export const ContactForm: React.FC = () => {
         <p className="font-body text-sm text-ssc-text-muted">
           If your email app did not open, send your details directly to{' '}
           <a
-            href="mailto:hello@slabsavvycpa.com"
+            href="mailto:slabsavvycpa@gmail.com"
             className="text-ssc-gold hover:text-ssc-gold-dark font-medium transition-colors"
           >
-            hello@slabsavvycpa.com
+            slabsavvycpa@gmail.com
           </a>
         </p>
         <button
@@ -60,7 +60,7 @@ export const ContactForm: React.FC = () => {
   }
 
   return (
-    <div className="bg-ssc-surface border border-ssc-border shadow-card p-8">
+    <div className="bg-ssc-surface border border-ssc-border shadow-card p-4 sm:p-6 md:p-8">
       <h3 className="font-headline text-2xl text-ssc-text tracking-wide mb-6">
         GET A QUOTE
       </h3>
@@ -135,7 +135,7 @@ export const ContactForm: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full min-h-[44px] bg-ssc-gold hover:bg-ssc-gold-dark text-white px-6 py-3 font-body font-semibold transition-colors flex items-center justify-center"
+          className="w-full min-h-[44px] btn-shine bg-ssc-gold hover:bg-ssc-gold-dark text-white px-6 py-3 font-body font-semibold flex items-center justify-center"
         >
           <Send className="w-5 h-5 mr-2" />
           Send Inquiry

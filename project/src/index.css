@@ -33,34 +33,265 @@
 }
 
 /* Base styles */
+html, body {
+  overflow-x: hidden;
+}
 body {
   font-family: 'DM Sans', -apple-system, sans-serif;
   background-color: #FAFAF8;
   color: #0A0A0A;
 }
 
-/* Gold hover lift effect */
+/* ─── Hover lift with gold glow ─── */
 .hover-lift {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
 }
 .hover-lift:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(201, 162, 39, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(201, 162, 39, 0.12), 0 0 0 1px rgba(201, 162, 39, 0.08);
 }
 
-/* Glass utility */
+/* ─── Glass utility (enhanced) ─── */
 .glass {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px) saturate(1.8);
+  border: 1px solid rgba(201, 162, 39, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass:hover {
+  border-color: rgba(201, 162, 39, 0.25);
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.08);
 }
 
-/* Gold gradient for special elements */
+/* ─── 3D Textured button with shimmer sweep ─── */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  /* Surface gradient: lighter top → base → darker bottom = physical depth */
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+  /* Inner highlight top edge + outer slab shadow */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    0 3px 0 var(--ssc-gold-dark),
+    0 4px 8px rgba(0, 0, 0, 0.15);
+  /* Subtle noise texture via repeating gradient */
+  background-blend-mode: overlay;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+/* Shimmer sweep overlay */
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 25%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 75%,
+    transparent 100%
+  );
+  transition: none;
+  pointer-events: none;
+  z-index: 1;
+}
+.btn-shine:hover::after {
+  animation: shimmer 0.75s ease-in-out;
+}
+/* Hover: lift up, expand glow */
+.btn-shine:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 4px 0 var(--ssc-gold-dark),
+    0 6px 16px rgba(201, 162, 39, 0.25),
+    0 0 24px rgba(201, 162, 39, 0.15);
+  transform: translateY(-2px);
+}
+/* Active/press: push down into surface */
+.btn-shine:active {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 1px 0 var(--ssc-gold-dark),
+    0 1px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ─── Ghost button with depth ─── */
+.btn-ghost-glow {
+  position: relative;
+  /* Subtle inner surface gradient */
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 2px 0 rgba(255, 255, 255, 0.06),
+    0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, transform 0.15s ease;
+}
+.btn-ghost-glow:hover {
+  border-color: var(--ssc-gold);
+  color: var(--ssc-gold);
+  box-shadow:
+    inset 0 1px 0 rgba(201, 162, 39, 0.15),
+    0 3px 0 rgba(201, 162, 39, 0.12),
+    0 4px 16px rgba(201, 162, 39, 0.2),
+    0 0 20px rgba(201, 162, 39, 0.1);
+  transform: translateY(-2px);
+}
+.btn-ghost-glow:active {
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.15),
+    0 0 8px rgba(201, 162, 39, 0.1);
+  transform: translateY(1px);
+}
+
+/* ─── Card hover: glow border + subtle tilt ─── */
+.card-hover {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.card-hover::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0), rgba(201, 162, 39, 0));
+  z-index: -1;
+  transition: background 0.4s ease;
+}
+.card-hover:hover::before {
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.5), rgba(229, 200, 76, 0.3), rgba(201, 162, 39, 0.5));
+}
+.card-hover:hover {
+  transform: translateY(-6px) rotateX(1.5deg) rotateY(-0.5deg);
+  box-shadow: 0 20px 40px rgba(201, 162, 39, 0.12), 0 0 0 1px rgba(201, 162, 39, 0.2);
+}
+
+/* ─── Gold text shimmer gradient ─── */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--ssc-gold) 0%,
+    var(--ssc-gold-light) 25%,
+    #FFF 50%,
+    var(--ssc-gold-light) 75%,
+    var(--ssc-gold) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 4s ease-in-out infinite;
+}
+@keyframes text-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ─── Pulsing badge ─── */
+.badge-pulse {
+  animation: badge-pulse 2.5s ease-in-out infinite;
+}
+@keyframes badge-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(201, 162, 39, 0), 0 0 12px rgba(201, 162, 39, 0.15);
+  }
+}
+
+/* ─── Gradient accent bar animation ─── */
+.accent-bar-animated {
+  background-size: 200% 100%;
+  animation: accent-flow 3s ease infinite;
+}
+@keyframes accent-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ─── Feature card hover (glow border + lift) ─── */
+.feature-card {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 162, 39, 0.3);
+  box-shadow: 0 16px 32px rgba(201, 162, 39, 0.1), 0 0 0 1px rgba(201, 162, 39, 0.15);
+}
+.feature-card .feature-icon {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover .feature-icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 16px rgba(201, 162, 39, 0.2);
+}
+
+/* ─── Process step number glow ─── */
+.step-number {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.step-number::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: rgba(201, 162, 39, 0.15);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.step-number:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
+}
+.step-number:hover::after {
+  opacity: 1;
+}
+
+/* ─── Deliverable check item hover ─── */
+.check-item {
+  transition: transform 0.2s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+.check-item:hover {
+  transform: translateX(4px);
+  border-color: rgba(201, 162, 39, 0.4);
+  background-color: rgba(201, 162, 39, 0.05);
+}
+
+/* ─── Gold gradient for special elements ─── */
 .bg-gradient-gold {
   background: linear-gradient(135deg, #C9A227 0%, #E5C84C 100%);
 }
 
-/* Dark section utility */
+/* ─── Dark section utility ─── */
 .section-dark {
   background-color: var(--ssc-black);
   color: #FFFFFF;
+}
+
+/* ─── Selection color ─── */
+::selection {
+  background: rgba(201, 162, 39, 0.3);
+  color: var(--ssc-text);
 }

@@ -51,7 +51,7 @@ export const Navigation: React.FC = () => {
           <div className="hidden md:flex items-center">
             <Link
               to="/waitlist"
-              className="bg-ssc-gold hover:bg-ssc-gold-dark text-white px-6 py-2 font-body font-semibold text-sm transition-colors min-h-[44px] inline-flex items-center"
+              className="btn-shine bg-ssc-gold hover:bg-ssc-gold-dark text-white px-6 py-2 font-body font-semibold text-sm min-h-[44px] inline-flex items-center"
             >
               Join Waitlist
             </Link>
@@ -100,7 +100,7 @@ export const Navigation: React.FC = () => {
               ))}
               <Link
                 to="/waitlist"
-                className="block bg-ssc-gold hover:bg-ssc-gold-dark text-white px-3 py-3 font-body font-semibold text-base transition-colors min-h-[44px] mt-2 text-center"
+                className="block btn-shine bg-ssc-gold hover:bg-ssc-gold-dark text-white px-3 py-3 font-body font-semibold text-base min-h-[44px] mt-2 text-center"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Join Waitlist

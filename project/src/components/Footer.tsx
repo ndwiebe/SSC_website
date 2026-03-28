@@ -28,11 +28,11 @@ export const Footer: React.FC = () => {
             <h3 className="font-headline text-sm tracking-widest text-ssc-gold mb-4">
               PRODUCTS
             </h3>
-            <ul className="space-y-2 font-body text-sm">
+            <ul className="space-y-1 font-body text-sm">
               <li>
                 <Link
                   to="/waitlist"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="min-h-[44px] inline-flex items-center text-gray-400 hover:text-white transition-colors"
                 >
                   Slab Savvy Tracker
                 </Link>
@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
                   href="https://displaymycard.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-ssc-gold transition-colors"
+                  className="min-h-[44px] inline-flex items-center text-gray-400 hover:text-white transition-colors"
                 >
                   DisplayMyCard
                 </a>
@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/spreadsheet"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="min-h-[44px] inline-flex items-center text-gray-400 hover:text-white transition-colors"
                 >
                   Tax Playbook
                 </Link>
@@ -63,11 +63,11 @@ export const Footer: React.FC = () => {
             <h3 className="font-headline text-sm tracking-widest text-ssc-gold mb-4">
               SERVICES
             </h3>
-            <ul className="space-y-2 font-body text-sm">
+            <ul className="space-y-1 font-body text-sm">
               <li>
                 <Link
                   to="/taxready"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="min-h-[44px] inline-flex items-center text-gray-400 hover:text-white transition-colors"
                 >
                   Tax Ready
                 </Link>
@@ -75,7 +75,7 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href="mailto:slabsavvycpa@gmail.com?subject=AI%20Consulting%20Inquiry"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="min-h-[44px] inline-flex items-center text-gray-400 hover:text-white transition-colors"
                 >
                   AI Consulting
                 </a>
@@ -88,11 +88,11 @@ export const Footer: React.FC = () => {
             <h3 className="font-headline text-sm tracking-widest text-ssc-gold mb-4">
               CONNECT
             </h3>
-            <ul className="space-y-2 font-body text-sm">
+            <ul className="space-y-1 font-body text-sm">
               <li>
                 <a
                   href="mailto:slabsavvycpa@gmail.com"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="min-h-[44px] inline-flex items-center text-gray-400 hover:text-white transition-colors"
                 >
                   slabsavvycpa@gmail.com
                 </a>
@@ -102,7 +102,7 @@ export const Footer: React.FC = () => {
                   href="https://facebook.com/slabsavvy"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="min-h-[44px] inline-flex items-center text-gray-400 hover:text-white transition-colors"
                 >
                   Facebook
                 </a>

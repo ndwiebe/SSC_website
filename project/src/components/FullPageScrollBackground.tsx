@@ -5,12 +5,16 @@ import { useReducedMotion } from "../hooks/useReducedMotion";
  * Full-page scroll animation background.
  * The canvas is fixed behind all content, and the animation plays
  * from frame 0 to 120 as the user scrolls through the entire page.
+ *
+ * StrictMode-safe: uses a loading guard ref to prevent double-loading
+ * when React 18 double-mounts in dev mode.
  */
 export const FullPageScrollBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null!);
   const framesRef = useRef<HTMLImageElement[]>([]);
   const currentFrameRef = useRef<number>(-1);
   const rafRef = useRef<number>(0);
+  const loadingStartedRef = useRef(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
@@ -37,14 +41,16 @@ export const FullPageScrollBackground: React.FC = () => {
     ctx.drawImage(img, 0, 0);
   }, []);
 
-  // Preload frames
+  // Preload frames — ref guard (StrictMode) + cancelled flag (unmount safety)
   useEffect(() => {
     if (prefersReducedMotion) return;
+    if (loadingStartedRef.current) return;
+    loadingStartedRef.current = true;
 
+    let cancelled = false;
     const frames: HTMLImageElement[] = [];
     const frameMap: number[] = [];
     let loadedCount = 0;
-    let cancelled = false;
 
     for (let i = 0; i < FRAME_COUNT; i += frameStep) {
       frameMap.push(i);
@@ -113,7 +119,6 @@ export const FullPageScrollBackground: React.FC = () => {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    // Draw first frame on mount
     onScroll();
 
     return () => {

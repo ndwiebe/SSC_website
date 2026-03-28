@@ -14,9 +14,9 @@ interface ButtonProps {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-ssc-gold text-white hover:bg-ssc-gold-dark',
-  secondary: 'border-2 border-ssc-gold text-ssc-gold hover:bg-ssc-gold hover:text-white',
-  dark: 'bg-ssc-black text-white hover:bg-ssc-surface-dark',
+  primary: 'bg-ssc-gold text-white hover:bg-ssc-gold-dark btn-shine',
+  secondary: 'border-2 border-white/80 text-white btn-ghost-glow',
+  dark: 'bg-ssc-black text-white hover:bg-ssc-surface-dark btn-shine',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -34,7 +34,7 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center font-body font-semibold transition-colors';
+    'inline-flex items-center justify-center font-body font-semibold';
   const styles = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`.trim();
 
   if (external) {

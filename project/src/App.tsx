@@ -10,7 +10,7 @@ import { WaitlistPage } from './pages/WaitlistPage';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-ssc-bg flex flex-col font-body">
+      <div className="min-h-screen bg-ssc-bg flex flex-col font-body overflow-x-hidden">
         <Navigation />
         <main className="flex-1">
           <Routes>

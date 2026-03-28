@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://slabsavvycpa.com/sitemap.xml
