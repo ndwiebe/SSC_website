@@ -3,48 +3,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function fadeInUp(element: Element, delay = 0): void {
-  gsap.fromTo(
-    element,
-    { opacity: 0, y: 40 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      delay,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: element,
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-    }
-  );
-}
-
-export function staggerFadeInUp(
-  parent: Element,
-  children: string,
-  stagger = 0.15
-): void {
-  gsap.fromTo(
-    parent.querySelectorAll(children),
-    { opacity: 0, y: 40 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      stagger,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: parent,
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-    }
-  );
-}
-
 /** Fade in with blur — cinematic reveal */
 export function blurFadeIn(element: Element, delay = 0): void {
   gsap.fromTo(
@@ -57,27 +15,6 @@ export function blurFadeIn(element: Element, delay = 0): void {
       duration: 1,
       delay,
       ease: 'power3.out',
-      scrollTrigger: {
-        trigger: element,
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-    }
-  );
-}
-
-/** Scale up from slightly smaller with blur */
-export function scaleBlurIn(element: Element, delay = 0): void {
-  gsap.fromTo(
-    element,
-    { opacity: 0, scale: 0.92, filter: 'blur(6px)' },
-    {
-      opacity: 1,
-      scale: 1,
-      filter: 'blur(0px)',
-      duration: 0.9,
-      delay,
-      ease: 'power2.out',
       scrollTrigger: {
         trigger: element,
         start: 'top 85%',
@@ -151,28 +88,6 @@ export function slideInRight(element: Element, delay = 0): void {
       },
     }
   );
-}
-
-/** Counter/number count-up animation */
-export function countUp(
-  element: Element,
-  target: number,
-  duration = 1.5
-): void {
-  const obj = { val: 0 };
-  gsap.to(obj, {
-    val: target,
-    duration,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: element,
-      start: 'top 85%',
-      toggleActions: 'play none none none',
-    },
-    onUpdate: () => {
-      (element as HTMLElement).textContent = String(Math.round(obj.val)).padStart(2, '0');
-    },
-  });
 }
 
 /** Stagger with alternating slide directions */

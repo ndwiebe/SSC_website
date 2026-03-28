@@ -23,8 +23,6 @@
   --ssc-border: #E8E5DF;
   --ssc-border-dark: #2A2A35;
 
-  /* Shadow */
-  --ssc-shadow-gold: rgba(201, 162, 39, 0.15);
 }
 
 /* Nuclear sharp corners — brand signature */
@@ -40,15 +38,6 @@ body {
   font-family: 'DM Sans', -apple-system, sans-serif;
   background-color: #FAFAF8;
   color: #0A0A0A;
-}
-
-/* ─── Hover lift with gold glow ─── */
-.hover-lift {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-}
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(201, 162, 39, 0.12), 0 0 0 1px rgba(201, 162, 39, 0.08);
 }
 
 /* ─── Glass utility (enhanced) ─── */
@@ -313,7 +302,6 @@ body {
   .btn-shine:hover::after {
     animation: none;
   }
-  .hover-lift:hover,
   .card-hover:hover,
   .feature-card:hover {
     transform: none;

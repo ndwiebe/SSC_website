@@ -50,36 +50,6 @@ export default {
         'card': '0 2px 12px rgba(26, 26, 30, 0.08)',
         'card-hover': '0 8px 30px rgba(26, 26, 30, 0.12)',
       },
-      keyframes: {
-        'shimmer': {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(100%)' },
-        },
-        'pulse-gold': {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(201, 162, 39, 0.4)' },
-          '50%': { boxShadow: '0 0 0 8px rgba(201, 162, 39, 0)' },
-        },
-        'glow-pulse': {
-          '0%, 100%': { opacity: '0.6' },
-          '50%': { opacity: '1' },
-        },
-        'float': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-4px)' },
-        },
-        'border-flow': {
-          '0%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-          '100%': { backgroundPosition: '0% 50%' },
-        },
-      },
-      animation: {
-        'shimmer': 'shimmer 2s ease-in-out infinite',
-        'pulse-gold': 'pulse-gold 2s ease-in-out infinite',
-        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
-        'float': 'float 3s ease-in-out infinite',
-        'border-flow': 'border-flow 3s ease infinite',
-      },
     },
   },
   plugins: [],

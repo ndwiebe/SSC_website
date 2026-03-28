@@ -86,7 +86,7 @@ export const TaxReadyPage: React.FC = () => {
 
       {/* Hero */}
       <div className="bg-ssc-black text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
           <div className="text-center">
             <h1 className="font-headline text-3xl md:text-6xl text-ssc-gold tracking-wide mb-6">
               YOUR RECORDS.<br />TAX READY.
@@ -100,7 +100,7 @@ export const TaxReadyPage: React.FC = () => {
       </div>
 
       {/* Process Steps */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div className="text-center mb-16">
           <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">
             HOW IT WORKS
@@ -114,7 +114,7 @@ export const TaxReadyPage: React.FC = () => {
 
       {/* What You Get */}
       <section className="bg-ssc-black text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
           <div className="text-center mb-12">
             <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">
               WHAT YOU GET
@@ -142,7 +142,7 @@ export const TaxReadyPage: React.FC = () => {
       </section>
 
       {/* Contact */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div ref={contactLeftRef} style={{ opacity: 0 }}>
             <h2 className="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-6">
