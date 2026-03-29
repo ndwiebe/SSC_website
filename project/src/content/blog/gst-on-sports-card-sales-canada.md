@@ -7,9 +7,9 @@ category: "tax-tips"
 tags: ["gst", "cra", "canadian-taxes", "card-dealer-taxes"]
 ---
 
-I pulled a Connor McDavid Young Guns in a blaster two years ago. Listed it the next day. Sold it for $800 in about six hours.
+Say you pull a Connor McDavid Young Guns in a blaster. List it the next day. Sell it for $800 in about six hours.
 
-Did I charge GST? No. Should I have?
+Did you charge GST? Probably not. Should you have?
 
 That depends on a few things. Figuring out *which* things is exactly what this post covers.
 
@@ -79,7 +79,7 @@ The answer, in almost every case for active flippers, is business income.
 
 Capital gains treatment applies when you buy something as a long-term investment and eventually sell it. If you're turning inventory regularly (buying, grading, flipping within months), CRA will almost certainly characterize your gains as business income.
 
-The McDavid YG I mentioned at the top? If I found it randomly in a blaster and sold it the next day, that's a one-off. But if I'm systematically buying YGs at show prices and flipping them on eBay, that's inventory. Business income. Different calculation.
+That McDavid YG from the top? If you found it randomly in a blaster and sold it the next day, that's a one-off. But if you're systematically buying YGs at show prices and flipping them on eBay, that's inventory. Business income. Different calculation.
 
 ## Record-Keeping
 
@@ -89,7 +89,7 @@ For every card you buy and sell, track the acquisition cost (including grading f
 
 If you're GST-registered, also keep receipts for all purchases (to claim input tax credits), copies of invoices you issue, and your GST returns.
 
-CRA's general rule is six years of records. That means the blaster you ripped in 2022 and the cards you sold from it? Ideally you still have a record of what you paid and what you got.
+CRA's general rule is six years of records. That blaster you ripped a few years ago and the cards you sold from it? Ideally you still have a record of what you paid and what you got.
 
 I know. It sounds like a lot. It's also the difference between a clean audit and a very bad week.
 
@@ -120,6 +120,24 @@ If any of these describe you, it's probably time to have a conversation.
 You're approaching or over $30,000 in annual card sales. You've been selling for years and haven't been tracking costs properly. You're unsure whether you should have been collecting and remitting GST. You want to understand whether your situation is business income or capital gains.
 
 I offer a [Tax Ready](/taxready) service specifically for card dealers and flippers. It's not a full accounting engagement. It's a focused review to figure out where you stand and what you should do next.
+
+## Frequently Asked Questions
+
+### Do I need to charge GST if I only sell on eBay?
+
+Yes, if you meet the $30,000 threshold. The platform you sell on does not matter. eBay, Facebook groups, card shows, COMC, private sales — CRA looks at your total commercial activity across all channels. Once you are registered, every sale is a taxable supply regardless of where it happens.
+
+### Does the $30,000 GST threshold include cards I bought for my personal collection?
+
+Only if you sell them as part of a business activity. If you bought a card for your PC five years ago and sell it now as a one-off, that is not commercial activity. But if you are regularly selling cards from your collection alongside cards you bought to flip, CRA may view the whole thing as a business. Intent and pattern matter more than where the card originally came from.
+
+### Can I claim input tax credits on cards I buy if I am GST-registered?
+
+Yes. If you are a GST registrant and you buy cards as business inventory, the GST you pay on those purchases can be claimed back as input tax credits (ITCs). This includes cards bought at shows, from online sellers, or through platforms — as long as you have documentation showing GST was charged. This is one of the benefits of registration that partially offsets the obligation to collect.
+
+### What happens if I should have been charging GST but was not?
+
+CRA can assess you retroactively for the GST you should have collected. You would owe the tax amount plus interest, and potentially penalties. The good news is that voluntary disclosure (coming forward before CRA contacts you) generally results in reduced or waived penalties. If you think you may have crossed the threshold without registering, talking to a CPA sooner rather than later is the move.
 
 ## The Bottom Line
 
