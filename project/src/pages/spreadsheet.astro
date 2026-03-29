@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import MobileStickyCTA from '../components/MobileStickyCTA.astro';
 import { SpreadsheetForm } from '../components/SpreadsheetForm';
 
 const features = [
@@ -77,5 +78,7 @@ const features = [
       </div>
     </div>
   </main>
+  <div class="pb-16 md:pb-0"></div>
   <Footer />
+  <MobileStickyCTA text="Join the Waitlist" href="/waitlist" />
 </BaseLayout>

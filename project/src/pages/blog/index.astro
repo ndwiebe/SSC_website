@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navigation from '../../components/Navigation.astro';
 import Footer from '../../components/Footer.astro';
+import MobileStickyCTA from '../../components/MobileStickyCTA.astro';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -63,5 +64,7 @@ const posts = (await getCollection('blog')).sort(
       </div>
     </section>
   </main>
+  <div class="pb-16 md:pb-0"></div>
   <Footer />
+  <MobileStickyCTA text="Join the Waitlist" href="/waitlist" />
 </BaseLayout>

@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import MobileStickyCTA from '../components/MobileStickyCTA.astro';
 import { HeroCinemagraph } from '../components/HeroCinemagraph';
 import { WaitlistForm } from '../components/WaitlistForm';
 
@@ -92,7 +93,7 @@ const iconSvgs: Record<string, string> = {
     </section>
 
     <!-- Waitlist Form -->
-    <section class="bg-ssc-bg">
+    <section id="waitlist-form" class="bg-ssc-bg">
       <div data-animate="blur-fade" class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center" style="opacity: 0">
         <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">GET EARLY ACCESS</h2>
         <p class="font-body text-ssc-text-muted mb-8 max-w-lg mx-auto">
@@ -102,5 +103,7 @@ const iconSvgs: Record<string, string> = {
       </div>
     </section>
   </main>
+  <div class="pb-16 md:pb-0"></div>
   <Footer />
+  <MobileStickyCTA text="Get Early Access" href="#waitlist-form" />
 </BaseLayout>
