@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Lock, CheckCircle, Download, FileSpreadsheet, Table2, BarChart3, Calculator, BookOpen, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { captureEvent } from '../lib/posthog';
 
 export const SpreadsheetForm: React.FC = () => {
@@ -23,8 +22,8 @@ export const SpreadsheetForm: React.FC = () => {
     }
 
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+      const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+      const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
       const response = await fetch(
         `${supabaseUrl}/functions/v1/validate-spreadsheet-code`,
@@ -136,12 +135,12 @@ export const SpreadsheetForm: React.FC = () => {
               Questions about the spreadsheet? Check Chapter 4 of the Tax Playbook for the full walkthrough.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/"
+              <a
+                href="/"
                 className="font-body text-ssc-gold hover:text-ssc-gold-dark font-medium transition-colors"
               >
                 Back to Home
-              </Link>
+              </a>
               <a
                 href="mailto:slabsavvycpa@gmail.com?subject=Spreadsheet%20Help"
                 className="font-body text-ssc-gold hover:text-ssc-gold-dark font-medium transition-colors"

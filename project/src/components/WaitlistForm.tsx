@@ -29,7 +29,7 @@ export const WaitlistForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
       const res = await fetch(`${supabaseUrl}/functions/v1/submit-waitlist`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

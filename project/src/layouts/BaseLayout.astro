@@ -1,0 +1,159 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = 'https://slabsavvycpa.com/og-image.png',
+  jsonLd,
+} = Astro.props;
+
+const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#FAFAF8" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Slab Savvy" />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/ssc-logo.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD -->
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body class="min-h-screen bg-ssc-bg flex flex-col font-body overflow-x-hidden">
+    <slot />
+
+    <!-- PostHog -->
+    <script>
+      import posthog from 'posthog-js';
+
+      const key = import.meta.env.PUBLIC_POSTHOG_KEY;
+      if (key && typeof key === 'string') {
+        posthog.init(key, {
+          api_host: 'https://us.i.posthog.com',
+          capture_pageview: true,
+          capture_pageleave: true,
+          persistence: 'localStorage+cookie',
+        });
+      }
+    </script>
+
+    <!-- GSAP animation auto-init -->
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      function initAnimations() {
+        document.querySelectorAll<HTMLElement>('[data-animate]').forEach((el) => {
+          const type = el.dataset.animate;
+          const childSelector = el.dataset.children || '.animate-child';
+          const stagger = parseFloat(el.dataset.stagger || '0.15');
+          const delay = parseFloat(el.dataset.delay || '0');
+
+          switch (type) {
+            case 'stagger-scale': {
+              gsap.fromTo(
+                el.querySelectorAll(childSelector),
+                { opacity: 0, y: 30, scale: 0.95, filter: 'blur(4px)' },
+                {
+                  opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
+                  duration: 0.7, stagger, ease: 'back.out(1.2)',
+                  scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' },
+                }
+              );
+              break;
+            }
+            case 'blur-fade': {
+              gsap.fromTo(
+                el,
+                { opacity: 0, y: 30, filter: 'blur(8px)' },
+                {
+                  opacity: 1, y: 0, filter: 'blur(0px)',
+                  duration: 1, delay, ease: 'power3.out',
+                  scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+                }
+              );
+              break;
+            }
+            case 'slide-left': {
+              gsap.fromTo(
+                el,
+                { opacity: 0, x: -60 },
+                {
+                  opacity: 1, x: 0, duration: 0.8, delay, ease: 'power3.out',
+                  scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+                }
+              );
+              break;
+            }
+            case 'slide-right': {
+              gsap.fromTo(
+                el,
+                { opacity: 0, x: 60 },
+                {
+                  opacity: 1, x: 0, duration: 0.8, delay, ease: 'power3.out',
+                  scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+                }
+              );
+              break;
+            }
+            case 'stagger-alternate': {
+              const els = el.querySelectorAll(childSelector);
+              els.forEach((child, i) => {
+                const fromX = i % 2 === 0 ? -40 : 40;
+                gsap.fromTo(
+                  child,
+                  { opacity: 0, x: fromX, filter: 'blur(4px)' },
+                  {
+                    opacity: 1, x: 0, filter: 'blur(0px)',
+                    duration: 0.7, delay: i * stagger, ease: 'power2.out',
+                    scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' },
+                  }
+                );
+              });
+              break;
+            }
+          }
+        });
+      }
+
+      initAnimations();
+    </script>
+  </body>
+</html>

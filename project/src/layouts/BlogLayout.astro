@@ -1,0 +1,114 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  author: string;
+  category: string;
+  tags: string[];
+}
+
+const { title, description, pubDate, author, category, tags } = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString('en-CA', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  author: { '@type': 'Person', name: author },
+  datePublished: pubDate.toISOString(),
+  publisher: {
+    '@type': 'Organization',
+    name: 'Slab Savvy',
+    url: 'https://slabsavvycpa.com',
+  },
+};
+---
+
+<BaseLayout
+  title={`${title} — Slab Savvy`}
+  description={description}
+  jsonLd={jsonLd}
+>
+  <Navigation />
+  <main class="flex-1">
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+      <!-- Header -->
+      <header class="mb-12">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="inline-block bg-ssc-gold/10 border border-ssc-gold/30 text-ssc-gold font-mono text-xs tracking-widest px-3 py-1">
+            {category.toUpperCase().replace('-', ' ')}
+          </span>
+          <time class="font-body text-sm text-ssc-text-muted" datetime={pubDate.toISOString()}>
+            {formattedDate}
+          </time>
+        </div>
+        <h1 class="font-headline text-3xl md:text-5xl text-ssc-text tracking-wide leading-tight mb-4">
+          {title.toUpperCase()}
+        </h1>
+        <p class="font-body text-lg text-ssc-text-muted">{description}</p>
+        <div class="mt-4 flex items-center gap-2">
+          <span class="font-body text-sm text-ssc-text-muted">By</span>
+          <span class="font-body text-sm font-semibold text-ssc-gold">{author}</span>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="prose prose-lg max-w-none
+        prose-headings:font-headline prose-headings:tracking-wide prose-headings:text-ssc-gold
+        prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:md:text-2xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:font-body prose-p:text-ssc-text prose-p:leading-relaxed prose-p:mb-4
+        prose-strong:text-ssc-text prose-strong:font-semibold
+        prose-em:text-ssc-text-muted
+        prose-a:text-ssc-gold prose-a:font-semibold prose-a:no-underline hover:prose-a:text-ssc-gold-dark
+        prose-ul:list-disc prose-ul:pl-6 prose-ul:font-body prose-ul:text-ssc-text
+        prose-ol:list-decimal prose-ol:pl-6 prose-ol:font-body prose-ol:text-ssc-text
+        prose-li:mb-2
+        prose-blockquote:border-l-4 prose-blockquote:border-ssc-gold prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-ssc-text-muted
+      ">
+        <slot />
+      </div>
+
+      <!-- Tags -->
+      {tags.length > 0 && (
+        <div class="mt-12 pt-8 border-t border-ssc-border">
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="inline-block bg-ssc-gold/5 border border-ssc-border text-ssc-text-muted font-mono text-xs px-3 py-1">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- CTA -->
+      <div class="mt-12 bg-ssc-black p-6 md:p-8 text-center">
+        <h3 class="font-headline text-2xl text-ssc-gold tracking-wide mb-3">
+          STOP WINGING IT
+        </h3>
+        <p class="font-body text-gray-400 mb-6 max-w-lg mx-auto">
+          Get on the waitlist for Slab Savvy Tracker and be first in line when the full ecosystem drops.
+        </p>
+        <a
+          href="/waitlist"
+          class="btn-shine inline-flex items-center justify-center min-h-[44px] px-8 py-3 bg-ssc-gold text-white font-body font-semibold hover:bg-ssc-gold-dark"
+        >
+          Join the Waitlist
+        </a>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

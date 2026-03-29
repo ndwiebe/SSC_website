@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import { HeroCinemagraph } from '../components/HeroCinemagraph';
+import { WaitlistForm } from '../components/WaitlistForm';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Slab Savvy Tracker',
+  description: 'AI-powered inventory tracking for sports card dealers. Send a photo, confirm the details, and your spreadsheet updates itself with real-time comp prices.',
+  url: 'https://slabsavvycpa.com/waitlist',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/PreOrder',
+    priceCurrency: 'CAD',
+  },
+};
+
+const features = [
+  { icon: 'camera', title: 'PHOTO-FIRST LOGGING', description: 'Send a photo of your card. AI identifies it, you confirm, done.' },
+  { icon: 'bar-chart', title: 'REAL-TIME COMPS', description: '130point comp search built in. Know what your cards are worth.' },
+  { icon: 'table', title: 'YOUR GOOGLE SHEET', description: 'Data goes straight to your own spreadsheet. Your data, your way.' },
+  { icon: 'message', title: 'TELEGRAM & WHATSAPP', description: 'Works where you already are. No new app to download.' },
+  { icon: 'dollar', title: 'COST BASIS TRACKING', description: 'Track what you paid, what you sold for, and your actual profit.' },
+  { icon: 'file', title: 'TAX-READY RECORDS', description: 'Good records now means less pain at tax time. Built by a CPA.' },
+];
+
+const iconSvgs: Record<string, string> = {
+  camera: '<path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/>',
+  'bar-chart': '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
+  table: '<rect x="3" y="3" width="18" height="18" rx="0"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>',
+  message: '<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>',
+  dollar: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>',
+  file: '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>',
+};
+---
+
+<BaseLayout
+  title="Slab Savvy Tracker — Join the Beta"
+  description="AI-powered inventory tracking for sports card dealers. Send a photo, get a row in your spreadsheet with real-time comps."
+  jsonLd={jsonLd}
+>
+  <Navigation />
+  <main class="flex-1">
+    <!-- Hero -->
+    <section class="relative bg-ssc-black text-white overflow-hidden">
+      <HeroCinemagraph client:load startFrame={1} endFrame={50} frameDelay={100} overlayOpacity={0.6} />
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5)">
+        <span class="badge-pulse inline-block bg-ssc-gold/10 border border-ssc-gold/30 text-ssc-gold font-mono text-xs tracking-widest px-4 py-1.5 mb-8">
+          BETA COMING SOON
+        </span>
+        <h1 class="font-headline text-4xl md:text-6xl lg:text-7xl text-white tracking-wide leading-none mb-6">
+          TRACK YOUR CARDS.
+          <br />
+          <span class="text-shimmer" style="text-shadow: none">KNOW YOUR NUMBERS.</span>
+        </h1>
+        <p class="font-body text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
+          AI-powered inventory tracking for sports card dealers. Send a photo, confirm the details,
+          and your spreadsheet updates itself — with real-time comp prices.
+        </p>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="bg-ssc-bg">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide">HOW IT WORKS</h2>
+          <p class="font-body text-ssc-text-muted mt-3 max-w-2xl mx-auto">
+            Built for dealers who move cards, not developers who build apps.
+          </p>
+        </div>
+
+        <div data-animate="stagger-scale" data-children=".feature-card-item" data-stagger="0.1" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {features.map((feature) => (
+            <div class="feature-card-item feature-card bg-white border border-ssc-border p-8" style="opacity: 0">
+              <div class="feature-icon w-12 h-12 bg-ssc-gold/10 border border-ssc-gold/20 flex items-center justify-center mb-6">
+                <svg class="w-6 h-6 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+                  <Fragment set:html={iconSvgs[feature.icon]} />
+                </svg>
+              </div>
+              <h3 class="font-headline text-lg text-ssc-text tracking-wide mb-3">{feature.title}</h3>
+              <p class="font-body text-ssc-text-muted">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Waitlist Form -->
+    <section class="bg-ssc-bg">
+      <div data-animate="blur-fade" class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center" style="opacity: 0">
+        <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">GET EARLY ACCESS</h2>
+        <p class="font-body text-ssc-text-muted mb-8 max-w-lg mx-auto">
+          Join the waitlist for Slab Savvy Tracker. Beta spots are limited — first in, first tracked.
+        </p>
+        <WaitlistForm client:visible />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

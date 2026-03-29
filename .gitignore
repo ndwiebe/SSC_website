@@ -10,3 +10,4 @@ design-references/
 # Build artifacts (covered by project/.gitignore too, but belt-and-suspenders)
 project/node_modules/
 project/dist/
+.vercel
