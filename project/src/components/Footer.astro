@@ -59,21 +59,31 @@
         </ul>
       </div>
 
-      <!-- Connect -->
+      <!-- Newsletter -->
       <div>
-        <h3 class="font-headline text-sm tracking-widest text-ssc-gold mb-4">CONNECT</h3>
-        <ul class="space-y-1 font-body text-sm">
-          <li>
-            <a href="mailto:slabsavvycpa@gmail.com" class="min-h-[44px] inline-flex items-center text-gray-400 hover:text-white transition-colors">
-              slabsavvycpa@gmail.com
-            </a>
-          </li>
-          <li>
-            <a href="https://facebook.com/slabsavvy" target="_blank" rel="noopener noreferrer" class="min-h-[44px] inline-flex items-center text-gray-400 hover:text-white transition-colors">
-              Facebook
-            </a>
-          </li>
-        </ul>
+        <h3 class="font-headline text-sm tracking-widest text-ssc-gold mb-4">THE FLIP SHEET</h3>
+        <p class="text-gray-400 text-sm font-body mb-3">Tax tips and market takes for Canadian card dealers.</p>
+        <form id="footer-newsletter-form" class="space-y-2">
+          <input
+            type="email"
+            id="footer-newsletter-email"
+            placeholder="your@email.com"
+            required
+            class="w-full px-3 py-2 min-h-[44px] bg-ssc-surface-dark border border-ssc-border-dark text-white font-body text-sm placeholder:text-gray-500 focus:outline-none focus:border-ssc-gold"
+          />
+          <button
+            type="submit"
+            class="w-full btn-shine bg-ssc-gold hover:bg-ssc-gold-dark text-white px-3 py-2 min-h-[44px] font-body font-semibold text-sm"
+          >
+            Subscribe
+          </button>
+        </form>
+        <p id="footer-newsletter-success" class="hidden text-ssc-gold text-sm font-body mt-2">You're in.</p>
+        <p id="footer-newsletter-error" class="hidden text-red-400 text-sm font-body mt-2"></p>
+        <div class="mt-4 flex gap-4">
+          <a href="mailto:slabsavvycpa@gmail.com" class="text-gray-500 hover:text-white transition-colors text-sm font-body">Email</a>
+          <a href="https://facebook.com/slabsavvy" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors text-sm font-body">Facebook</a>
+        </div>
       </div>
     </div>
 
@@ -82,3 +92,41 @@
     </div>
   </div>
 </footer>
+
+<script>
+  import posthog from 'posthog-js';
+
+  const form = document.getElementById('footer-newsletter-form') as HTMLFormElement;
+  const emailInput = document.getElementById('footer-newsletter-email') as HTMLInputElement;
+  const successMsg = document.getElementById('footer-newsletter-success');
+  const errorMsg = document.getElementById('footer-newsletter-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    if (!email) return;
+
+    errorMsg?.classList.add('hidden');
+
+    try {
+      const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+      const res = await fetch(`${supabaseUrl}/functions/v1/submit-waitlist`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, monthly_volume: 'newsletter-footer' }),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        if (errorMsg) { errorMsg.textContent = data.error || 'Something went wrong.'; errorMsg.classList.remove('hidden'); }
+        return;
+      }
+
+      posthog.capture('newsletter_signup', { source: 'footer' });
+      form.classList.add('hidden');
+      successMsg?.classList.remove('hidden');
+    } catch {
+      if (errorMsg) { errorMsg.textContent = 'Network error. Try again.'; errorMsg.classList.remove('hidden'); }
+    }
+  });
+</script>
