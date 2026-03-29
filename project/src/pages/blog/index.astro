@@ -40,7 +40,7 @@ const posts = (await getCollection('blog')).sort(
               >
                 <div class="flex items-center gap-3 mb-3">
                   <span class="inline-block bg-ssc-gold/10 border border-ssc-gold/30 text-ssc-gold font-mono text-xs tracking-widest px-3 py-1">
-                    {post.data.category.toUpperCase().replace('-', ' ')}
+                    {post.data.category.toUpperCase().replaceAll('-', ' ')}
                   </span>
                   <time class="font-body text-sm text-ssc-text-muted" datetime={post.data.pubDate.toISOString()}>
                     {post.data.pubDate.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })}

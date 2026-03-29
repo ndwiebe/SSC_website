@@ -18,6 +18,7 @@ const formattedDate = pubDate.toLocaleDateString('en-CA', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
+  timeZone: 'UTC',
 });
 
 const jsonLd = {
@@ -38,6 +39,7 @@ const jsonLd = {
 <BaseLayout
   title={`${title} — Slab Savvy`}
   description={description}
+  ogType="article"
   jsonLd={jsonLd}
 >
   <Navigation />
@@ -47,7 +49,7 @@ const jsonLd = {
       <header class="mb-12">
         <div class="flex items-center gap-3 mb-4">
           <span class="inline-block bg-ssc-gold/10 border border-ssc-gold/30 text-ssc-gold font-mono text-xs tracking-widest px-3 py-1">
-            {category.toUpperCase().replace('-', ' ')}
+            {category.toUpperCase().replaceAll('-', ' ')}
           </span>
           <time class="font-body text-sm text-ssc-text-muted" datetime={pubDate.toISOString()}>
             {formattedDate}
