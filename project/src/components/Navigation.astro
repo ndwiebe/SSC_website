@@ -13,6 +13,10 @@ function isActive(path: string): boolean {
   if (path === '/') return currentPath === '/';
   return currentPath.startsWith(path);
 }
+
+const isBlog = currentPath.startsWith('/blog');
+const ctaText = isBlog ? 'Subscribe' : 'Join Waitlist';
+const ctaHref = isBlog ? '#newsletter-form' : '/waitlist';
 ---
 
 <nav class="bg-ssc-bg/90 backdrop-blur-md sticky top-0 z-50 border-b border-ssc-border">
@@ -44,10 +48,10 @@ function isActive(path: string): boolean {
       <!-- Desktop CTA -->
       <div class="hidden md:flex items-center">
         <a
-          href="/waitlist"
+          href={ctaHref}
           class="btn-shine bg-ssc-gold hover:bg-ssc-gold-dark text-white px-6 py-2 font-body font-semibold text-sm min-h-[44px] inline-flex items-center"
         >
-          Join Waitlist
+          {ctaText}
         </a>
       </div>
 
@@ -89,10 +93,10 @@ function isActive(path: string): boolean {
           </a>
         ))}
         <a
-          href="/waitlist"
+          href={ctaHref}
           class="block btn-shine bg-ssc-gold hover:bg-ssc-gold-dark text-white px-3 py-3 font-body font-semibold text-base min-h-[44px] mt-2 text-center"
         >
-          Join Waitlist
+          {ctaText}
         </a>
       </div>
     </div>
