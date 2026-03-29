@@ -15,7 +15,6 @@ function isActive(path: string): boolean {
 }
 
 const isBlog = currentPath.startsWith('/blog');
-const ctaText = isBlog ? 'Subscribe' : 'Join Waitlist';
 const ctaHref = isBlog ? '#newsletter-form' : '/waitlist';
 ---
 
@@ -51,7 +50,7 @@ const ctaHref = isBlog ? '#newsletter-form' : '/waitlist';
           href={ctaHref}
           class="btn-shine bg-ssc-gold hover:bg-ssc-gold-dark text-white px-6 py-2 font-body font-semibold text-sm min-h-[44px] inline-flex items-center"
         >
-          {ctaText}
+          Subscribe
         </a>
       </div>
 
@@ -96,7 +95,7 @@ const ctaHref = isBlog ? '#newsletter-form' : '/waitlist';
           href={ctaHref}
           class="block btn-shine bg-ssc-gold hover:bg-ssc-gold-dark text-white px-3 py-3 font-body font-semibold text-base min-h-[44px] mt-2 text-center"
         >
-          {ctaText}
+          Subscribe
         </a>
       </div>
     </div>
