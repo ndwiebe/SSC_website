@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import MobileStickyCTA from '../components/MobileStickyCTA.astro';
+import { FullPageScrollBackground } from '../components/FullPageScrollBackground';
+
+const chapters = [
+  'Hobby vs. business — when does CRA start caring?',
+  'Capital gains math with real dollar amounts',
+  'Every deduction a card seller can claim',
+  'Record-keeping that doesn\'t suck (plus tracking spreadsheet)',
+  'GST/HST — when the $30K threshold hits',
+  'Cross-border sales and USD conversion',
+  'Seven fully worked scenarios from casual to full-time',
+  'One-page cheat sheet with every threshold and deadline',
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Book',
+  name: 'The Card Collector\'s Tax Playbook',
+  author: { '@type': 'Person', name: 'Nathan Wiebe, CPA' },
+  description: 'Free 62-page guide covering Canadian tax rules for sports card sellers. GST thresholds, capital gains, deductions, and record-keeping.',
+  url: 'https://slabsavvycpa.com/playbook',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'CAD',
+    availability: 'https://schema.org/InStock',
+  },
+};
+---
+
+<BaseLayout
+  title="The Card Collector's Tax Playbook — Free Guide — Slab Savvy"
+  description="Free 62-page guide: Canadian tax rules for sports card sellers. GST thresholds, capital gains, deductions, record-keeping. Written by a CPA who collects."
+  jsonLd={jsonLd}
+>
+  <Navigation />
+  <main class="flex-1">
+    <div class="pb-16 md:pb-0">
+      <!-- Fixed scroll animation background — Bedard -->
+      <FullPageScrollBackground client:load framePath="/hero-frames/bedard" frameCount={73} />
+
+      <!-- All content scrolls OVER the animation -->
+      <div class="relative z-10">
+
+        <!-- Hero -->
+        <section class="min-h-screen flex items-center justify-center relative">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style="text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)">
+            <span class="badge-pulse inline-block bg-ssc-gold/10 border border-ssc-gold/30 text-ssc-gold font-mono text-xs tracking-widest px-4 py-1.5 mb-8">
+              FREE — 62 PAGES
+            </span>
+            <h1 class="font-headline text-4xl md:text-6xl lg:text-7xl text-white tracking-wide leading-none mb-6">
+              THE CARD COLLECTOR'S
+              <br />
+              <span class="text-shimmer" style="text-shadow: none">TAX PLAYBOOK</span>
+            </h1>
+            <p class="font-body text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-4">
+              What CRA actually cares about when you sell cards.
+            </p>
+            <p class="font-body text-gray-400 text-sm max-w-lg mx-auto mb-10">
+              Written by a CPA who actually collects. Includes tracking spreadsheet.
+            </p>
+            <a
+              class="gumroad-button btn-shine inline-flex items-center justify-center min-h-[44px] px-10 py-4 bg-ssc-gold text-ssc-black font-body font-bold text-lg hover:bg-ssc-gold-dark"
+              href="https://slabsavvycpa.gumroad.com/l/tax-playbook"
+            >
+              Get the Free Playbook
+            </a>
+          </div>
+
+          <!-- Scroll indicator -->
+          <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="flex flex-col items-center gap-2">
+              <span class="font-body text-xs text-gray-400 tracking-wider uppercase">Scroll</span>
+              <svg class="w-5 h-5 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="square" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- What's Inside -->
+        <section class="bg-ssc-black/80 backdrop-blur-md">
+          <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="text-center mb-12" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+              <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">WHAT'S INSIDE</h2>
+              <p class="font-body text-lg text-gray-300 max-w-2xl mx-auto">
+                62 pages covering everything Canadian card sellers need to know about taxes.
+              </p>
+            </div>
+
+            <div data-animate="stagger-alternate" data-children=".chapter-item" data-stagger="0.08" class="space-y-4">
+              {chapters.map((chapter, i) => (
+                <div class="chapter-item flex items-start space-x-4 p-4 border border-white/15 bg-white/5 backdrop-blur-sm" style="opacity: 0; text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
+                  <span class="font-mono text-ssc-gold text-sm mt-0.5 flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="font-body text-gray-200">{chapter}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="text-center mt-12">
+              <a
+                class="gumroad-button btn-shine inline-flex items-center justify-center min-h-[44px] px-10 py-4 bg-ssc-gold text-ssc-black font-body font-bold text-lg hover:bg-ssc-gold-dark"
+                href="https://slabsavvycpa.gumroad.com/l/tax-playbook"
+              >
+                Get the Free Playbook
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Trust -->
+        <section class="bg-ssc-black/80 backdrop-blur-md border-t border-white/10">
+          <div data-animate="blur-fade" class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center" style="opacity: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+            <h3 class="font-headline text-2xl text-ssc-gold tracking-wide mb-4">WRITTEN BY A CPA WHO COLLECTS</h3>
+            <p class="font-body text-gray-300 mb-2">
+              Nathan Wiebe, CPA — 7 years experience, active collector, Slab Savvy CPA.
+            </p>
+            <p class="font-body text-gray-400 text-sm">
+              No spam. No upsell. Just tax clarity for Canadian collectors.
+            </p>
+          </div>
+        </section>
+
+      </div>
+
+      <MobileStickyCTA text="Get the Free Playbook" href="https://slabsavvycpa.gumroad.com/l/tax-playbook" />
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
