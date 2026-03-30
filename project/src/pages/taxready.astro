@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import MobileStickyCTA from '../components/MobileStickyCTA.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import { ContactForm } from '../components/ContactForm';
+import { HeroCinemagraph } from '../components/HeroCinemagraph';
 
 const processSteps = [
   { number: '01', title: 'SEND YOUR EXPORTS', description: 'Export your data from eBay, COMC, 130point, MySlabs, or wherever you sell. CSV, PDF, screenshots — whatever you have digitally.' },
@@ -31,9 +32,10 @@ const deliverables = [
   <main class="flex-1">
     <div class="min-h-screen bg-ssc-bg">
       <!-- Hero -->
-      <div class="bg-ssc-black text-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-          <div class="text-center">
+      <div class="relative bg-ssc-black text-white overflow-hidden">
+        <HeroCinemagraph client:load framePath="/hero-frames/lemieux" startFrame={1} endFrame={73} frameDelay={100} overlayOpacity={0.6} />
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+          <div class="text-center" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5)">
             <h1 class="font-headline text-3xl md:text-6xl text-ssc-gold tracking-wide mb-6">
               YOUR RECORDS.<br />TAX READY.
             </h1>

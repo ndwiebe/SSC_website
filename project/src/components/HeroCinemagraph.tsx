@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 
 interface HeroCinemagraphProps {
+  /** Path to frame directory */
+  framePath?: string;
   /** First frame index (1-based) */
   startFrame?: number;
   /** Last frame index (1-based) */
@@ -18,6 +20,7 @@ interface HeroCinemagraphProps {
  * for a seamless breathing/shimmer effect.
  */
 export const HeroCinemagraph: React.FC<HeroCinemagraphProps> = ({
+  framePath = '/hero-frames',
   startFrame = 1,
   endFrame = 50,
   frameDelay = 100,
@@ -35,9 +38,9 @@ export const HeroCinemagraph: React.FC<HeroCinemagraphProps> = ({
   const getFrameSrc = useCallback(
     (index: number) => {
       const padded = String(startFrame + index).padStart(4, '0');
-      return `/hero-frames/frame-${padded}.webp`;
+      return `${framePath}/frame-${padded}.webp`;
     },
-    [startFrame]
+    [framePath, startFrame]
   );
 
   /** Draw frame on canvas, covering the container like object-fit: cover

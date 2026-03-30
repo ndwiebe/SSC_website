@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import MobileStickyCTA from '../components/MobileStickyCTA.astro';
 import { SpreadsheetForm } from '../components/SpreadsheetForm';
+import { HeroCinemagraph } from '../components/HeroCinemagraph';
 
 const features = [
   'Purchase and sale tracking with cost basis',
@@ -24,8 +25,10 @@ const features = [
   <main class="flex-1">
     <div class="min-h-screen bg-ssc-bg">
       <!-- Header -->
-      <div class="bg-ssc-black text-white">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <div class="relative bg-ssc-black text-white overflow-hidden">
+        <!-- TODO: Swap to /hero-frames/bedard when video is ready -->
+        <HeroCinemagraph client:load framePath="/hero-frames/celebrini" startFrame={1} endFrame={50} frameDelay={100} overlayOpacity={0.65} />
+        <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5)">
           <div class="w-16 h-16 bg-ssc-gold/10 border border-ssc-gold/30 flex items-center justify-center mx-auto mb-6 step-number">
             <svg class="w-8 h-8 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="square" stroke-linejoin="miter" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />

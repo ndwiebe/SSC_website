@@ -9,7 +9,15 @@ import { useReducedMotion } from "../hooks/useReducedMotion";
  * StrictMode-safe: uses a loading guard ref to prevent double-loading
  * when React 18 double-mounts in dev mode.
  */
-export const FullPageScrollBackground: React.FC = () => {
+interface FullPageScrollBackgroundProps {
+  framePath?: string;
+  frameCount?: number;
+}
+
+export const FullPageScrollBackground: React.FC<FullPageScrollBackgroundProps> = ({
+  framePath = '/hero-frames',
+  frameCount: frameCountProp,
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null!);
   const framesRef = useRef<HTMLImageElement[]>([]);
   const currentFrameRef = useRef<number>(-1);
@@ -18,14 +26,14 @@ export const FullPageScrollBackground: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  const FRAME_COUNT = 121;
+  const FRAME_COUNT = frameCountProp || 121;
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const frameStep = isMobile ? 2 : 1;
 
   const getFrameSrc = useCallback((originalIndex: number) => {
     const padded = String(originalIndex + 1).padStart(4, "0");
-    return `/hero-frames/frame-${padded}.webp`;
-  }, []);
+    return `${framePath}/frame-${padded}.webp`;
+  }, [framePath]);
 
   const drawFrame = useCallback((loadedIndex: number) => {
     const canvas = canvasRef.current;
