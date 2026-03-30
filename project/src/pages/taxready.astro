@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 import MobileStickyCTA from '../components/MobileStickyCTA.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import { ContactForm } from '../components/ContactForm';
-import { HeroCinemagraph } from '../components/HeroCinemagraph';
+import { FullPageScrollBackground } from '../components/FullPageScrollBackground';
 
 const processSteps = [
   { number: '01', title: 'SEND YOUR EXPORTS', description: 'Export your data from eBay, COMC, 130point, MySlabs, or wherever you sell. CSV, PDF, screenshots — whatever you have digitally.' },
@@ -30,84 +30,105 @@ const deliverables = [
 >
   <Navigation />
   <main class="flex-1">
-    <div class="min-h-screen bg-ssc-bg">
-      <!-- Hero + Process + What You Get (Lemieux animation extends through all) -->
-      <section class="relative bg-ssc-black text-white overflow-hidden">
-        <HeroCinemagraph client:load framePath="/hero-frames/lemieux" startFrame={1} endFrame={73} frameDelay={100} overlayOpacity={0.55} />
+    <div class="pb-16 md:pb-0">
+      <!-- Fixed scroll animation background — Lemieux -->
+      <FullPageScrollBackground client:load framePath="/hero-frames/lemieux" frameCount={73} />
 
-        <!-- Hero text -->
-        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-          <div class="text-center" style="text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)">
-            <h1 class="font-headline text-3xl md:text-6xl text-ssc-gold tracking-wide mb-6">
-              YOUR RECORDS.<br />TAX READY.
+      <!-- All content scrolls OVER the animation -->
+      <div class="relative z-10">
+
+        <!-- Hero -->
+        <section class="min-h-screen flex items-center justify-center relative">
+          <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style="text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)">
+            <h1 class="font-headline text-4xl md:text-6xl lg:text-7xl text-ssc-gold tracking-wide leading-none mb-6">
+              YOUR RECORDS.
+              <br />
+              <span class="text-shimmer" style="text-shadow: none">TAX READY.</span>
             </h1>
             <p class="font-body text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
               Send me your digital exports. I turn them into a clean, structured
               package your accountant can actually work with.
             </p>
           </div>
-        </div>
 
-        <!-- Process Steps (inside animated section) -->
-        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
-          <div class="text-center mb-16">
-            <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">HOW IT WORKS</h2>
-            <p class="font-body text-lg text-gray-300 max-w-2xl mx-auto">
-              Four steps from messy exports to clean records.
-            </p>
-          </div>
-          <ProcessSteps steps={processSteps} dark />
-        </div>
-
-        <!-- What You Get (inside animated section) -->
-        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 md:pb-20">
-          <div class="text-center mb-12" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
-            <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">WHAT YOU GET</h2>
-            <p class="font-body text-lg text-gray-300 max-w-2xl mx-auto">
-              A complete reconciliation package your accountant can use on day one.
-            </p>
-          </div>
-
-          <div data-animate="stagger-alternate" data-children=".check-item" data-stagger="0.1" class="max-w-2xl mx-auto">
-            <div class="space-y-4">
-              {deliverables.map((item) => (
-                <div class="check-item flex items-start space-x-4 p-4 border border-white/15 bg-white/5 backdrop-blur-sm" style="opacity: 0; text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
-                  <svg class="w-5 h-5 text-ssc-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  <span class="font-body text-gray-200">{item}</span>
-                </div>
-              ))}
+          <!-- Scroll indicator -->
+          <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="flex flex-col items-center gap-2">
+              <span class="font-body text-xs text-gray-400 tracking-wider uppercase">Scroll</span>
+              <svg class="w-5 h-5 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="square" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Contact -->
-      <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div data-animate="slide-left" style="opacity: 0">
-            <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-6">GET A QUOTE</h2>
-            <p class="font-body text-lg text-ssc-text-muted mb-6">
-              Pricing depends on your volume and how far behind you are. Send me
-              your details and I'll give you a firm quote before any work starts.
-            </p>
-            <div class="bg-ssc-surface-dark border border-ssc-border-dark p-6">
-              <p class="font-body text-gray-400 text-sm leading-relaxed">
-                Not tax prep. Not tax advice. Organized records your accountant
-                will thank you for.
+        <!-- Process Steps -->
+        <section class="py-12 md:py-20" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+          <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+              <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">HOW IT WORKS</h2>
+              <p class="font-body text-lg text-gray-300 max-w-2xl mx-auto">
+                Four steps from messy exports to clean records.
               </p>
             </div>
+            <ProcessSteps steps={processSteps} dark />
           </div>
+        </section>
 
-          <div data-animate="slide-right" style="opacity: 0">
-            <ContactForm client:visible />
+        <!-- What You Get -->
+        <section class="bg-ssc-black/80 backdrop-blur-md">
+          <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <div class="text-center mb-12" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+              <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">WHAT YOU GET</h2>
+              <p class="font-body text-lg text-gray-300 max-w-2xl mx-auto">
+                A complete reconciliation package your accountant can use on day one.
+              </p>
+            </div>
+
+            <div data-animate="stagger-alternate" data-children=".check-item" data-stagger="0.1" class="max-w-2xl mx-auto">
+              <div class="space-y-4">
+                {deliverables.map((item) => (
+                  <div class="check-item flex items-start space-x-4 p-4 border border-white/15 bg-white/5 backdrop-blur-sm" style="opacity: 0; text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
+                    <svg class="w-5 h-5 text-ssc-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span class="font-body text-gray-200">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <!-- Contact -->
+        <section class="bg-ssc-black/80 backdrop-blur-md">
+          <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div data-animate="slide-left" style="opacity: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+                <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-6">GET A QUOTE</h2>
+                <p class="font-body text-lg text-gray-300 mb-6">
+                  Pricing depends on your volume and how far behind you are. Send me
+                  your details and I'll give you a firm quote before any work starts.
+                </p>
+                <div class="bg-white/5 backdrop-blur-sm border border-white/15 p-6">
+                  <p class="font-body text-gray-300 text-sm leading-relaxed">
+                    Not tax prep. Not tax advice. Organized records your accountant
+                    will thank you for.
+                  </p>
+                </div>
+              </div>
+
+              <div data-animate="slide-right" style="opacity: 0">
+                <ContactForm client:visible />
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <MobileStickyCTA text="Get a Quote" href="mailto:slabsavvycpa@gmail.com?subject=Tax%20Ready%20Inquiry" />
     </div>
   </main>
-  <div class="pb-16 md:pb-0"></div>
   <Footer />
-  <MobileStickyCTA text="Get a Quote" href="mailto:slabsavvycpa@gmail.com?subject=Tax%20Ready%20Inquiry" />
 </BaseLayout>

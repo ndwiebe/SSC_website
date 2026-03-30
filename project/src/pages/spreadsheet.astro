@@ -4,7 +4,7 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import MobileStickyCTA from '../components/MobileStickyCTA.astro';
 import { SpreadsheetForm } from '../components/SpreadsheetForm';
-import { HeroCinemagraph } from '../components/HeroCinemagraph';
+import { FullPageScrollBackground } from '../components/FullPageScrollBackground';
 
 const features = [
   'Purchase and sale tracking with cost basis',
@@ -23,64 +23,89 @@ const features = [
 >
   <Navigation />
   <main class="flex-1">
-    <!-- Full page Bedard animation -->
-    <section class="relative bg-ssc-black text-white overflow-hidden min-h-screen">
-      <HeroCinemagraph client:load framePath="/hero-frames/bedard" startFrame={1} endFrame={73} frameDelay={100} overlayOpacity={0.6} />
+    <div class="pb-16 md:pb-0">
+      <!-- Fixed scroll animation background — Bedard -->
+      <FullPageScrollBackground client:load framePath="/hero-frames/bedard" frameCount={73} />
 
-      <!-- Header -->
-      <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center" style="text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)">
-        <div class="w-16 h-16 bg-ssc-gold/10 border border-ssc-gold/30 flex items-center justify-center mx-auto mb-6 step-number">
-          <svg class="w-8 h-8 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="square" stroke-linejoin="miter" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-            <polyline points="14 2 14 8 20 8" />
-            <line x1="16" y1="13" x2="8" y2="13" />
-            <line x1="16" y1="17" x2="8" y2="17" />
-            <polyline points="10 9 9 9 8 9" />
-          </svg>
-        </div>
-        <h1 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-4">TAX TRACKING SPREADSHEET</h1>
-        <p class="font-body text-xl text-gray-300 max-w-xl mx-auto">
-          The tracking spreadsheet included with The Card Collector's Tax Playbook.
-          Enter your email and access code below.
-        </p>
-      </div>
+      <!-- All content scrolls OVER the animation -->
+      <div class="relative z-10">
 
-      <!-- Form -->
-      <div class="relative z-10" data-animate="blur-fade" style="opacity: 0">
-        <SpreadsheetForm client:visible />
-      </div>
-
-      <!-- Don't have the code? -->
-      <div class="relative z-10 max-w-lg mx-auto px-4 sm:px-6 lg:px-8 pb-12" style="text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
-        <div class="bg-white/5 backdrop-blur-sm border border-white/15 p-6 text-center">
-          <h3 class="font-headline text-lg text-ssc-gold tracking-wide mb-3">DON'T HAVE A CODE?</h3>
-          <p class="font-body text-gray-300 text-sm mb-4">
-            The access code comes with The Card Collector's Tax Playbook — a free guide
-            covering everything Canadian collectors need to know about taxes on card sales.
-          </p>
-          <span class="badge-pulse inline-flex items-center px-3 py-1 bg-ssc-gold/10 border border-ssc-gold/20 text-ssc-gold text-xs font-mono font-medium">
-            FREE
-          </span>
-        </div>
-
-        <!-- What you get -->
-        <div data-animate="stagger-alternate" data-children=".check-item" data-stagger="0.08" class="bg-white/5 backdrop-blur-sm border border-white/15 p-6 mt-8">
-          <h3 class="font-headline text-lg text-white tracking-wide mb-4">WHAT'S IN THE SPREADSHEET</h3>
-          <div class="space-y-3">
-            {features.map((item) => (
-              <div class="check-item flex items-start space-x-3 p-2 border border-transparent" style="opacity: 0">
-                <svg class="w-4 h-4 text-ssc-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                <span class="font-body text-gray-300 text-sm">{item}</span>
-              </div>
-            ))}
+        <!-- Hero -->
+        <section class="min-h-screen flex items-center justify-center relative">
+          <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style="text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)">
+            <div class="w-16 h-16 bg-ssc-gold/10 border border-ssc-gold/30 flex items-center justify-center mx-auto mb-6 step-number">
+              <svg class="w-8 h-8 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="square" stroke-linejoin="miter" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+            </div>
+            <h1 class="font-headline text-3xl md:text-5xl text-ssc-gold tracking-wide leading-tight mb-4">
+              TAX TRACKING
+              <br />
+              <span class="text-shimmer" style="text-shadow: none">SPREADSHEET</span>
+            </h1>
+            <p class="font-body text-xl text-gray-300 max-w-xl mx-auto">
+              The tracking spreadsheet included with The Card Collector's Tax Playbook.
+              Enter your email and access code below.
+            </p>
           </div>
-        </div>
+
+          <!-- Scroll indicator -->
+          <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="flex flex-col items-center gap-2">
+              <span class="font-body text-xs text-gray-400 tracking-wider uppercase">Scroll</span>
+              <svg class="w-5 h-5 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="square" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- Form -->
+        <section class="bg-ssc-black/80 backdrop-blur-md">
+          <div data-animate="blur-fade" style="opacity: 0">
+            <SpreadsheetForm client:visible />
+          </div>
+        </section>
+
+        <!-- Don't have the code? -->
+        <section class="bg-ssc-black/80 backdrop-blur-md">
+          <div class="max-w-lg mx-auto px-4 sm:px-6 lg:px-8 pb-12" style="text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
+            <div class="bg-white/5 backdrop-blur-sm border border-white/15 p-6 text-center">
+              <h3 class="font-headline text-lg text-ssc-gold tracking-wide mb-3">DON'T HAVE A CODE?</h3>
+              <p class="font-body text-gray-300 text-sm mb-4">
+                The access code comes with The Card Collector's Tax Playbook — a free guide
+                covering everything Canadian collectors need to know about taxes on card sales.
+              </p>
+              <span class="badge-pulse inline-flex items-center px-3 py-1 bg-ssc-gold/10 border border-ssc-gold/20 text-ssc-gold text-xs font-mono font-medium">
+                FREE
+              </span>
+            </div>
+
+            <!-- What you get -->
+            <div data-animate="stagger-alternate" data-children=".check-item" data-stagger="0.08" class="bg-white/5 backdrop-blur-sm border border-white/15 p-6 mt-8">
+              <h3 class="font-headline text-lg text-white tracking-wide mb-4">WHAT'S IN THE SPREADSHEET</h3>
+              <div class="space-y-3">
+                {features.map((item) => (
+                  <div class="check-item flex items-start space-x-3 p-2 border border-transparent" style="opacity: 0">
+                    <svg class="w-4 h-4 text-ssc-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    <span class="font-body text-gray-300 text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
-    </section>
+
+      <MobileStickyCTA text="Join the Waitlist" href="/waitlist" />
+    </div>
   </main>
-  <div class="pb-16 md:pb-0"></div>
   <Footer />
-  <MobileStickyCTA text="Join the Waitlist" href="/waitlist" />
 </BaseLayout>

@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import MobileStickyCTA from '../components/MobileStickyCTA.astro';
-import { HeroCinemagraph } from '../components/HeroCinemagraph';
+import { FullPageScrollBackground } from '../components/FullPageScrollBackground';
 import { WaitlistForm } from '../components/WaitlistForm';
 
 const jsonLd = {
@@ -47,63 +47,82 @@ const iconSvgs: Record<string, string> = {
 >
   <Navigation />
   <main class="flex-1">
-    <!-- Hero + Features (cinemagraph extends through both) -->
-    <section class="relative bg-ssc-black text-white overflow-hidden">
-      <HeroCinemagraph client:load framePath="/hero-frames/celebrini" startFrame={1} endFrame={73} frameDelay={100} overlayOpacity={0.6} />
+    <div class="pb-16 md:pb-0">
+      <!-- Fixed scroll animation background — Celebrini -->
+      <FullPageScrollBackground client:load framePath="/hero-frames/celebrini" frameCount={73} />
 
-      <!-- Hero text -->
-      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center" style="text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)">
-        <span class="badge-pulse inline-block bg-ssc-gold/10 border border-ssc-gold/30 text-ssc-gold font-mono text-xs tracking-widest px-4 py-1.5 mb-8">
-          BETA COMING SOON
-        </span>
-        <h1 class="font-headline text-4xl md:text-6xl lg:text-7xl text-white tracking-wide leading-none mb-6">
-          TRACK YOUR CARDS.
-          <br />
-          <span class="text-shimmer" style="text-shadow: none">KNOW YOUR NUMBERS.</span>
-        </h1>
-        <p class="font-body text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
-          AI-powered inventory tracking for sports card dealers. Send a photo, confirm the details,
-          and your spreadsheet updates itself — with real-time comp prices.
-        </p>
-      </div>
+      <!-- All content scrolls OVER the animation -->
+      <div class="relative z-10">
 
-      <!-- Features (inside the dark section, over the cinemagraph) -->
-      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-24" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
-        <div class="text-center mb-12 md:mb-16">
-          <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide">HOW IT WORKS</h2>
-          <p class="font-body text-gray-300 mt-3 max-w-2xl mx-auto">
-            Built for dealers who move cards, not developers who build apps.
-          </p>
-        </div>
+        <!-- Hero -->
+        <section class="min-h-screen flex items-center justify-center relative">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style="text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)">
+            <span class="badge-pulse inline-block bg-ssc-gold/10 border border-ssc-gold/30 text-ssc-gold font-mono text-xs tracking-widest px-4 py-1.5 mb-8">
+              BETA COMING SOON
+            </span>
+            <h1 class="font-headline text-4xl md:text-6xl lg:text-7xl text-white tracking-wide leading-none mb-6">
+              TRACK YOUR CARDS.
+              <br />
+              <span class="text-shimmer" style="text-shadow: none">KNOW YOUR NUMBERS.</span>
+            </h1>
+            <p class="font-body text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
+              AI-powered inventory tracking for sports card dealers. Send a photo, confirm the details,
+              and your spreadsheet updates itself — with real-time comp prices.
+            </p>
+          </div>
 
-        <div data-animate="stagger-scale" data-children=".feature-card-item" data-stagger="0.1" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {features.map((feature) => (
-            <div class="feature-card-item feature-card bg-white/10 backdrop-blur-sm border border-white/10 p-8" style="opacity: 0">
-              <div class="feature-icon w-12 h-12 bg-ssc-gold/10 border border-ssc-gold/20 flex items-center justify-center mb-6">
-                <svg class="w-6 h-6 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
-                  <Fragment set:html={iconSvgs[feature.icon]} />
-                </svg>
-              </div>
-              <h3 class="font-headline text-lg text-white tracking-wide mb-3">{feature.title}</h3>
-              <p class="font-body text-gray-300">{feature.description}</p>
+          <!-- Scroll indicator -->
+          <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="flex flex-col items-center gap-2">
+              <span class="font-body text-xs text-gray-400 tracking-wider uppercase">Scroll</span>
+              <svg class="w-5 h-5 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="square" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
+          </div>
+        </section>
 
-    <!-- Waitlist Form -->
-    <section id="waitlist-form" class="bg-ssc-bg">
-      <div data-animate="blur-fade" class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center" style="opacity: 0">
-        <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">GET EARLY ACCESS</h2>
-        <p class="font-body text-ssc-text-muted mb-8 max-w-lg mx-auto">
-          Join the waitlist for Slab Savvy Tracker. Beta spots are limited — first in, first tracked.
-        </p>
-        <WaitlistForm client:visible />
+        <!-- Features -->
+        <section class="py-16 md:py-24">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+            <div class="text-center mb-12 md:mb-16">
+              <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide">HOW IT WORKS</h2>
+              <p class="font-body text-gray-300 mt-3 max-w-2xl mx-auto">
+                Built for dealers who move cards, not developers who build apps.
+              </p>
+            </div>
+
+            <div data-animate="stagger-scale" data-children=".feature-card-item" data-stagger="0.1" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {features.map((feature) => (
+                <div class="feature-card-item feature-card bg-white/10 backdrop-blur-sm border border-white/10 p-8" style="opacity: 0">
+                  <div class="feature-icon w-12 h-12 bg-ssc-gold/10 border border-ssc-gold/20 flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+                      <Fragment set:html={iconSvgs[feature.icon]} />
+                    </svg>
+                  </div>
+                  <h3 class="font-headline text-lg text-white tracking-wide mb-3">{feature.title}</h3>
+                  <p class="font-body text-gray-300">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Waitlist Form -->
+        <section id="waitlist-form" class="bg-ssc-black/80 backdrop-blur-md">
+          <div data-animate="blur-fade" class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center" style="opacity: 0">
+            <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">GET EARLY ACCESS</h2>
+            <p class="font-body text-gray-400 mb-8 max-w-lg mx-auto">
+              Join the waitlist for Slab Savvy Tracker. Beta spots are limited — first in, first tracked.
+            </p>
+            <WaitlistForm client:visible />
+          </div>
+        </section>
+
       </div>
-    </section>
+
+      <MobileStickyCTA text="Get Early Access" href="#waitlist-form" />
+    </div>
   </main>
-  <div class="pb-16 md:pb-0"></div>
   <Footer />
-  <MobileStickyCTA text="Get Early Access" href="#waitlist-form" />
 </BaseLayout>
