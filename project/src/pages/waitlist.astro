@@ -21,28 +21,59 @@ const jsonLd = {
   },
 };
 
-const features = [
-  { icon: 'camera', title: 'PHOTO-FIRST LOGGING', description: 'Send a photo of your card. AI identifies it, you confirm, done.' },
-  { icon: 'bar-chart', title: 'REAL-TIME COMPS', description: '130point comp search built in. Know what your cards are worth.' },
-  { icon: 'table', title: 'YOUR GOOGLE SHEET', description: 'Data goes straight to your own spreadsheet. Your data, your way.' },
-  { icon: 'message', title: 'TELEGRAM & WHATSAPP', description: 'Works where you already are. No new app to download.' },
-  { icon: 'dollar', title: 'COST BASIS TRACKING', description: 'Track what you paid, what you sold for, and your actual profit.' },
-  { icon: 'file', title: 'TAX-READY RECORDS', description: 'Good records now means less pain at tax time. Built by a CPA.' },
+const painPoints = [
+  {
+    problem: 'YOU\'RE TRACKING INVENTORY IN A NOTES APP',
+    detail: 'Or a spreadsheet you started six months ago and stopped updating. Or nowhere at all. You know roughly what you have, but "roughly" doesn\'t cut it when you\'re sitting on $30K in cards.',
+  },
+  {
+    problem: 'YOU DON\'T KNOW WHAT YOU PAID',
+    detail: 'That Bedard RC you\'re about to list — did you pay $180 or $220? Was shipping included? What about the grading fee? Without cost basis, you\'re guessing at your profit on every single sale.',
+  },
+  {
+    problem: 'COMPS TAKE FOREVER',
+    detail: 'Before you price anything, you\'re opening 130point, searching the player, filtering by set and parallel, checking recent solds. Multiply that by 20 cards and your whole evening is gone.',
+  },
+  {
+    problem: 'TAX TIME IS A SCRAMBLE',
+    detail: 'Every April you\'re reconstructing a year of buys, sells, and trades from PayPal receipts, eBay history, and DM conversations. Your accountant asks for records and you hand them a mess.',
+  },
 ];
 
-const iconSvgs: Record<string, string> = {
-  camera: '<path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/>',
-  'bar-chart': '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
-  table: '<rect x="3" y="3" width="18" height="18" rx="0"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>',
-  message: '<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>',
-  dollar: '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>',
-  file: '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>',
-};
+const steps = [
+  {
+    number: '01',
+    title: 'SNAP A PHOTO',
+    detail: 'Take a picture of the card and send it to your Slab Savvy Tracker bot on Telegram. That\'s it. No app to open, no forms to fill out.',
+  },
+  {
+    number: '02',
+    title: 'CONFIRM THE DETAILS',
+    detail: 'The bot identifies the card — player, year, set, parallel, grade — and shows you a summary. You say "bought this for $180 from Kyle at the show" and it fills in the rest.',
+  },
+  {
+    number: '03',
+    title: 'GET COMPS',
+    detail: 'Recent sold prices from 130point pulled automatically. You know what the card is worth before you decide what to do with it. No separate search needed.',
+  },
+  {
+    number: '04',
+    title: 'ROW IN YOUR SHEET',
+    detail: 'A row appears in your own Google Sheet with every detail — card info, what you paid, comps, fees, profit calculations. All the formulas are already there. Your data, your account.',
+  },
+];
+
+const whoItsFor = [
+  { label: 'Casual flippers', detail: 'doing 10-50 cards a month from shows and Facebook groups' },
+  { label: 'Side hustle dealers', detail: 'running 50-300 cards across eBay, Whatnot, and shows' },
+  { label: 'Full-time dealers', detail: 'moving 500+ cards a month who need real business records' },
+  { label: 'Collectors who sell', detail: 'thinning the PC and want to know what they actually made' },
+];
 ---
 
 <BaseLayout
-  title="Slab Savvy Tracker — Join the Beta"
-  description="AI-powered inventory tracking for sports card dealers. Send a photo, get a row in your spreadsheet with real-time comps."
+  title="Slab Savvy Tracker — Your Dealer's Assistant"
+  description="Stop tracking cards in a Notes app. Send a photo, confirm the details, get a row in your spreadsheet with comps. Built for Canadian card dealers."
   jsonLd={jsonLd}
 >
   <Navigation />
@@ -61,13 +92,16 @@ const iconSvgs: Record<string, string> = {
               BETA COMING SOON
             </span>
             <h1 class="font-headline text-4xl md:text-6xl lg:text-7xl text-white tracking-wide leading-none mb-6">
-              TRACK YOUR CARDS.
+              YOUR DEALER'S
               <br />
-              <span class="text-shimmer" style="text-shadow: none">KNOW YOUR NUMBERS.</span>
+              <span class="text-shimmer" style="text-shadow: none">ASSISTANT</span>
             </h1>
-            <p class="font-body text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
-              AI-powered inventory tracking for sports card dealers. Send a photo, confirm the details,
-              and your spreadsheet updates itself — with real-time comp prices.
+            <p class="font-body text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-4">
+              Send a photo of a card. Get it logged, comped, and tracked
+              in your spreadsheet — in about 30 seconds.
+            </p>
+            <p class="font-body text-gray-400 text-sm max-w-lg mx-auto">
+              No app to download. Works in Telegram. Your data stays in your Google Sheet.
             </p>
           </div>
 
@@ -82,38 +116,117 @@ const iconSvgs: Record<string, string> = {
           </div>
         </section>
 
-        <!-- Features -->
+        <!-- Pain Points -->
+        <section class="bg-ssc-black/80 backdrop-blur-md">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="text-center mb-12" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+              <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">SOUND FAMILIAR?</h2>
+            </div>
+
+            <div data-animate="stagger-alternate" data-children=".pain-point" data-stagger="0.12" class="space-y-6">
+              {painPoints.map((point) => (
+                <div class="pain-point bg-white/5 backdrop-blur-sm border border-white/10 p-6" style="opacity: 0; text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
+                  <h3 class="font-headline text-lg text-ssc-gold tracking-wide mb-2">{point.problem}</h3>
+                  <p class="font-body text-gray-300 text-sm leading-relaxed">{point.detail}</p>
+                </div>
+              ))}
+            </div>
+
+            <div class="text-center mt-10" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+              <p class="font-body text-gray-300 text-lg">
+                Slab Savvy Tracker fixes all of this. Here's how.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- How It Works (step by step walkthrough) -->
         <section class="py-16 md:py-24">
-          <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
             <div class="text-center mb-12 md:mb-16">
-              <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide">HOW IT WORKS</h2>
+              <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">HOW IT ACTUALLY WORKS</h2>
               <p class="font-body text-gray-300 mt-3 max-w-2xl mx-auto">
-                Built for dealers who move cards, not developers who build apps.
+                No app. No login. No learning curve. Just text your bot like you'd text a friend.
               </p>
             </div>
 
-            <div data-animate="stagger-scale" data-children=".feature-card-item" data-stagger="0.1" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {features.map((feature) => (
-                <div class="feature-card-item feature-card bg-white/10 backdrop-blur-sm border border-white/10 p-8" style="opacity: 0">
-                  <div class="feature-icon w-12 h-12 bg-ssc-gold/10 border border-ssc-gold/20 flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
-                      <Fragment set:html={iconSvgs[feature.icon]} />
-                    </svg>
+            <div data-animate="stagger-scale" data-children=".step-card" data-stagger="0.15" class="space-y-6">
+              {steps.map((step) => (
+                <div class="step-card flex gap-5 bg-white/10 backdrop-blur-sm border border-white/10 p-6" style="opacity: 0; text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
+                  <div class="step-number w-12 h-12 bg-ssc-gold text-white flex items-center justify-center font-mono text-lg font-bold flex-shrink-0">
+                    {step.number}
                   </div>
-                  <h3 class="font-headline text-lg text-white tracking-wide mb-3">{feature.title}</h3>
-                  <p class="font-body text-gray-300">{feature.description}</p>
+                  <div>
+                    <h3 class="font-headline text-lg text-white tracking-wide mb-2">{step.title}</h3>
+                    <p class="font-body text-gray-300 text-sm leading-relaxed">{step.detail}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
+        <!-- What you get (the real value) -->
+        <section class="bg-ssc-black/80 backdrop-blur-md">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+            <div class="text-center mb-12">
+              <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">WHAT THIS MEANS FOR YOU</h2>
+            </div>
+
+            <div data-animate="stagger-scale" data-children=".value-item" data-stagger="0.08" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {[
+                { title: 'KNOW YOUR PROFIT', desc: 'Every card has a cost basis. Every sale has a margin. No more guessing whether you made money this month.' },
+                { title: 'COMPS IN SECONDS', desc: 'Recent sold prices pulled automatically when you log a card. Price with confidence, not gut feeling.' },
+                { title: 'RECORDS THAT ARE READY', desc: 'When tax time hits, your spreadsheet is already organized. Hand it to your accountant and walk away.' },
+                { title: 'YOUR DATA, YOUR SHEET', desc: 'Everything lives in your own Google account. Not our servers, not our database. You own it completely.' },
+                { title: 'LOTS AND TRADES HANDLED', desc: 'Bought a collection for $2K? SST splits the cost across every card. Traded a Crosby for a McDavid? Both sides tracked.' },
+                { title: 'WORKS AT SHOWS', desc: 'Buy a card at a show, snap a photo while you\'re still at the table. It\'s logged before you get to the next booth.' },
+              ].map((item) => (
+                <div class="value-item bg-white/5 backdrop-blur-sm border border-white/10 p-5" style="opacity: 0; text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
+                  <h3 class="font-headline text-base text-ssc-gold tracking-wide mb-2">{item.title}</h3>
+                  <p class="font-body text-gray-300 text-sm">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Who It's For -->
+        <section class="py-16 md:py-20">
+          <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+            <div class="text-center mb-10">
+              <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">WHO IT'S FOR</h2>
+            </div>
+
+            <div data-animate="stagger-alternate" data-children=".who-item" data-stagger="0.1" class="space-y-4">
+              {whoItsFor.map((item) => (
+                <div class="who-item flex items-start gap-4 p-4 border border-white/10 bg-white/5 backdrop-blur-sm" style="opacity: 0; text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
+                  <div class="w-2 h-2 bg-ssc-gold mt-2 flex-shrink-0" />
+                  <div>
+                    <span class="font-mono text-ssc-gold text-sm">{item.label}</span>
+                    <span class="font-body text-gray-300 text-sm"> — {item.detail}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div class="text-center mt-8" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+              <p class="font-body text-gray-400 text-sm">
+                Built by a CPA who buys, sells, and trades cards. Not a tech company guessing at what dealers need.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <!-- Waitlist Form -->
         <section id="waitlist-form" class="bg-ssc-black/80 backdrop-blur-md">
-          <div data-animate="blur-fade" class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center" style="opacity: 0">
+          <div data-animate="blur-fade" class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center" style="opacity: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
             <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">GET EARLY ACCESS</h2>
-            <p class="font-body text-gray-400 mb-8 max-w-lg mx-auto">
-              Join the waitlist for Slab Savvy Tracker. Beta spots are limited — first in, first tracked.
+            <p class="font-body text-gray-300 mb-3 max-w-lg mx-auto">
+              Beta spots are limited. First in, first tracked.
+            </p>
+            <p class="font-body text-gray-400 text-sm mb-8 max-w-md mx-auto">
+              Free 30-day trial. No credit card. Cancel anytime.
             </p>
             <WaitlistForm client:visible />
           </div>
