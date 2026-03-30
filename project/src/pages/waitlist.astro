@@ -24,19 +24,19 @@ const jsonLd = {
 const painPoints = [
   {
     problem: 'YOU\'RE TRACKING INVENTORY IN A NOTES APP',
-    detail: 'Or a spreadsheet you started six months ago and stopped updating. Or nowhere at all. You know roughly what you have, but "roughly" doesn\'t cut it when you\'re sitting on $30K in cards.',
+    detail: 'Or a spreadsheet you started six months ago and stopped updating. Or nowhere at all. You know roughly what you have. "Roughly" doesn\'t cut it when you\'re sitting on $30,000 in cards.',
   },
   {
     problem: 'YOU DON\'T KNOW WHAT YOU PAID',
-    detail: 'That Bedard RC you\'re about to list — did you pay $180 or $220? Was shipping included? What about the grading fee? Without cost basis, you\'re guessing at your profit on every single sale.',
+    detail: 'That Bedard rookie card you\'re about to list. Did you pay $180 or $220? Was shipping included? What about the grading fee? Without cost basis, you\'re guessing at your profit on every sale.',
   },
   {
     problem: 'COMPS TAKE FOREVER',
-    detail: 'Before you price anything, you\'re opening 130point, searching the player, filtering by set and parallel, checking recent solds. Multiply that by 20 cards and your whole evening is gone.',
+    detail: 'Before you price anything, you\'re on 130point searching the player, filtering by set and parallel, checking recent solds. Do that for 20 cards and your whole evening is gone.',
   },
   {
     problem: 'TAX TIME IS A SCRAMBLE',
-    detail: 'Every April you\'re reconstructing a year of buys, sells, and trades from PayPal receipts, eBay history, and DM conversations. Your accountant asks for records and you hand them a mess.',
+    detail: 'Every April you\'re piecing together a year of buys, sells, and trades from PayPal receipts and DM conversations. Your accountant asks for records and you hand them a mess.',
   },
 ];
 
@@ -49,7 +49,7 @@ const steps = [
   {
     number: '02',
     title: 'CONFIRM THE DETAILS',
-    detail: 'The bot identifies the card — player, year, set, parallel, grade — and shows you a summary. You say "bought this for $180 from Kyle at the show" and it fills in the rest.',
+    detail: 'The bot identifies the card. Player, year, set, parallel, grade. It shows you a summary. You say "bought this for $180 from Kyle at the show" and it fills in the rest.',
   },
   {
     number: '03',
@@ -59,7 +59,7 @@ const steps = [
   {
     number: '04',
     title: 'ROW IN YOUR SHEET',
-    detail: 'A row appears in your own Google Sheet with every detail — card info, what you paid, comps, fees, profit calculations. All the formulas are already there. Your data, your account.',
+    detail: 'A row appears in your own Google Sheet. Card info, what you paid, comps, fees, profit. All the formulas are already there. Your data, your account.',
   },
 ];
 
@@ -98,10 +98,10 @@ const whoItsFor = [
             </h1>
             <p class="font-body text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-4">
               Send a photo of a card. Get it logged, comped, and tracked
-              in your spreadsheet — in about 30 seconds.
+              in your spreadsheet. About 30 seconds.
             </p>
             <p class="font-body text-gray-400 text-sm max-w-lg mx-auto">
-              No app to download. Works in Telegram. Your data stays in your Google Sheet.
+              Works in Telegram. No app to download. Your data stays in your Google Sheet.
             </p>
           </div>
 
@@ -146,7 +146,7 @@ const whoItsFor = [
             <div class="text-center mb-12 md:mb-16">
               <h2 class="font-headline text-3xl md:text-4xl text-ssc-gold tracking-wide mb-3">HOW IT ACTUALLY WORKS</h2>
               <p class="font-body text-gray-300 mt-3 max-w-2xl mx-auto">
-                No app. No login. No learning curve. Just text your bot like you'd text a friend.
+                Text your bot like you'd text a friend. That's the whole thing.
               </p>
             </div>
 
@@ -176,10 +176,10 @@ const whoItsFor = [
             <div data-animate="stagger-scale" data-children=".value-item" data-stagger="0.08" class="grid grid-cols-1 md:grid-cols-2 gap-5">
               {[
                 { title: 'KNOW YOUR PROFIT', desc: 'Every card has a cost basis. Every sale has a margin. No more guessing whether you made money this month.' },
-                { title: 'COMPS IN SECONDS', desc: 'Recent sold prices pulled automatically when you log a card. Price with confidence, not gut feeling.' },
-                { title: 'RECORDS THAT ARE READY', desc: 'When tax time hits, your spreadsheet is already organized. Hand it to your accountant and walk away.' },
-                { title: 'YOUR DATA, YOUR SHEET', desc: 'Everything lives in your own Google account. Not our servers, not our database. You own it completely.' },
-                { title: 'LOTS AND TRADES HANDLED', desc: 'Bought a collection for $2K? SST splits the cost across every card. Traded a Crosby for a McDavid? Both sides tracked.' },
+                { title: 'COMPS IN SECONDS', desc: 'Recent sold prices pulled automatically when you log a card. You know what it\'s worth before you price it.' },
+                { title: 'RECORDS THAT ARE READY', desc: 'When tax time hits, your spreadsheet is already done. Hand it to your accountant and walk away.' },
+                { title: 'YOUR DATA, YOUR SHEET', desc: 'Everything lives in your own Google account. You own it completely.' },
+                { title: 'LOTS AND TRADES HANDLED', desc: 'Bought a collection for $2,000? The cost gets split across every card. Traded a Crosby for a McDavid? Both sides tracked.' },
                 { title: 'WORKS AT SHOWS', desc: 'Buy a card at a show, snap a photo while you\'re still at the table. It\'s logged before you get to the next booth.' },
               ].map((item) => (
                 <div class="value-item bg-white/5 backdrop-blur-sm border border-white/10 p-5" style="opacity: 0; text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
@@ -212,7 +212,7 @@ const whoItsFor = [
 
             <div class="text-center mt-8" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
               <p class="font-body text-gray-400 text-sm">
-                Built by a CPA who buys, sells, and trades cards. Not a tech company guessing at what dealers need.
+                Built by a CPA who buys, sells, and trades cards every week.
               </p>
             </div>
           </div>
