@@ -43,45 +43,21 @@ export const HeroCinemagraph: React.FC<HeroCinemagraphProps> = ({
     [framePath, startFrame]
   );
 
-  /** Draw frame on canvas, covering the container like object-fit: cover
-   *  but aligned to top so the card top is visible */
+  /** Draw frame at native size — canvas matches image dimensions,
+   *  container handles centering via CSS (same approach as homepage scroll) */
   const drawFrame = useCallback((index: number) => {
     const canvas = canvasRef.current;
-    const container = containerRef.current;
     const ctx = canvas?.getContext('2d');
     const img = framesRef.current[index];
-    if (!canvas || !container || !ctx || !img?.complete || img.naturalWidth === 0) return;
+    if (!canvas || !ctx || !img?.complete || img.naturalWidth === 0) return;
 
-    const cw = container.clientWidth;
-    const ch = container.clientHeight;
-
-    if (canvas.width !== cw || canvas.height !== ch) {
-      canvas.width = cw;
-      canvas.height = ch;
+    if (canvas.width !== img.naturalWidth || canvas.height !== img.naturalHeight) {
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
     }
 
-    // Cover-fit, aligned to top (show card top, crop bottom)
-    const imgRatio = img.naturalWidth / img.naturalHeight;
-    const containerRatio = cw / ch;
-
-    let drawW: number, drawH: number, drawX: number, drawY: number;
-
-    if (containerRatio > imgRatio) {
-      // Container is wider — fit to width, crop bottom
-      drawW = cw;
-      drawH = cw / imgRatio;
-      drawX = 0;
-      drawY = 0; // top-aligned
-    } else {
-      // Container is taller — fit to height, center horizontally
-      drawH = ch;
-      drawW = ch * imgRatio;
-      drawX = (cw - drawW) / 2;
-      drawY = 0; // top-aligned
-    }
-
-    ctx.clearRect(0, 0, cw, ch);
-    ctx.drawImage(img, drawX, drawY, drawW, drawH);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0);
   }, []);
 
   // Preload frames — ref guard (StrictMode) + cancelled flag (unmount safety)
@@ -168,7 +144,13 @@ export const HeroCinemagraph: React.FC<HeroCinemagraphProps> = ({
 
   return (
     <div ref={containerRef} className="absolute inset-0 z-0 bg-ssc-black overflow-hidden">
-      <canvas ref={canvasRef} className="absolute inset-0" />
+      <div className="w-full h-full flex items-center justify-center">
+        <canvas
+          ref={canvasRef}
+          className="max-w-full max-h-full"
+          style={{ objectFit: 'contain' }}
+        />
+      </div>
       {/* Dark overlay for text readability */}
       <div
         className="absolute inset-0"
