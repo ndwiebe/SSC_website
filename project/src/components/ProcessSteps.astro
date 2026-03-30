@@ -7,9 +7,12 @@ interface Step {
 
 interface Props {
   steps: Step[];
+  dark?: boolean;
 }
 
-const { steps } = Astro.props;
+const { steps, dark = false } = Astro.props;
+const titleColor = dark ? 'text-white' : 'text-ssc-text';
+const descColor = dark ? 'text-gray-300' : 'text-ssc-text-muted';
 ---
 
 <div data-animate="stagger-scale" data-children=".process-step" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -18,10 +21,10 @@ const { steps } = Astro.props;
       <div class="step-number w-14 h-14 bg-ssc-gold text-white flex items-center justify-center font-mono text-xl font-bold mx-auto mb-4">
         {step.number}
       </div>
-      <h3 class="font-headline text-lg text-ssc-text tracking-wide mb-2 transition-colors duration-300 group-hover:text-ssc-gold">
+      <h3 class:list={['font-headline text-lg tracking-wide mb-2 transition-colors duration-300 group-hover:text-ssc-gold', titleColor]}>
         {step.title}
       </h3>
-      <p class="font-body text-ssc-text-muted">
+      <p class:list={['font-body', descColor]}>
         {step.description}
       </p>
     </div>
