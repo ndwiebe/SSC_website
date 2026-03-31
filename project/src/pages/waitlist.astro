@@ -44,7 +44,7 @@ const steps = [
   {
     number: '01',
     title: 'SNAP A PHOTO',
-    detail: 'Take a picture of the card and send it to your Slab Savvy Tracker bot on Telegram. That\'s it. No app to open, no forms to fill out.',
+    detail: 'Send it to your bot on Telegram. No app to open, no forms to fill out.',
   },
   {
     number: '02',
@@ -175,12 +175,10 @@ const whoItsFor = [
 
             <div data-animate="stagger-scale" data-children=".value-item" data-stagger="0.08" class="grid grid-cols-1 md:grid-cols-2 gap-5">
               {[
-                { title: 'KNOW YOUR PROFIT', desc: 'Every card has a cost basis. Every sale has a margin. No more guessing whether you made money this month.' },
-                { title: 'COMPS IN SECONDS', desc: 'Recent sold prices pulled automatically when you log a card. You know what it\'s worth before you price it.' },
+                { title: 'KNOW YOUR ACTUAL PROFIT', desc: 'Every card has a cost basis. Every sale has a real margin. You stop wondering and start knowing.' },
                 { title: 'RECORDS THAT ARE READY', desc: 'When tax time hits, your spreadsheet is already done. Hand it to your accountant and walk away.' },
-                { title: 'YOUR DATA, YOUR SHEET', desc: 'Everything lives in your own Google account. You own it completely.' },
                 { title: 'LOTS AND TRADES HANDLED', desc: 'Bought a collection for $2,000? The cost gets split across every card. Traded a Crosby for a McDavid? Both sides tracked.' },
-                { title: 'WORKS AT SHOWS', desc: 'Buy a card at a show, snap a photo while you\'re still at the table. It\'s logged before you get to the next booth.' },
+                { title: 'WORKS AT SHOWS', desc: 'Buy a card at a show, snap a photo while you\'re still at the table. Logged before you get to the next booth.' },
               ].map((item) => (
                 <div class="value-item bg-white/5 backdrop-blur-sm border border-white/10 p-5" style="opacity: 0; text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
                   <h3 class="font-headline text-base text-ssc-gold tracking-wide mb-2">{item.title}</h3>
