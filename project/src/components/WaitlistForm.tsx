@@ -30,9 +30,14 @@ export const WaitlistForm: React.FC = () => {
 
     try {
       const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+      const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
       const res = await fetch(`${supabaseUrl}/functions/v1/submit-waitlist`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${supabaseKey}`,
+          'apikey': supabaseKey,
+        },
         body: JSON.stringify({
           email: email.trim(),
           monthly_volume: monthlyVolume || null,
