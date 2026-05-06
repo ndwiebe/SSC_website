@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import MobileStickyCTA from '../components/MobileStickyCTA.astro';
+import { FullPageScrollBackground } from '../components/FullPageScrollBackground';
+
+const faqs = [
+  {
+    question: 'What is Slab Savvy?',
+    answer: 'Slab Savvy is a business platform built for sports card collectors who buy, sell, and trade cards in Canada. The ecosystem includes four products: the Slab Savvy Tracker, an AI-powered inventory tool that logs cards from a photo sent via Telegram; DisplayMyCard, an AI photo enhancement service that generates professional card images with team backgrounds and auto-cropping; The Card Collector\'s Tax Playbook, a free 62-page guide covering Canadian tax rules for card sellers; and Tax Ready, a CPA-verified record reconciliation service that turns messy platform exports into accountant-ready packages. Every tool was built by Nathan Wiebe, a Chartered Professional Accountant and active hockey card collector who participates in over 15 Facebook collector communities daily. Slab Savvy focuses on practical problems — inventory tracking, comp pricing, and tax compliance — that Canadian card dealers actually face. The platform serves casual flippers, side-hustle dealers, and full-time card businesses alike.',
+  },
+  {
+    question: 'Who is Slab Savvy for?',
+    answer: 'Slab Savvy is designed for Canadian sports card collectors who sell cards at any volume. The platform serves four main groups. Casual flippers doing 10 to 50 cards per month through shows and Facebook groups benefit from basic inventory tracking and tax awareness. Side-hustle dealers running 50 to 300 cards across eBay, Whatnot, and card shows need cost basis tracking and GST/HST threshold monitoring. Full-time dealers moving 500 or more cards monthly require proper business records, platform fee tracking, and year-end reconciliation. Collectors who sell occasionally — thinning a personal collection or selling duplicates — need to understand when CRA considers them operating a business versus disposing of personal property. If you buy and sell sports cards in Canada and want to know your actual profit per card, track your inventory without a messy Notes app, or hand your accountant clean records at tax time, Slab Savvy was built for you.',
+  },
+  {
+    question: 'Who is behind Slab Savvy?',
+    answer: 'Slab Savvy was founded by Nathan Wiebe, a Chartered Professional Accountant based in Canada with seven years of accounting experience. Nathan is also an active hockey card collector who buys, sells, and trades cards every week. He participates in over 15 Facebook collector communities daily, giving him direct insight into the problems card dealers face with inventory, pricing, and taxes. This combination of professional accounting credentials and hands-on collecting experience means every Slab Savvy tool addresses real pain points — not theoretical ones. Nathan built the Slab Savvy Tracker because he needed a faster way to log cards at shows. He wrote The Card Collector\'s Tax Playbook because collectors in Facebook groups kept asking the same tax questions with no reliable Canadian-specific resource available. The Tax Ready service exists because he saw dealers handing accountants disorganized receipts every April. Slab Savvy is not a generic SaaS product — it is built by someone who lives it.',
+  },
+  {
+    question: 'How does the Slab Savvy Tracker work?',
+    answer: 'The Slab Savvy Tracker uses a Telegram bot as its interface — no app to download and no forms to fill out. You send a photo of a sports card to your personal bot. The bot identifies the card using AI: player name, year, set, parallel, and grade. It shows you a summary and asks you to confirm the details. You can add purchase context naturally, such as "bought this for $180 from Kyle at the show," and the bot fills in the cost basis, source, and acquisition date. The bot then pulls recent sold prices from 130point automatically, so you know the card\'s current market value without searching separately. Finally, a new row appears in your own Google Sheet with the card information, purchase price, comp prices, platform fees, and profit formulas already built in. Your data stays in your Google account. The entire process from photo to logged entry takes approximately 30 seconds.',
+  },
+  {
+    question: 'What does the Slab Savvy Tracker cost?',
+    answer: 'The Slab Savvy Tracker is currently in pre-launch and accepting waitlist signups at slabsavvycpa.com/waitlist. Beta access will include a free 30-day trial with no credit card required, and users can cancel at any time during the trial period. Final pricing has not been announced, but the Tracker will be a subscription service priced to be accessible for side-hustle dealers and casual flippers — not enterprise software pricing. Beta testers who join the waitlist will receive early access before the general public and will be the first to learn about pricing tiers when they are finalized. The waitlist currently asks for your name, email, monthly card volume, and which platforms you sell on, so the Tracker can be tailored to real dealer workflows. There is no cost to join the waitlist. Early supporters who provide feedback during beta testing may receive preferred pricing when the Tracker officially launches.',
+  },
+  {
+    question: 'What is The Card Collector\'s Tax Playbook?',
+    answer: 'The Card Collector\'s Tax Playbook is a free 62-page guide written by Nathan Wiebe, CPA, covering every major Canadian tax topic that applies to sports card sellers. The guide is available at no cost through Gumroad and includes a Google Sheets card tracking spreadsheet as a bonus. The eight chapters cover: when CRA treats card selling as a hobby versus a business, capital gains calculations with real dollar amounts, every deduction a card seller can claim, practical record-keeping methods with the included tracking spreadsheet, GST/HST obligations and the $30,000 small supplier threshold, cross-border sales and USD currency conversion rules, seven fully worked scenarios from casual collector to full-time dealer, and a one-page cheat sheet listing every relevant threshold and deadline. The Playbook was written because no Canadian-specific tax resource existed for card collectors. It contains no upsells and no spam — just clear tax guidance from a CPA who collects.',
+  },
+  {
+    question: 'Why is Slab Savvy focused on Canadian card sellers?',
+    answer: 'Slab Savvy focuses exclusively on Canadian card sellers because Canadian tax rules for collectibles differ significantly from American rules, and no other platform addresses this gap. In Canada, CRA applies different tax treatment depending on whether card selling is classified as a hobby, a business, or a disposition of personal property. The $30,000 GST/HST small supplier threshold, adjusted cost base calculations, and capital gains inclusion rates are all uniquely Canadian concepts that generic inventory tools ignore. Most card tracking apps and tax guides are written for the American market, where IRS rules, state sales taxes, and 1099 reporting requirements work differently. Canadian dealers selling in USD also face currency conversion requirements that affect their reported income. Nathan Wiebe built Slab Savvy specifically because he is a Canadian CPA who collects cards and could not find tools that handled Canadian tax obligations correctly. Every feature accounts for Canadian tax law from the ground up.',
+  },
+  {
+    question: 'How does Slab Savvy compare to tracking cards in a spreadsheet?',
+    answer: 'Most card dealers start with a spreadsheet or Notes app to track inventory, but these methods break down as volume increases. A typical spreadsheet requires manual entry of every card\'s details — player, year, set, parallel, grade, purchase price, and source — which means each card takes two to five minutes to log properly. At 50 cards per month, that is over four hours of data entry alone. Spreadsheets also lack automated comp pricing, so you must separately search 130point or eBay sold listings to understand current market value. The Slab Savvy Tracker reduces entry time to approximately 30 seconds per card by using photo recognition and natural language input through Telegram. Comps are pulled automatically from 130point. Your data still lives in a Google Sheet that you own and control, so you keep the flexibility of a spreadsheet without the manual labor. The Tracker also pre-builds profit formulas, fee columns, and cost basis tracking that most homemade spreadsheets lack.',
+  },
+  {
+    question: 'What is DisplayMyCard?',
+    answer: 'DisplayMyCard is an AI-powered photo enhancement service within the Slab Savvy ecosystem, available at displaymycard.com. The service takes a standard photo of a sports card — even one taken with a phone under imperfect lighting — and generates a professional-quality image suitable for listings, social media posts, or personal display. DisplayMyCard uses artificial intelligence to auto-crop the card, remove background clutter, and place the card on a team-branded background that matches the player\'s franchise. The result looks like a professional product photo without requiring photography equipment or editing skills. DisplayMyCard is useful for dealers listing cards on eBay, Whatnot, or Facebook marketplace, where high-quality photos directly affect sale prices and buyer confidence. It is also popular with collectors who want clean images of their personal collection for social media. The service is available separately from the Slab Savvy Tracker and can be used independently at displaymycard.com.',
+  },
+  {
+    question: 'When does the Slab Savvy Tracker launch?',
+    answer: 'The Slab Savvy Tracker is currently in development with a beta launch planned for the near future. Exact launch dates have not been publicly announced, but collectors can join the waitlist at slabsavvycpa.com/waitlist to secure early access. Beta spots are limited and will be filled on a first-come, first-served basis. Waitlist members receive a free 30-day trial with no credit card required and can cancel at any time. The beta will initially support logging cards via Telegram photo messages, automated comp pricing from 130point, and Google Sheets integration for inventory storage. During the beta period, Nathan Wiebe will collect feedback directly from early users to refine the product before general availability. Features like lot cost splitting, trade tracking, and multi-platform sales reconciliation are planned for the full release. The waitlist form asks for your name, email, estimated monthly card volume, and preferred selling platforms to help prioritize development.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="FAQ — Slab Savvy CPA"
+  description="Frequently asked questions about Slab Savvy, the Tracker, The Card Collector's Tax Playbook, DisplayMyCard, and Canadian tax rules for sports card sellers."
+  jsonLd={jsonLd}
+>
+  <Navigation />
+  <main class="flex-1">
+    <div class="pb-16 md:pb-0">
+      <!-- Fixed scroll animation background — Bedard -->
+      <FullPageScrollBackground client:load framePath="/hero-frames/bedard" frameCount={73} />
+
+      <!-- All content scrolls OVER the animation -->
+      <div class="relative z-10">
+
+        <!-- Hero -->
+        <section class="min-h-screen flex items-center justify-center relative">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style="text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)">
+            <h1 class="font-headline text-4xl md:text-6xl lg:text-7xl text-white tracking-wide leading-none mb-6">
+              FREQUENTLY ASKED
+              <br />
+              <span class="text-shimmer" style="text-shadow: none">QUESTIONS</span>
+            </h1>
+            <p class="font-body text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
+              Everything you need to know about Slab Savvy, the Tracker, taxes,
+              and tools for Canadian card sellers.
+            </p>
+          </div>
+
+          <!-- Scroll indicator -->
+          <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="flex flex-col items-center gap-2">
+              <span class="font-body text-xs text-gray-400 tracking-wider uppercase">Scroll</span>
+              <svg class="w-5 h-5 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="square" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Items -->
+        <section class="bg-ssc-black/80 backdrop-blur-md">
+          <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div data-animate="stagger-alternate" data-children=".faq-item" data-stagger="0.08" class="space-y-8">
+              {faqs.map((faq, i) => (
+                <div class="faq-item border border-white/15 bg-white/5 backdrop-blur-sm p-6" style="opacity: 0; text-shadow: 0 1px 4px rgba(0,0,0,0.5)">
+                  <div class="flex items-start gap-4 mb-3">
+                    <span class="font-mono text-ssc-gold text-sm mt-1 flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                    <h2 class="font-headline text-lg md:text-xl text-ssc-gold tracking-wide">{faq.question}</h2>
+                  </div>
+                  <p class="font-body text-gray-200 text-sm leading-relaxed ml-10">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="bg-ssc-black/80 backdrop-blur-md border-t border-white/10">
+          <div data-animate="blur-fade" class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center" style="opacity: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.6)">
+            <h2 class="font-headline text-2xl md:text-3xl text-ssc-gold tracking-wide mb-4">STILL HAVE QUESTIONS?</h2>
+            <p class="font-body text-gray-300 mb-8">
+              Reach out directly — Nathan reads every email.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="mailto:slabsavvycpa@gmail.com" class="btn-shine inline-flex items-center justify-center min-h-[44px] px-10 py-4 bg-ssc-gold text-white font-body font-semibold text-lg hover:bg-ssc-gold-dark">
+                Email Us
+              </a>
+              <a href="/waitlist" class="btn-ghost-glow inline-flex items-center justify-center min-h-[44px] px-10 py-4 border-2 border-white/80 text-white font-body font-semibold text-lg transition-all duration-300">
+                Join the Waitlist
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <MobileStickyCTA text="Join the Waitlist" href="/waitlist" />
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
