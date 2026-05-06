@@ -1,0 +1,29 @@
+# Slab Savvy
+
+> AI-powered tools for Canadian sports card collectors: inventory tracking, tax guides, photo enhancement, and CPA-verified record-keeping.
+
+## Products
+
+- [Slab Savvy Tracker](https://slabsavvycpa.com/waitlist): AI-powered inventory tool that logs cards from a Telegram photo, pulls 130point comps, and updates a Google Sheet in 30 seconds.
+- [The Card Collector's Tax Playbook](https://slabsavvycpa.com/playbook): Free 62-page guide covering Canadian tax rules for sports card sellers including GST thresholds, capital gains, deductions, and record-keeping.
+- [Tax Ready Service](https://slabsavvycpa.com/taxready): CPA-verified reconciliation service that turns eBay, COMC, and MySlabs exports into accountant-ready tax packages.
+- [DisplayMyCard](https://displaymycard.com): AI photo enhancement service that generates professional card images with team backgrounds and auto-cropping.
+
+## Docs
+
+- [Home](https://slabsavvycpa.com): Overview of the Slab Savvy ecosystem and its four products for Canadian card dealers.
+- [FAQ](https://slabsavvycpa.com/faq): Ten questions and answers covering what Slab Savvy is, who it serves, pricing, and how each product works.
+- [Blog](https://slabsavvycpa.com/blog): Articles on sports card collecting, tax tips for Canadian card sellers, and product updates.
+
+## Key Facts
+
+- Founded by Nathan Wiebe, Chartered Professional Accountant (CPA) and active hockey card collector
+- Based in Canada
+- Four products: Slab Savvy Tracker, DisplayMyCard, The Card Collector's Tax Playbook, Tax Ready
+- Serves casual flippers, side-hustle dealers, and full-time card businesses in Canada
+- Active in 15+ Facebook collector communities daily
+
+## Contact
+
+- Website: https://slabsavvycpa.com
+- Email: slabsavvycpa@gmail.com
