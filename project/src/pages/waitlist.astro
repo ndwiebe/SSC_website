@@ -13,11 +13,24 @@ const jsonLd = {
   description: 'AI-powered inventory tracking for sports card dealers. Send a photo, confirm the details, and your spreadsheet updates itself with real-time comp prices.',
   url: 'https://slabsavvycpa.com/waitlist',
   applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
+  operatingSystem: 'Telegram, Web',
   offers: {
-    '@type': 'Offer',
-    availability: 'https://schema.org/PreOrder',
+    '@type': 'AggregateOffer',
     priceCurrency: 'CAD',
+    lowPrice: '19',
+    highPrice: '179',
+    offerCount: '4',
+    offers: [
+      { '@type': 'Offer', name: 'Starter', price: '19', priceCurrency: 'CAD', availability: 'https://schema.org/PreOrder' },
+      { '@type': 'Offer', name: 'Grower', price: '49', priceCurrency: 'CAD', availability: 'https://schema.org/PreOrder' },
+      { '@type': 'Offer', name: 'Dealer', price: '99', priceCurrency: 'CAD', availability: 'https://schema.org/PreOrder' },
+      { '@type': 'Offer', name: 'Whale', price: '179', priceCurrency: 'CAD', availability: 'https://schema.org/PreOrder' },
+    ],
+  },
+  creator: {
+    '@type': 'Organization',
+    name: 'Slab Savvy',
+    url: 'https://slabsavvycpa.com',
   },
 };
 
