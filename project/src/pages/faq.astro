@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import MobileStickyCTA from '../components/MobileStickyCTA.astro';
+
+const faqs = [
+  {
+    q: 'What is Slab Savvy?',
+    a: 'Slab Savvy is a collection of tools and services for sports card collectors and dealers, built by a Canadian CPA who collects cards himself. It covers the business side of the hobby: AI-powered inventory tracking (Slab Savvy Tracker), done-for-you bookkeeping for card sales (Tax Ready), a free Canadian tax guide for card sellers (the Tax Playbook), and AI card photo enhancement (DisplayMyCard).',
+  },
+  {
+    q: 'Who is behind Slab Savvy?',
+    a: 'Slab Savvy is run by Nathan Wiebe, a Chartered Professional Accountant (CPA) in Canada and a lifelong sports card collector. He builds the tools, writes the tax content, and handles the Tax Ready bookkeeping work personally.',
+  },
+  {
+    q: 'What is the Slab Savvy Tracker and how does it work?',
+    a: 'Slab Savvy Tracker is an AI-powered inventory assistant for card dealers. You send a photo of a card to a Telegram bot, confirm the details it reads (player, set, parallel, grade), and it adds a row to your Google Sheet automatically — including recent comparable sale prices, so you know what the card is worth before you decide what to do with it. It is currently in beta with a waitlist.',
+  },
+  {
+    q: 'How much does the Slab Savvy Tracker cost?',
+    a: 'Slab Savvy Tracker is currently in beta, and joining the waitlist is free. Pricing will be announced at launch; beta participants help shape the product and get first access.',
+  },
+  {
+    q: 'What is the Tax Ready service?',
+    a: 'Tax Ready is a done-for-you bookkeeping service for card sellers. You send your sales exports from eBay, COMC, and MySlabs, and you get back a clean, structured, CPA-verified package your accountant can work with directly at tax time — no shoebox of screenshots required.',
+  },
+  {
+    q: 'Do I have to pay tax when I sell sports cards in Canada?',
+    a: 'It depends on whether your selling is a business or a hobby in the eyes of the Canada Revenue Agency (CRA). If you regularly buy cards intending to resell them for profit, that activity is generally business income and is taxable. Occasional sales from a personal collection are treated differently and may have little or no tax impact. The free Card Collector’s Tax Playbook walks through the distinction in detail.',
+  },
+  {
+    q: 'When does selling cards become a business in the CRA’s eyes?',
+    a: 'The CRA looks at the overall picture rather than a single rule: how often you sell, whether you buy inventory specifically to resell, whether you intend to make a profit, and how business-like your operation is (sourcing, repricing, advertising). A collector occasionally thinning a personal collection looks like a hobby; someone buying collections to flip on eBay every week looks like a business. When in doubt, talk to an accountant — the answer changes what you owe and what you can deduct.',
+  },
+  {
+    q: 'What is the Card Collector’s Tax Playbook?',
+    a: 'The Card Collector’s Tax Playbook is a free 62-page guide to Canadian tax rules for sports card sellers, written by a CPA who collects. It covers hobby-versus-business classification, GST/HST registration thresholds, capital gains, deductions, and record-keeping, and includes a free Google Sheets template for tracking every card you buy and sell.',
+  },
+  {
+    q: 'What is DisplayMyCard?',
+    a: 'DisplayMyCard is Slab Savvy’s sister product: an AI photo enhancement tool for sports cards. It takes a smartphone photo of your card and upgrades the background, staging, and lighting into a professional product shot for eBay listings and social posts — without altering the card itself.',
+  },
+  {
+    q: 'Does Slab Savvy offer AI consulting?',
+    a: 'Yes. Nathan takes a limited number of AI consulting engagements, helping small businesses and accounting professionals put AI to work in their actual workflows — the same approach used to build the Slab Savvy tools. Email slabsavvycpa@gmail.com with “AI Consulting” in the subject line to start a conversation.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://www.slabsavvycpa.com/faq#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="FAQ — Slab Savvy CPA"
+  description="Direct answers about Slab Savvy: the Tracker, the Tax Ready service, Canadian tax rules for card sellers, the free Tax Playbook, and the CPA behind it all."
+  jsonLd={jsonLd}
+>
+  <Navigation />
+  <main class="flex-1 bg-ssc-bg">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 pb-28 md:pb-24">
+      <header class="mb-12 text-center">
+        <h1 class="font-headline text-4xl md:text-6xl text-ssc-text tracking-wide leading-none mb-4">
+          QUESTIONS, <span class="text-ssc-gold">ANSWERED</span>
+        </h1>
+        <p class="font-body text-lg text-ssc-text-muted max-w-2xl mx-auto">
+          Everything collectors and dealers ask about Slab Savvy — the tools, the taxes, and the CPA behind them.
+        </p>
+      </header>
+
+      <div class="space-y-10">
+        {faqs.map((f) => (
+          <section class="border-b border-ssc-text/10 pb-8">
+            <h2 class="font-headline text-2xl md:text-3xl text-ssc-text tracking-wide mb-3">{f.q}</h2>
+            <p class="font-body text-base md:text-lg text-ssc-text-muted leading-relaxed">{f.a}</p>
+          </section>
+        ))}
+      </div>
+
+      <div class="mt-14 text-center">
+        <p class="font-body text-ssc-text-muted mb-4">Still have a question?</p>
+        <a
+          href="mailto:slabsavvycpa@gmail.com"
+          class="inline-flex items-center min-h-[44px] px-8 py-3 bg-ssc-gold text-ssc-text font-body font-bold hover:bg-ssc-gold-dark transition-colors"
+        >
+          Email Nathan
+        </a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+  <MobileStickyCTA text="Get the Free Tax Guide" href="/playbook" />
+</BaseLayout>

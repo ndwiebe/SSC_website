@@ -14,12 +14,48 @@ const {
   title,
   description,
   canonical,
-  ogImage = 'https://slabsavvycpa.com/og-image.png',
+  ogImage = 'https://www.slabsavvycpa.com/og-image.png',
   ogType = 'website',
   jsonLd,
 } = Astro.props;
 
 const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site).toString();
+
+// Sitewide entity graph: the Organization and the CPA behind it (E-E-A-T anchor)
+const siteGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://www.slabsavvycpa.com/#organization',
+      name: 'Slab Savvy CPA',
+      alternateName: 'Slab Savvy',
+      url: 'https://www.slabsavvycpa.com',
+      logo: 'https://www.slabsavvycpa.com/ssc-logo.png',
+      description:
+        'Tools and services for sports card collectors and dealers: AI-powered inventory tracking, accountant-ready bookkeeping, Canadian tax guidance, and card photo enhancement — built by a CPA who collects.',
+      email: 'slabsavvycpa@gmail.com',
+      founder: { '@id': 'https://www.slabsavvycpa.com/#nathan-wiebe' },
+      sameAs: ['https://facebook.com/slabsavvy'],
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://www.slabsavvycpa.com/#nathan-wiebe',
+      name: 'Nathan Wiebe',
+      jobTitle: 'Chartered Professional Accountant (CPA)',
+      description:
+        'Canadian CPA and lifelong sports card collector. Builds AI-powered tools for the hobby and writes about tax rules for card sellers in Canada.',
+      worksFor: { '@id': 'https://www.slabsavvycpa.com/#organization' },
+      knowsAbout: [
+        'Canadian income tax for sports card sellers',
+        'GST/HST for small business',
+        'Sports card collecting and dealing',
+        'AI automation for accounting workflows',
+      ],
+      sameAs: ['https://github.com/ndwiebe'],
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -59,7 +95,8 @@ const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site).toStri
     <!-- Gumroad overlay -->
     <script src="https://gumroad.com/js/gumroad.js" defer></script>
 
-    <!-- JSON-LD -->
+    <!-- JSON-LD: sitewide Organization + Person (E-E-A-T), then page-specific schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(siteGraph)} />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body class="min-h-screen bg-ssc-bg flex flex-col font-body overflow-x-hidden">
