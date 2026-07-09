@@ -166,7 +166,7 @@ const jsonLd = {
             'Authorization': `Bearer ${supabaseKey}`,
             'apikey': supabaseKey,
           },
-          body: JSON.stringify({ email, monthly_volume: 'newsletter' }),
+          body: JSON.stringify({ email, source: 'newsletter' }),
         });
         const data = await res.json();
 
