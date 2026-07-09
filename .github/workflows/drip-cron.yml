@@ -1,0 +1,17 @@
+name: drip-cron
+on:
+  schedule:
+    - cron: "0 15 * * *"   # daily 15:00 UTC ≈ 9am Alberta
+  workflow_dispatch: {}
+
+jobs:
+  send-drip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke send-drip
+        run: |
+          curl -sf -X POST \
+            "https://jqjfxcbyotfozaspqwfz.supabase.co/functions/v1/send-drip" \
+            -H "x-drip-secret: ${{ secrets.DRIP_SECRET }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}"
