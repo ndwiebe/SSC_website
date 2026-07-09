@@ -13,7 +13,10 @@ Deno.serve(async (req) => {
   )
 
   let sentCount = 0
-  for (const drip of DRIP_EMAILS) {
+  // Reverse stage order: a row advanced to stage 1 this run must not also
+  // match the stage-2 query in the same run (backlogged rows would get two
+  // emails at once; reversed, they pace one stage per daily run).
+  for (const drip of [...DRIP_EMAILS].reverse()) {
     const cutoff = new Date(Date.now() - drip.afterDays * 24 * 60 * 60 * 1000).toISOString()
     const { data: due, error } = await supabase
       .from('waitlist_signups')
