@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import MobileStickyCTA from '../components/MobileStickyCTA.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Nathan Wiebe',
+    jobTitle: 'Chartered Professional Accountant (CPA)',
+    // image omitted — no verified headshot yet; add back when nathan-wiebe.webp is supplied
+  },
+};
+---
+
+<BaseLayout
+  title="About — Slab Savvy"
+  description="Nathan Wiebe: Canadian CPA, lifelong collector, and the builder behind Slab Savvy."
+  jsonLd={jsonLd}
+>
+  <Navigation />
+  <main class="flex-1 bg-ssc-bg">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 pb-28 md:pb-24">
+
+      <header class="mb-12">
+        <h1 class="font-headline text-4xl md:text-6xl text-ssc-text tracking-wide leading-none mb-8">
+          THE CPA WHO <span class="text-ssc-gold">COLLECTS</span>
+        </h1>
+
+        <!-- interim scene image — swap to real headshot (nathan-wiebe.webp) when Nathan supplies one; also add image back to JSON-LD Person -->
+        <img
+          src="/about-desk.webp"
+          alt="A hockey card beside the ledger — the two halves of Slab Savvy"
+          width="800"
+          height="437"
+          class="w-full max-w-sm mb-8"
+          loading="eager"
+        />
+
+        <p class="font-body text-base md:text-lg text-ssc-text-muted leading-relaxed mb-4">
+          I'm Nathan Wiebe — a Chartered Professional Accountant in Canada and a
+          lifelong sports card collector. By day I do the books. The rest of the
+          time I'm in the same Facebook groups you are, chasing the same cardboard.
+        </p>
+        <p class="font-body text-base md:text-lg text-ssc-text-muted leading-relaxed">
+          Slab Savvy exists because those two worlds kept colliding. Collectors
+          kept asking the same tax questions and getting confidently wrong answers
+          from the internet. Accountants kept not knowing what a YG is. Somebody
+          had to sit in the middle.
+        </p>
+      </header>
+
+      <section class="mb-12 border-t border-ssc-text/10 pt-10">
+        <h2 class="font-headline text-2xl md:text-3xl text-ssc-text tracking-wide mb-6">
+          WHAT I'VE <span class="text-ssc-gold">MADE SO FAR</span>
+        </h2>
+        <ul class="space-y-4">
+          <li class="font-body text-base md:text-lg text-ssc-text-muted leading-relaxed">
+            <strong class="text-ssc-text">The Tax Playbook</strong> — a free 62-page guide to Canadian taxes for card
+            sellers. No paywall, no upsell inside.{' '}
+            <a href="/playbook" class="text-ssc-gold hover:underline">→ /playbook</a>
+          </li>
+          <li class="font-body text-base md:text-lg text-ssc-text-muted leading-relaxed">
+            <strong class="text-ssc-text">DisplayMyCard</strong> — AI photo enhancement that makes your listings look
+            like they were shot in a studio, not on a kitchen table.{' '}
+            <a href="https://displaymycard.com" class="text-ssc-gold hover:underline" target="_blank" rel="noopener noreferrer">→ displaymycard.com</a>
+          </li>
+          <li class="font-body text-base md:text-lg text-ssc-text-muted leading-relaxed">
+            <strong class="text-ssc-text">Slab Savvy Tracker</strong> — a Telegram bot that logs your cards into a
+            spreadsheet you own. In private testing.{' '}
+            <a href="/waitlist" class="text-ssc-gold hover:underline">→ /waitlist</a>
+          </li>
+        </ul>
+        <p class="font-body text-base md:text-lg text-ssc-text-muted leading-relaxed mt-6">
+          I build these myself — the AI tools, the code, all of it. If you're
+          curious what a CPA with a code habit can put together, that's the{' '}
+          <a href="/built" class="text-ssc-gold hover:underline">What I've Built</a> page.
+        </p>
+      </section>
+
+      <section class="mb-14 border-t border-ssc-text/10 pt-10">
+        <h2 class="font-headline text-2xl md:text-3xl text-ssc-text tracking-wide mb-6">
+          THE STRAIGHT-GOODS <span class="text-ssc-gold">PROMISE</span>
+        </h2>
+        <p class="font-body text-base md:text-lg text-ssc-text-muted leading-relaxed">
+          Everything here follows the same rule I use with clients: plain answers,
+          no scare tactics, no pretending the CRA is either asleep or omniscient.
+          The rules are knowable. Someone just has to translate them.
+        </p>
+      </section>
+
+      <div class="text-center">
+        <p class="font-body text-ssc-text-muted mb-4">Questions?</p>
+        <a
+          href="mailto:slabsavvycpa@gmail.com"
+          class="inline-flex items-center min-h-[44px] px-8 py-3 bg-ssc-gold text-ssc-text font-body font-bold hover:bg-ssc-gold-dark transition-colors"
+        >
+          Email Nathan
+        </a>
+        <p class="font-body text-sm text-ssc-text-muted mt-3">slabsavvycpa@gmail.com — I read everything.</p>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+  <MobileStickyCTA text="Get the Free Tax Guide" href="/playbook" />
+</BaseLayout>
