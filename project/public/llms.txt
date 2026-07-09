@@ -10,7 +10,6 @@ Key facts:
 ## Products & Services
 
 - [Slab Savvy Tracker](https://www.slabsavvycpa.com/waitlist): AI-powered inventory tracking for card dealers. Send a photo of a card via Telegram, confirm the details, and a spreadsheet row is created automatically with recent comparable sale prices. Currently in beta with a waitlist.
-- [Tax Ready Service](https://www.slabsavvycpa.com/taxready): Done-for-you bookkeeping for card sellers. Send eBay, COMC, and MySlabs sales exports and receive accountant-ready, CPA-verified records back.
 - [The Card Collector's Tax Playbook](https://www.slabsavvycpa.com/playbook): A free 62-page guide to Canadian tax rules for sports card sellers — GST/HST thresholds, capital gains, hobby-versus-business classification, deductions, and record-keeping. Includes a free Google Sheets inventory template.
 - [DisplayMyCard](https://displaymycard.com): Sister product. AI photo enhancement for sports cards — turns a smartphone photo into a professionally staged image for listings and social posts.
 

@@ -115,7 +115,7 @@ Tax time does not have to be painful. The dealers who have a bad time are the on
 
 The dealers who have a clean experience are the ones who tracked as they went. Even imperfectly. Even in a messy spreadsheet. Having something is dramatically better than having nothing.
 
-If your records are a mess and you need help getting them organized, that is exactly what the [Tax Ready](/taxready) service is for. Send me your exports and I will turn them into something your accountant can work with.
+If your records are a mess, start with the free [Tax Playbook](/playbook) — it comes with the same tracking spreadsheet I recommend to clients, and it will get you from shoebox-of-screenshots to something your accountant can actually work with.
 
 ## Frequently Asked Questions
 

@@ -119,7 +119,7 @@ If any of these describe you, it's probably time to have a conversation.
 
 You're approaching or over $30,000 in annual card sales. You've been selling for years and haven't been tracking costs properly. You're unsure whether you should have been collecting and remitting GST. You want to understand whether your situation is business income or capital gains.
 
-I offer a [Tax Ready](/taxready) service specifically for card dealers and flippers. It's not a full accounting engagement. It's a focused review to figure out where you stand and what you should do next.
+The free [Tax Playbook](/playbook) walks through where the GST line actually sits for card dealers and what to do as you approach it. Grab it before you cross $30K in sales, not after.
 
 ## Frequently Asked Questions
 
