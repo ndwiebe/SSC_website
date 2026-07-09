@@ -70,7 +70,7 @@ This is not complicated data. It is just a lot of rows. The challenge is buildin
 
 ## Tools
 
-A Google Sheet works. I built a [free spreadsheet template](/spreadsheet) specifically for Canadian card dealers that covers all of these fields, plus GST tracking and year-end summaries.
+A Google Sheet works. I built a [free spreadsheet template](/playbook) specifically for Canadian card dealers that covers all of these fields, plus GST tracking and year-end summaries.
 
 If you want something that does not require manual entry, [Slab Savvy Tracker](/waitlist) is built for exactly this. Send a photo of your card, confirm the details, and it logs everything — cost basis, description, and all the fields your accountant will need. It is currently in development.
 

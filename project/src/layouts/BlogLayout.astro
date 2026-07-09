@@ -158,10 +158,15 @@ const jsonLd = {
 
       try {
         const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+        const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
         const res = await fetch(`${supabaseUrl}/functions/v1/submit-waitlist`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, monthly_volume: 'newsletter' }),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${supabaseKey}`,
+            'apikey': supabaseKey,
+          },
+          body: JSON.stringify({ email, source: 'newsletter' }),
         });
         const data = await res.json();
 

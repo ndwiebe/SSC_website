@@ -110,6 +110,7 @@ const siteGraph = {
       if (key && typeof key === 'string') {
         posthog.init(key, {
           api_host: 'https://us.i.posthog.com',
+          advanced_disable_feature_flags: true,
           capture_pageview: true,
           capture_pageleave: true,
           persistence: 'localStorage+cookie',

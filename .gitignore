@@ -11,3 +11,5 @@ design-references/
 project/node_modules/
 project/dist/
 .vercel
+.claude/
+.planning/

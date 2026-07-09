@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import MobileStickyCTA from '../components/MobileStickyCTA.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'What I\'ve Built — Slab Savvy',
+  description: 'The tools, bots, and AI systems Nathan Wiebe has shipped — for collectors and for small businesses.',
+  author: {
+    '@type': 'Person',
+    name: 'Nathan Wiebe',
+    jobTitle: 'Chartered Professional Accountant (CPA)',
+  },
+};
+
+const cameraIcon = `<svg class="w-6 h-6 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="square" stroke-linejoin="miter" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path stroke-linecap="square" stroke-linejoin="miter" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>`;
+const clipboardIcon = `<svg class="w-6 h-6 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="square" stroke-linejoin="miter" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>`;
+const bookIcon = `<svg class="w-6 h-6 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="square" stroke-linejoin="miter" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>`;
+const codeIcon = `<svg class="w-6 h-6 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="square" stroke-linejoin="miter" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>`;
+const lightningIcon = `<svg class="w-6 h-6 text-ssc-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="square" stroke-linejoin="miter" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`;
+
+const cards = [
+  {
+    title: 'DISPLAYMYCARD',
+    description: 'AI photo enhancement for card sellers. Upload a phone photo, get a listing image that looks professionally shot. Live SaaS product with paying subscribers.',
+    iconSvg: cameraIcon,
+    href: 'https://displaymycard.com',
+    cta: 'displaymycard.com',
+    gradient: 'bg-gradient-to-r from-amber-500 to-amber-300',
+    external: true,
+  },
+  {
+    title: 'SLAB SAVVY TRACKER',
+    description: 'Telegram bot: photo in, spreadsheet row out, comps included. In private beta.',
+    iconSvg: clipboardIcon,
+    href: '/waitlist',
+    cta: 'Join the Waitlist',
+    gradient: 'bg-gradient-to-r from-ssc-gold to-ssc-gold-light',
+    external: false,
+  },
+  {
+    title: 'THE TAX PLAYBOOK',
+    description: '62-page plain-English Canadian tax guide for card sellers, downloaded by collectors across the country. Free.',
+    iconSvg: bookIcon,
+    href: '/playbook',
+    cta: 'Get It Free',
+    gradient: 'bg-gradient-to-r from-ssc-gold-dark to-ssc-gold',
+    external: false,
+  },
+  {
+    title: 'THIS SITE',
+    description: 'Designed, written, and built by me (with AI doing the heavy lifting), including the animations.',
+    iconSvg: codeIcon,
+    href: '/',
+    cta: 'See It Live',
+    gradient: 'bg-gradient-to-r from-ssc-gold to-ssc-gold-light',
+    external: false,
+  },
+  {
+    title: 'BUSINESS AUTOMATION DEMOS',
+    description: 'AI systems built for local businesses: instant lead-response for service companies, emergency-aware maintenance triage for property managers. Built in days, not months.',
+    iconSvg: lightningIcon,
+    href: '#get-in-touch',
+    cta: 'Ask Me About These',
+    gradient: 'bg-gradient-to-r from-amber-600 to-amber-400',
+    external: false,
+  },
+];
+---
+
+<BaseLayout
+  title="What I've Built — Slab Savvy"
+  description="The tools, bots, and AI systems Nathan Wiebe has shipped — for collectors and for small businesses."
+  jsonLd={jsonLd}
+>
+  <Navigation />
+  <main class="flex-1 bg-ssc-bg">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 pb-28 md:pb-24">
+
+      <header class="mb-12">
+        <h1 class="font-headline text-4xl md:text-6xl text-ssc-text tracking-wide leading-none mb-8">
+          WHAT I'VE <span class="text-ssc-gold">BUILT</span>
+        </h1>
+        <p class="font-body text-base md:text-lg text-ssc-text-muted leading-relaxed">
+          A CPA with a code habit. Everything below is live, shipped by me,
+          and built with the same AI-assisted process I now use for clients.
+        </p>
+      </header>
+
+      <section class="mb-14" aria-label="Portfolio">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {cards.map((card) => {
+            const linkProps = card.external
+              ? { href: card.href, target: '_blank', rel: 'noopener noreferrer' }
+              : { href: card.href };
+            return (
+              <a
+                {...linkProps}
+                class="group relative border border-ssc-border/80 bg-white/90 backdrop-blur-sm p-5 card-hover flex flex-col"
+              >
+                {/* Gradient accent bar */}
+                <div class={`absolute top-0 left-0 right-0 h-1 ${card.gradient} accent-bar-animated`} />
+
+                {/* Icon + Title */}
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-10 h-10 bg-ssc-gold/10 border border-ssc-gold/20 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-ssc-gold/20 group-hover:border-ssc-gold/40 group-hover:shadow-[0_0_12px_rgba(201,162,39,0.2)]">
+                    <Fragment set:html={card.iconSvg} />
+                  </div>
+                  <h2 class="font-headline text-lg tracking-wide text-ssc-text">{card.title}</h2>
+                </div>
+
+                {/* Description */}
+                <p class="font-body text-sm text-ssc-text-muted mb-4 flex-1">{card.description}</p>
+
+                {/* CTA */}
+                <span class="inline-flex items-center min-h-[44px] text-ssc-gold font-body font-semibold transition-all duration-300 group-hover:text-ssc-gold-dark">
+                  {card.cta}
+                  <svg class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="square" d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+
+      <section id="get-in-touch" class="border-t border-ssc-text/10 pt-10 text-center">
+        <h2 class="font-headline text-2xl md:text-3xl text-ssc-text tracking-wide mb-4">
+          WANT SOMETHING LIKE THIS FOR YOUR <span class="text-ssc-gold">BUSINESS?</span>
+        </h2>
+        <p class="font-body text-base md:text-lg text-ssc-text-muted leading-relaxed mb-8 max-w-xl mx-auto">
+          I take on a small number of AI consulting projects — automation,
+          custom tools, and "can this even be done?" conversations.
+        </p>
+        <a
+          href="mailto:slabsavvycpa@gmail.com?subject=AI%20consulting%20inquiry"
+          class="inline-flex items-center justify-center min-h-[44px] px-8 py-3 bg-ssc-gold text-ssc-text font-body font-bold hover:bg-ssc-gold-dark transition-colors"
+        >
+          GET IN TOUCH
+        </a>
+      </section>
+
+    </div>
+  </main>
+  <Footer />
+  <MobileStickyCTA text="Get the Free Tax Guide" href="/playbook" />
+</BaseLayout>

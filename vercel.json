@@ -1,0 +1,8 @@
+{
+  "framework": "astro",
+  "redirects": [
+    { "source": "/taxready", "destination": "/playbook", "permanent": true },
+    { "source": "/spreadsheet", "destination": "/playbook", "permanent": true },
+    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true }
+  ]
+}

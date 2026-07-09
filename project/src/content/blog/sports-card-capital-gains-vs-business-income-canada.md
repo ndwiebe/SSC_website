@@ -63,7 +63,7 @@ Track all your expenses. Business income treatment means you can deduct everythi
 
 Keep your PC separate from your inventory. Different spreadsheet tabs, different storage, different intent. If CRA ever asks, you want a clean line between "cards I collect" and "cards I sell."
 
-If you have a specific situation that does not fit neatly (inherited collection, one-time liquidation, mix of hobby and business), talk to a CPA who understands the hobby. That is literally why I built the [Tax Ready](/taxready) service.
+If you have a specific situation that does not fit neatly (inherited collection, one-time liquidation, mix of hobby and business), talk to a CPA who understands the hobby before you file. The [Tax Playbook](/playbook) covers the general rules so you can walk into that conversation already knowing what matters.
 
 ## How Slab Savvy Tracker Helps
 
