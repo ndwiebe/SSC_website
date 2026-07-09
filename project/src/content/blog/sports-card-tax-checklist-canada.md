@@ -107,7 +107,7 @@ Most accountants do not want a shoebox of receipts. They want a summary. Ideally
 4. GST collected and ITCs claimed (if registered)
 5. Any notes on unusual items (large trades, inherited cards, bulk collection purchases)
 
-The [free Tax Playbook spreadsheet](/spreadsheet) is built to produce exactly this output. The year-end summary tab gives your accountant everything they need on one page.
+The [free Tax Playbook spreadsheet](/playbook) is built to produce exactly this output. The year-end summary tab gives your accountant everything they need on one page.
 
 ## The Bottom Line
 

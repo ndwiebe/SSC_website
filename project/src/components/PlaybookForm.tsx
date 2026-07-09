@@ -52,6 +52,13 @@ export const PlaybookForm: React.FC = () => {
         <p className="font-body text-ssc-text-muted max-w-md mx-auto">
           Your download link is on its way. If it's not there in two minutes, check spam — then rescue it.
         </p>
+        <p className="font-body text-sm text-ssc-text-muted mt-4">
+          Can't wait?{' '}
+          <a href="https://slabsavvycpa.gumroad.com/l/tax-playbook" className="text-ssc-gold font-semibold hover:text-ssc-gold-dark">
+            Grab it straight from Gumroad
+          </a>
+          .
+        </p>
       </div>
     );
   }

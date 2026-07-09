@@ -1,6 +1,6 @@
 # Slab Savvy
 
-> Slab Savvy is a collection of tools and services for sports card collectors and dealers, built by Nathan Wiebe, a Canadian Chartered Professional Accountant (CPA) who collects cards himself. It covers inventory tracking, accountant-ready bookkeeping for card sales, Canadian tax guidance for sellers, and AI photo enhancement.
+> Slab Savvy is a collection of tools and services for sports card collectors and dealers, built by Nathan Wiebe, a Canadian Chartered Professional Accountant (CPA) who collects cards himself. It covers inventory tracking, Canadian tax guidance for sellers, and AI photo enhancement.
 
 Key facts:
 - Founded and run by a Canadian CPA who is an active sports card collector

@@ -12,6 +12,8 @@ const json = (status: number, body: Record<string, unknown>) =>
 
 const VALID_SOURCES: SignupSource[] = ['waitlist', 'newsletter', 'playbook']
 
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
 
@@ -32,16 +34,15 @@ Deno.serve(async (req) => {
     const { data: existing } = await supabase
       .from('waitlist_signups').select('id, welcome_sent_at').eq('email', cleanEmail).maybeSingle()
 
-    const { error } = await supabase.from('waitlist_signups').upsert(
-      {
-        email: cleanEmail,
-        monthly_volume: monthly_volume || null,
-        source: signupSource,
-        ip_address: req.headers.get('x-forwarded-for') || req.headers.get('cf-connecting-ip') || 'unknown',
-        user_agent: req.headers.get('user-agent') || 'unknown',
-      },
-      { onConflict: 'email' }
-    )
+    const row: Record<string, unknown> = {
+      email: cleanEmail,
+      ip_address: req.headers.get('x-forwarded-for') || req.headers.get('cf-connecting-ip') || 'unknown',
+      user_agent: req.headers.get('user-agent') || 'unknown',
+    }
+    if (monthly_volume) row.monthly_volume = monthly_volume
+    if (!existing) row.source = signupSource
+
+    const { error } = await supabase.from('waitlist_signups').upsert(row, { onConflict: 'email' })
     if (error) {
       console.error('signup_upsert_error', error.message)
       return json(500, { success: false, error: 'Something went wrong. Try again.' })
@@ -61,7 +62,7 @@ Deno.serve(async (req) => {
     await sendEmail(
       NOTIFY_EMAIL,
       `New SSC signup: ${cleanEmail} (${signupSource})`,
-      `<p><strong>${cleanEmail}</strong> signed up via <strong>${signupSource}</strong>${monthly_volume ? ` · volume: ${monthly_volume}` : ''}.</p>`
+      `<p><strong>${esc(cleanEmail)}</strong> signed up via <strong>${esc(signupSource)}</strong>${monthly_volume ? ` · volume: ${esc(String(monthly_volume))}` : ''}.</p>`
     )
 
     return json(200, { success: true })

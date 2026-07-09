@@ -111,7 +111,7 @@ If you're not ready for a full tracking tool but you want to get your records or
 
 It covers cost basis tracking (adjusted cost base for each card), GST/HST collected and paid, profit and loss by card and by period, and an annual summary ready for your accountant.
 
-It's free. [Grab it here](/spreadsheet).
+It's free. [Grab it here](/playbook).
 
 ## When to Talk to a CPA
 
