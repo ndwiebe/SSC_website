@@ -35,12 +35,16 @@ function CatalogueImage({
   alt: string;
   onOpen: () => void;
 }) {
-  const [src, setSrc] = useState(thumbUrl ?? fullUrl);
+  // Show the full-size photo in the grid: these are showcase sales cards, not
+  // the app's dense 44px ledger rows, so the tiny 160px thumb looked blurry
+  // scaled up to card size. Fall back to the thumb only if the full object is
+  // missing (e.g. a photo predating the catalogue copy).
+  const [src, setSrc] = useState(fullUrl ?? thumbUrl);
   const [failed, setFailed] = useState(!src);
 
   function handleError() {
-    if (src === thumbUrl && fullUrl && fullUrl !== thumbUrl) {
-      setSrc(fullUrl);
+    if (src === fullUrl && thumbUrl && thumbUrl !== fullUrl) {
+      setSrc(thumbUrl);
       return;
     }
     setFailed(true);
