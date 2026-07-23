@@ -123,9 +123,38 @@ const siteGraph = {
       import { gsap } from 'gsap';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-      gsap.registerPlugin(ScrollTrigger);
+      // Content is visible by default (no CSS opacity:0). GSAP only ENHANCES it
+      // with scroll reveals. Two safety nets guarantee content never stays
+      // blank if anything about the animation goes wrong:
+      //   1. prefers-reduced-motion, or GSAP failing to load/init -> we simply
+      //      never hide anything, so the page shows normally.
+      //   2. a failsafe reveals any section that is on-screen but still hidden
+      //      (the real-world failure: ScrollTrigger positions computed before
+      //      fonts/images settle, so a trigger never fires on a slower browser).
+      const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Force any on-screen [data-animate] (or its children) that is still
+      // hidden to full visibility. Only touches elements in the viewport, so
+      // legitimately-below-the-fold sections still animate in on scroll.
+      function revealStuck() {
+        document.querySelectorAll<HTMLElement>('[data-animate]').forEach((el) => {
+          const r = el.getBoundingClientRect();
+          const inView = r.top < window.innerHeight * 1.05 && r.bottom > 0;
+          if (!inView) return;
+          const type = el.dataset.animate || '';
+          const targets: Element[] = type.startsWith('stagger')
+            ? Array.from(el.querySelectorAll(el.dataset.children || '.animate-child'))
+            : [el];
+          targets.forEach((t) => {
+            if (parseFloat(getComputedStyle(t).opacity) < 0.05) {
+              gsap.set(t, { opacity: 1, x: 0, y: 0, scale: 1, filter: 'none', clearProps: 'transform,filter' });
+            }
+          });
+        });
+      }
 
       function initAnimations() {
+        if (REDUCE) return; // leave everything at its natural visible state
         document.querySelectorAll<HTMLElement>('[data-animate]').forEach((el) => {
           const type = el.dataset.animate;
           const childSelector = el.dataset.children || '.animate-child';
@@ -199,7 +228,36 @@ const siteGraph = {
         });
       }
 
-      initAnimations();
+      try {
+        gsap.registerPlugin(ScrollTrigger);
+        initAnimations();
+        // Recompute trigger positions once the real layout settles (fonts +
+        // images shift where 'top 85%' actually is). This is the fix for
+        // triggers that never fire on slower/real browsers.
+        window.addEventListener('load', () => ScrollTrigger.refresh());
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(() => ScrollTrigger.refresh());
+        }
+        // Belt-and-suspenders: after load + a beat, reveal anything on-screen
+        // that never animated in. Runs again on the first scroll, cheaply.
+        window.addEventListener('load', () => setTimeout(revealStuck, 1200));
+        let ticking = false;
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => { revealStuck(); ticking = false; });
+          },
+          { passive: true }
+        );
+      } catch (err) {
+        // If GSAP failed entirely, content is already visible (never hidden);
+        // nothing to do but make certain.
+        document
+          .querySelectorAll<HTMLElement>('[data-animate], [data-animate] .animate-child')
+          .forEach((el) => { el.style.opacity = '1'; });
+      }
     </script>
   </body>
 </html>
