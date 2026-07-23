@@ -7,9 +7,17 @@ interface Props {
   cta: string;
   gradient: string;
   external?: boolean;
+  // Some brand logos (e.g. the DisplayMyCard gold shield) are designed for a
+  // dark background; render their icon chip on black so they read on-brand
+  // instead of washing out on the default gold-tinted chip.
+  iconDark?: boolean;
 }
 
-const { title, description, iconSvg, href, cta, gradient, external = false } = Astro.props;
+const { title, description, iconSvg, href, cta, gradient, external = false, iconDark = false } = Astro.props;
+
+const iconChipClass = iconDark
+  ? 'bg-ssc-black border border-ssc-gold/20 group-hover:border-ssc-gold/40 group-hover:shadow-[0_0_12px_rgba(201,162,39,0.2)]'
+  : 'bg-ssc-gold/10 border border-ssc-gold/20 group-hover:bg-ssc-gold/20 group-hover:border-ssc-gold/40 group-hover:shadow-[0_0_12px_rgba(201,162,39,0.2)]';
 
 const linkProps = external
   ? { href, target: '_blank', rel: 'noopener noreferrer' }
@@ -25,7 +33,7 @@ const linkProps = external
 
   <!-- Icon + Title -->
   <div class="flex items-center gap-3 mb-3">
-    <div class="w-10 h-10 bg-ssc-gold/10 border border-ssc-gold/20 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-ssc-gold/20 group-hover:border-ssc-gold/40 group-hover:shadow-[0_0_12px_rgba(201,162,39,0.2)]">
+    <div class={`w-10 h-10 flex items-center justify-center flex-shrink-0 transition-all duration-300 ${iconChipClass}`}>
       <Fragment set:html={iconSvg} />
     </div>
     <h3 class="font-headline text-lg tracking-wide text-ssc-text">{title}</h3>
