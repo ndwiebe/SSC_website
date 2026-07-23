@@ -63,6 +63,13 @@ const siteGraph = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Enable scroll-reveal ONLY when JS is confirmed running. This inline
+         script runs before first paint, so the hidden start state (gated on
+         html.js-anim in index.css) applies with no flash. If JS is blocked or
+         off, this never runs, nothing is hidden, and content shows normally. -->
+    <script is:inline>
+      document.documentElement.classList.add('js-anim');
+    </script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#FAFAF8" />
@@ -118,146 +125,56 @@ const siteGraph = {
       }
     </script>
 
-    <!-- GSAP animation auto-init -->
-    <script>
-      import { gsap } from 'gsap';
-      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    <!-- Scroll-reveal driver. Deliberately INLINE (is:inline) with no imports,
+         so it can't fail to load the way a bundled module can behind a
+         corporate/privacy script-blocker. It only ever ADDS visibility
+         (`.anim-in`); the hidden start state lives in CSS gated on html.js-anim.
+         Failure modes all degrade to "content visible": JS off -> never hides;
+         reduced-motion -> CSS block inert; observer never fires -> failsafe
+         sweep reveals everything. -->
+    <script is:inline>
+      (function () {
+        var nodes = document.querySelectorAll('[data-animate]');
+        if (!nodes.length) return;
+        var els = [];
+        for (var i = 0; i < nodes.length; i++) els.push(nodes[i]);
 
-      // Content is visible by default (no CSS opacity:0). GSAP only ENHANCES it
-      // with scroll reveals. Two safety nets guarantee content never stays
-      // blank if anything about the animation goes wrong:
-      //   1. prefers-reduced-motion, or GSAP failing to load/init -> we simply
-      //      never hide anything, so the page shows normally.
-      //   2. a failsafe reveals any section that is on-screen but still hidden
-      //      (the real-world failure: ScrollTrigger positions computed before
-      //      fonts/images settle, so a trigger never fires on a slower browser).
-      const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      // Force any on-screen [data-animate] (or its children) that is still
-      // hidden to full visibility. Only touches elements in the viewport, so
-      // legitimately-below-the-fold sections still animate in on scroll.
-      function revealStuck() {
-        document.querySelectorAll<HTMLElement>('[data-animate]').forEach((el) => {
-          const r = el.getBoundingClientRect();
-          const inView = r.top < window.innerHeight * 1.05 && r.bottom > 0;
-          if (!inView) return;
-          const type = el.dataset.animate || '';
-          const targets: Element[] = type.startsWith('stagger')
-            ? Array.from(el.querySelectorAll(el.dataset.children || '.animate-child'))
-            : [el];
-          targets.forEach((t) => {
-            if (parseFloat(getComputedStyle(t).opacity) < 0.05) {
-              gsap.set(t, { opacity: 1, x: 0, y: 0, scale: 1, filter: 'none', clearProps: 'transform,filter' });
-            }
-          });
-        });
-      }
-
-      function initAnimations() {
-        if (REDUCE) return; // leave everything at its natural visible state
-        document.querySelectorAll<HTMLElement>('[data-animate]').forEach((el) => {
-          const type = el.dataset.animate;
-          const childSelector = el.dataset.children || '.animate-child';
-          const stagger = parseFloat(el.dataset.stagger || '0.15');
-          const delay = parseFloat(el.dataset.delay || '0');
-
-          switch (type) {
-            case 'stagger-scale': {
-              gsap.fromTo(
-                el.querySelectorAll(childSelector),
-                { opacity: 0, y: 30, scale: 0.95, filter: 'blur(4px)' },
-                {
-                  opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
-                  duration: 0.7, stagger, ease: 'back.out(1.2)',
-                  scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' },
-                }
-              );
-              break;
-            }
-            case 'blur-fade': {
-              gsap.fromTo(
-                el,
-                { opacity: 0, y: 30, filter: 'blur(8px)' },
-                {
-                  opacity: 1, y: 0, filter: 'blur(0px)',
-                  duration: 1, delay, ease: 'power3.out',
-                  scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
-                }
-              );
-              break;
-            }
-            case 'slide-left': {
-              gsap.fromTo(
-                el,
-                { opacity: 0, x: -60 },
-                {
-                  opacity: 1, x: 0, duration: 0.8, delay, ease: 'power3.out',
-                  scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
-                }
-              );
-              break;
-            }
-            case 'slide-right': {
-              gsap.fromTo(
-                el,
-                { opacity: 0, x: 60 },
-                {
-                  opacity: 1, x: 0, duration: 0.8, delay, ease: 'power3.out',
-                  scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
-                }
-              );
-              break;
-            }
-            case 'stagger-alternate': {
-              const els = el.querySelectorAll(childSelector);
-              els.forEach((child, i) => {
-                const fromX = i % 2 === 0 ? -40 : 40;
-                gsap.fromTo(
-                  child,
-                  { opacity: 0, x: fromX, filter: 'blur(4px)' },
-                  {
-                    opacity: 1, x: 0, filter: 'blur(0px)',
-                    duration: 0.7, delay: i * stagger, ease: 'power2.out',
-                    scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' },
-                  }
-                );
-              });
-              break;
+        // Give stagger children an index so their transition-delay cascades.
+        els.forEach(function (el) {
+          if ((el.getAttribute('data-animate') || '').indexOf('stagger') === 0) {
+            var kids = el.children;
+            for (var k = 0; k < kids.length; k++) {
+              kids[k].style.setProperty('--anim-i', k);
             }
           }
         });
-      }
 
-      try {
-        gsap.registerPlugin(ScrollTrigger);
-        initAnimations();
-        // Recompute trigger positions once the real layout settles (fonts +
-        // images shift where 'top 85%' actually is). This is the fix for
-        // triggers that never fire on slower/real browsers.
-        window.addEventListener('load', () => ScrollTrigger.refresh());
-        if (document.fonts && document.fonts.ready) {
-          document.fonts.ready.then(() => ScrollTrigger.refresh());
+        // Under reduced motion the CSS never hides anything — nothing to reveal.
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          return;
         }
-        // Belt-and-suspenders: after load + a beat, reveal anything on-screen
-        // that never animated in. Runs again on the first scroll, cheaply.
-        window.addEventListener('load', () => setTimeout(revealStuck, 1200));
-        let ticking = false;
-        window.addEventListener(
-          'scroll',
-          () => {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(() => { revealStuck(); ticking = false; });
-          },
-          { passive: true }
-        );
-      } catch (err) {
-        // If GSAP failed entirely, content is already visible (never hidden);
-        // nothing to do but make certain.
-        document
-          .querySelectorAll<HTMLElement>('[data-animate], [data-animate] .animate-child')
-          .forEach((el) => { el.style.opacity = '1'; });
-      }
+
+        function reveal(el) { el.classList.add('anim-in'); }
+        function revealAll() { els.forEach(reveal); }
+
+        try {
+          if (!('IntersectionObserver' in window)) { revealAll(); return; }
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); }
+            });
+          }, { rootMargin: '0px 0px -12% 0px' });
+          els.forEach(function (el) { io.observe(el); });
+
+          // Failsafe: never leave anything hidden, even if the observer never
+          // fires (background tab, headless renderer, odd viewport math).
+          var sweep = function () { setTimeout(revealAll, 2500); };
+          if (document.readyState === 'complete') sweep();
+          else window.addEventListener('load', sweep);
+        } catch (err) {
+          revealAll();
+        }
+      })();
     </script>
   </body>
 </html>

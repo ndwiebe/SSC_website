@@ -131,12 +131,12 @@ export const InventoryGrid: React.FC = () => {
 
   return (
     <>
-      {/* No data-animate/opacity-0 scroll-reveal here (unlike the rest of
-          this site's sections): BaseLayout's GSAP init runs once, synchronously,
-          right after the initial page load -- before this React island
-          (client:load) has hydrated and rendered these cards into the DOM. Its
-          one-time querySelectorAll('[data-animate]') never finds elements that
-          don't exist yet, so an opacity:0 start here would never get revealed. */}
+      {/* No data-animate scroll-reveal here (unlike the rest of this site's
+          sections): BaseLayout's inline reveal script runs once at parse --
+          before this React island (client:load) has hydrated and rendered these
+          cards into the DOM. Its one-time querySelectorAll('[data-animate]')
+          never finds elements that don't exist yet, so a hidden start here
+          would never get revealed. */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {cards.map((card) => {
           const { thumbUrl, fullUrl } = cataloguePhotoUrls(card);
