@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 
 /**
@@ -23,7 +23,6 @@ export const FullPageScrollBackground: React.FC<FullPageScrollBackgroundProps> =
   const currentFrameRef = useRef<number>(-1);
   const rafRef = useRef<number>(0);
   const loadingStartedRef = useRef(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   const FRAME_COUNT = frameCountProp || 121;
@@ -73,7 +72,6 @@ export const FullPageScrollBackground: React.FC<FullPageScrollBackgroundProps> =
         drawFrame(0);
         currentFrameRef.current = 0;
       }
-      if (loadedCount === totalToLoad) setIsLoaded(true);
     };
 
     // Step 1: Load first frame immediately for fast hero render
@@ -152,34 +150,37 @@ export const FullPageScrollBackground: React.FC<FullPageScrollBackgroundProps> =
     };
   }, [prefersReducedMotion, frameStep, drawFrame]);
 
-  if (prefersReducedMotion) return null;
-
   return (
-    <>
-      {/* Fixed canvas behind everything */}
-      <div className="fixed inset-0 z-0 bg-ssc-black">
-        <div className="w-full h-full flex items-center justify-center">
+    <div className="fixed inset-0 z-0 bg-ssc-black">
+      <div className="w-full h-full flex items-center justify-center">
+        {/* Static poster = the first frame, rendered as plain HTML so the hero
+            shows a real still image WITHOUT JavaScript. This is the fallback for
+            blocked/failed JS (locked-down corporate browsers) and reduced-motion,
+            and it fills the initial-load moment before frames arrive. The canvas
+            draws the animated frame sequence over it once loaded. No perpetual
+            spinner can ever be the hero anymore. */}
+        <img
+          src={getFrameSrc(0)}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full"
+          style={{ objectFit: "contain" }}
+        />
+        {!prefersReducedMotion && (
           <canvas
             ref={canvasRef}
-            className="max-w-full max-h-full"
+            className="relative max-w-full max-h-full"
             style={{ objectFit: "contain" }}
           />
-        </div>
-        {/* Radial overlay — darker in center for text readability, transparent at edges for card visibility */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(ellipse 60% 50% at 50% 45%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 100%)',
-          }}
-        />
+        )}
       </div>
-
-      {/* Loading spinner */}
-      {!isLoaded && (
-        <div className="fixed inset-0 z-0 flex items-center justify-center bg-ssc-black">
-          <div className="w-8 h-8 border-2 border-ssc-gold border-t-transparent animate-spin" />
-        </div>
-      )}
-    </>
+      {/* Radial overlay — darker in center for text readability, transparent at edges for card visibility */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'radial-gradient(ellipse 60% 50% at 50% 45%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 100%)',
+        }}
+      />
+    </div>
   );
 };
